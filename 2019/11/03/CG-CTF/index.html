@@ -6,7 +6,7 @@
 
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
-<meta name="theme-color" content="#a1d0f6">
+<meta name="theme-color" content="#">
 <title>CG-CTF - Gu Chuan&#39;s blog</title>
 <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <link rel="shortcut icon" href="/favicon.png">
@@ -15,10 +15,6 @@
 	
 	    <a href="/">← Home</a>
 	
-	
-	    <a href="/about/">About</a>
-	
-	    <a href="/archives/">Archives</a>
 	
 	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
 </nav>
@@ -38,8 +34,8 @@
     
 
     <footer id="post-meta" class="clearfix">
-        <a href="/about/">
-        <img class="avatar" src="/images/guchuan.JPG">
+        <a href="/">
+        <img class="avatar" src="">
         <div>
             <span class="dark">Gu Chuan&#39;s blog</span>
             <span>没学过从来不是理由</span>
@@ -58,34 +54,6 @@
     </footer>
 
 
-  <section id="comment">
-    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
-    <div id="gitment"></div>
-    <script src='/js/gitment.browser.js'></script>
-    <link rel="stylesheet" href=''>
-    <script>
-      var cmts={
-        load:function cmts(){
-          var gitment = new Gitment({
-          
-            id: "CG-CTF",
-          
-            owner: "",
-            repo: "",
-            oauth: {
-              client_id: "",
-              client_secret: "",
-            },
-          })
-          gitment.render('gitment');
-          var loadcmt = document.getElementById("loadcmts");
-          var imyourfather = loadcmt.parentNode;
-          imyourfather.removeChild(loadcmts)
-        }
-      }
-    </script>
-  </section>
-
 
 	<footer id="footer">
 	<div id="social">
@@ -96,12 +64,6 @@
 </footer>
 
 </section>
-
-	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
-	<script data-no-instant>
-		
-		InstantClick.init('mousedown');
-	</script>
 
 
 
