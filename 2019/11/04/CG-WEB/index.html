@@ -5,7 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
   <meta name="description" content="签到题
-打开页面后，查看源代码。">
+打开页面后，查看源代码。
+md5 collision
+源码给出。
+
+分析源码：1、变量a，GET传值，不为空，且不等于QNKCDZO。
+​                    2、变量a的MD5值等于QNKCDZO的MD5值。
+考查知识：PHP弱类型，MD5。
+解题方式：?a= s1502">
 
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
@@ -41,6 +48,25 @@
 </article>
 <section id="post-body"><p><strong>签到题</strong></p>
 <p>打开页面后，查看源代码。</p>
+<p><strong>md5 collision</strong></p>
+<p>源码给出。</p>
+<p><img src="D:%5CBlog%5CHexo%5CGG%5Csource_posts%5CCG-WEB%5Cmd5_collison.png" alt=""></p>
+<p>分析源码：1、变量a，GET传值，不为空，且不等于QNKCDZO。</p>
+<p>​                    2、变量a的MD5值等于QNKCDZO的MD5值。</p>
+<p>考查知识：PHP弱类型，MD5。</p>
+<p>解题方式：?a= s1502113478a</p>
+<p><strong>签到2</strong></p>
+<p>打开题目。</p>
+<p><img src="D:%5CBlog%5CHexo%5CGG%5Csource_posts%5CCG-WEB%5Csign_in2.png" alt=""></p>
+<p>输入 zhimakaimen ，无果。</p>
+<p>口令错误？F12查看页面信息。</p>
+<p><img src="D:%5CBlog%5CHexo%5CGG%5Csource_posts%5CCG-WEB%5Csign_in1.png" alt=""></p>
+<p>口令长度为11，而输入的长度为10。</p>
+<p>解题方式：1、 <em>maxlength=”10”</em> 字段修改为 <em>maxlength=”11”</em> 或是更大的值 ，并输入zhimakaimen。</p>
+<p>​                    2、post传值text1=zhimakaimen。</p>
+<p><strong>这题不是WEB</strong></p>
+<p>下载图片，记事本打开。</p>
+<p>考查知识：图片隐写。</p>
 </section>
     
         
