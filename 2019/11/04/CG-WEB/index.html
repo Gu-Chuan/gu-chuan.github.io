@@ -13,7 +13,7 @@
 变量a的MD5值等于QNKCDZO的MD5值。        
 
 考查知识：PHP弱类型，MD5。
-解题方式：?a= s15021134">
+小贴士：在PHP中，@被称为错误控制">
 
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
@@ -56,6 +56,7 @@
 <li>变量a的MD5值等于QNKCDZO的MD5值。        </li>
 </ol>
 <p>考查知识：PHP弱类型，MD5。</p>
+<p>小贴士：在PHP中，@被称为错误控制操作符(error control operator)，前置@符号的表达式产生的任何错误都将被忽略。</p>
 <p>解题方式：?a= s1502113478a</p>
 <h1 id="0x03-签到2"><a href="#0x03-签到2" class="headerlink" title="0x03  签到2"></a>0x03  签到2</h1><p>打开题目。</p>
 <p><img src="/2019/11/04/CG-WEB/sign_in2.png" alt></p>
@@ -177,7 +178,44 @@
 <p>考查知识：文件上传之%00截断。</p>
 <p>解题方式：上传一张<code>qqq.jpg</code>图片，抓包后修改<code>/uploads/</code>为<code>/uploads/aaa.php_</code>，然后file保持<code>qqq.jpg</code>，连起来后就是<code>/uploads/aaa.php_qqq.jpg</code>， 然后打开hex编码寻找<code>_</code>及59，将其修改为00，回车确认。 此时变成<code>/uploads/aaa.php qqq.jpg</code>，则既绕过了白名单验证又上传了PHP后缀的文件。（0x00是指修改16进制值，不可见。）</p>
 <p><img src="/2019/11/04/CG-WEB/upload2.png" alt></p>
-</section>
+<h1 id="0x22-SQL注入1"><a href="#0x22-SQL注入1" class="headerlink" title="0x22  SQL注入1"></a>0x22  SQL注入1</h1><p>Source，查看源码。</p>
+<p><img src="/2019/11/04/CG-WEB/sql1.png" alt></p>
+<p>分析源码：</p>
+<ol>
+<li>POST传入参数user、pass，并且除去参数两端空格。</li>
+<li>查询user为admin的数据（记录）。</li>
+</ol>
+<p>考查知识：MySQL语法，SQL注入之注释，逻辑漏洞。</p>
+<p>解题方式：POST <code>user=admin&#39;)#&amp;pass=111</code></p>
+<h1 id="0x23-passcheck"><a href="#0x23-passcheck" class="headerlink" title="0x23  passcheck"></a>0x23  passcheck</h1><p>源码。</p>
+<p><img src="/2019/11/04/CG-WEB/pass_check.png" alt></p>
+<p>分析源码：POST传值的变量pass和已定义的变量pass1的值要相同。</p>
+<p>考查知识：PHP函数之strcmp()，PHP弱比较。</p>
+<p>解题方式：<code>?pass[]=123</code>   //strcmp()处理数组，返回null。</p>
+<h1 id="0x24-起名字真难"><a href="#0x24-起名字真难" class="headerlink" title="0x24  起名字真难"></a>0x24  起名字真难</h1><p>“白嫖”。</p>
+<p><img src="/2019/11/04/CG-WEB/name.png" alt></p>
+<p>分析源码：GET传入key不可以包含1-9，但是要是54975581388。</p>
+<p>考查知识：PHP函数之ord()，细节漏洞。</p>
+<p>解题方式： <code>?key=0xccccccccc</code></p>
+<h1 id="0x25-密码重置"><a href="#0x25-密码重置" class="headerlink" title="0x25  密码重置"></a>0x25  密码重置</h1><p> 打开题目。URL惊现Base64。</p>
+<p><img src="/2019/11/04/CG-WEB/password1.png" alt></p>
+<p>题目提示：“ 重置管理员账号：admin 的密码 ”。</p>
+<p>考查知识：细节漏洞，逻辑漏洞。</p>
+<p>解题方式：</p>
+<p><img src="/2019/11/04/CG-WEB/password2.png" alt></p>
+<h1 id="0x26-PHP-反序列化"><a href="#0x26-PHP-反序列化" class="headerlink" title="0x26  PHP 反序列化"></a>0x26  PHP 反序列化</h1><p>暂时无法做！但是有源码。</p>
+<p><img src="/2019/11/04/CG-WEB/unserialize.png" alt></p>
+<p>分析源码：</p>
+<ol>
+<li><p>一个just4fun类。GET传送的变量pass被反序列化，其是just4fun的一个子类。</p>
+</li>
+<li><p>类中secret变量和enter变量相等。</p>
+</li>
+</ol>
+<p>题目提示（考查知识）：PHP序列化和反序列化。</p>
+<p>解题方式：</p>
+<p><img src="/2019/11/04/CG-WEB/unserialized.png" alt></p>
+<h1 id="0x27-SQL-InJection"><a href="#0x27-SQL-InJection" class="headerlink" title="0x27  SQL InJection"></a>0x27  SQL InJection</h1></section>
     
         
         <h2 class="footline">
