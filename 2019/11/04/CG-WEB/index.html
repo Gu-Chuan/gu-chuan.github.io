@@ -213,7 +213,29 @@
 <p>题目提示（考查知识）：PHP序列化和反序列化。</p>
 <p>解题方式：</p>
 <p><img src="/2019/11/04/CG-WEB/unserialized.png" alt></p>
-<h1 id="0x27-SQL-InJection"><a href="#0x27-SQL-InJection" class="headerlink" title="0x27  SQL InJection"></a>0x27  SQL InJection</h1></section>
+<h1 id="0x27-SQL-InJection"><a href="#0x27-SQL-InJection" class="headerlink" title="0x27  SQL InJection"></a>0x27  SQL InJection</h1><p>此题理解了一点点久，PHP学忘了。</p>
+<p>查看源码。</p>
+<p><img src="/2019/11/04/CG-WEB/SQL_Injection.png" alt></p>
+<p>分析源码：</p>
+<ol>
+<li>GET传入的变量username和变量password强制转换为字符串，并调用clean方法，在clean方法首先判断是否开启添加反斜杠，如果添加，使用stripslashes()删除反斜杠，然后调用htmlentities()方法将把字符转换为 HTML 实体,htmlentities($str, ENT_QUOTES); // 转换双引号和单引号。</li>
+<li>查询name为变量username的记录。</li>
+</ol>
+<p>考查知识：SQL注入之逻辑注入。PHP函数之stripslashes()、htmlentities()。</p>
+<p>小贴士：在mysql查询语句中转义字符不参与闭合。</p>
+<p>题目提示： 反斜杠可以用来转义，仔细查看相关函数的用法，即通过反斜杠来转义单引号。</p>
+<p>解题方式： <code>?username=\&amp;password= or 1--+</code> </p>
+<p><img src="/2019/11/04/CG-WEB/SQL_Injection1.png" alt></p>
+<h1 id="0x28-综合题"><a href="#0x28-综合题" class="headerlink" title="0x28  综合题"></a>0x28  综合题</h1><p>考查知识： jsfuck编码 、.bash_history文件、zip。</p>
+<p>打开题目，一堆 [][(![]+[])[!![]+!![]+!! 。F12控制台，解码。</p>
+<p><img src="/2019/11/04/CG-WEB/together1.png" alt></p>
+<p>访问<code>/ 1bc29b36f623ba82aaf6724fd3b16718.php</code></p>
+<p><img src="/2019/11/04/CG-WEB/together2.png" alt></p>
+<p>继续访问<code>/.bash_history</code>。</p>
+<p><img src="/2019/11/04/CG-WEB/together3.png" alt></p>
+<p>继续访问<code>/flagbak.zip</code> 。</p>
+<p><img src="/2019/11/04/CG-WEB/together4.png" alt></p>
+<h1 id="0x29-system"><a href="#0x29-system" class="headerlink" title="0x29  system"></a>0x29  system</h1><h1 id="0x30-SQL注入2"><a href="#0x30-SQL注入2" class="headerlink" title="0x30  SQL注入2"></a>0x30  SQL注入2</h1></section>
     
         
         <h2 class="footline">
