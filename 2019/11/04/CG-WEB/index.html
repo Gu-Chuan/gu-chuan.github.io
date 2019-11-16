@@ -4,13 +4,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
-  <meta name="description" content="签到题打开页面后，查看源代码。
-md5 collision源码给出。
+  <meta name="description" content="签到题
+打开页面后，查看源代码。
+md5 collision
+源码给出。
 
-分析源码：1、变量a，GET传值，不为空，且不等于QNKCDZO。
-​                    2、变量a的MD5值等于QNKCDZO的MD5值。
+分析源码：
+
+变量a，GET传值，不为空，且不等于QNKCDZO。
+变量a的MD5值等于QNKCDZO的MD5值。        
+
 考查知识：PHP弱类型，MD5。
-解题方式：?a= s150211">
+解题方式：?a= s1502113478a
+签到2
+打开">
 
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
@@ -44,35 +51,55 @@ md5 collision源码给出。
         </h2>
     </header>
 </article>
-<section id="post-body"><h6 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a><strong>签到题</strong></h6><p>打开页面后，查看源代码。</p>
-<h6 id="md5-collision"><a href="#md5-collision" class="headerlink" title="md5 collision"></a><strong>md5 collision</strong></h6><p>源码给出。</p>
+<section id="post-body"><p><strong>签到题</strong></p>
+<p>打开页面后，查看源代码。</p>
+<p><strong>md5 collision</strong></p>
+<p>源码给出。</p>
 <p><img src="/2019/11/04/CG-WEB/md5_collison.png" alt></p>
-<p>分析源码：1、变量a，GET传值，不为空，且不等于QNKCDZO。</p>
-<p>​                    2、变量a的MD5值等于QNKCDZO的MD5值。</p>
+<p>分析源码：</p>
+<ul>
+<li>变量a，GET传值，不为空，且不等于QNKCDZO。</li>
+<li>变量a的MD5值等于QNKCDZO的MD5值。        </li>
+</ul>
 <p>考查知识：PHP弱类型，MD5。</p>
 <p>解题方式：?a= s1502113478a</p>
-<h6 id="签到2"><a href="#签到2" class="headerlink" title="签到2"></a><strong>签到2</strong></h6><p>打开题目。</p>
+<p><strong>签到2</strong></p>
+<p>打开题目。</p>
 <p><img src="/2019/11/04/CG-WEB/sign_in2.png" alt></p>
 <p>输入 zhimakaimen ，无果。</p>
 <p>口令错误？F12查看页面信息。</p>
 <p><img src="/2019/11/04/CG-WEB/sign_in1.png" alt></p>
 <p>口令长度为11，而输入的长度为10。</p>
-<p>解题方式：1、 <em>maxlength=”10”</em> 字段修改为 <em>maxlength=”11”</em> 或是更大的值 ，并输入zhimakaimen。</p>
-<p>​                    2、post传值text1=zhimakaimen。</p>
-<h6 id="这题不是WEB"><a href="#这题不是WEB" class="headerlink" title="这题不是WEB"></a><strong>这题不是WEB</strong></h6><p>下载图片，记事本打开。</p>
+<ul>
+<li><p>解题方式：</p>
+</li>
+<li><p><em>maxlength=”10”</em> 字段修改为 <em>maxlength=”11”</em> 或是更大的值 ，并输入zhimakaimen。</p>
+</li>
+<li><p>post传值text1=zhimakaimen。</p>
+</li>
+</ul>
+<p><strong>这题不是WEB</strong></p>
+<p>下载图片，记事本打开。</p>
 <p>考查知识：图片隐写。</p>
-<h6 id="层层递进"><a href="#层层递进" class="headerlink" title="层层递进"></a><strong>层层递进</strong></h6><p>此题“白嫖”。</p>
+<p><strong>层层递进</strong></p>
+<p>此题“白嫖”。</p>
 <p>解题方式：F12查看页面信息，跟随链接，依次访问<code>SO.html</code> -&gt; <code>S0.html</code>-&gt;<code>SO.htm</code> -&gt;<code>S0.htm</code>-&gt;<code>404.html</code> ，查看源码。</p>
 <p><img src="/2019/11/04/CG-WEB/layer.png" alt></p>
 <p>所以，你是几秒看出flag？</p>
-<h6 id="AAencode"><a href="#AAencode" class="headerlink" title="AAencode"></a><strong>AAencode</strong></h6><p>打开题目。</p>
+<p><strong>AAencode</strong></p>
+<p>打开题目。</p>
 <p><img src="/2019/11/04/CG-WEB/aaencode1.png" alt></p>
 <p>虽然看上去像aaencode编码，但是其中包含乱码，所以需要去乱码。</p>
 <p>ALT键-&gt;查看-&gt;文字编码-&gt;Unicode </p>
 <p><img src="/2019/11/04/CG-WEB/aaencode2.png" alt></p>
 <p>题目提示（考查知识）： javascript aaencode </p>
-<p>解题方式：1、 控制台console 直接执行。</p>
-<p>​                    2、在线aaencode解码网站解码。</p>
+<p>解题方式：</p>
+<ul>
+<li><p>控制台console 直接执行。</p>
+</li>
+<li><p>在线aaencode解码网站解码。</p>
+</li>
+</ul>
 </section>
     
         
