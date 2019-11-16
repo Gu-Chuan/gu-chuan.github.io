@@ -47,8 +47,8 @@
         </h2>
     </header>
 </article>
-<section id="post-body"><h3 id="0x01-签到题"><a href="#0x01-签到题" class="headerlink" title="0x01  签到题"></a>0x01  签到题</h3><p>打开页面后，查看源代码。</p>
-<h3 id="0x02-md5-collision"><a href="#0x02-md5-collision" class="headerlink" title="0x02  md5 collision"></a><strong>0x02  md5 collision</strong></h3><p>源码给出。</p>
+<section id="post-body"><h1 id="0x01-签到题"><a href="#0x01-签到题" class="headerlink" title="0x01  签到题"></a>0x01  签到题</h1><p>打开页面后，查看源代码。</p>
+<h1 id="0x02-md5-collision"><a href="#0x02-md5-collision" class="headerlink" title="0x02  md5 collision"></a>0x02  md5 collision</h1><p>源码给出。</p>
 <p><img src="/2019/11/04/CG-WEB/md5_collison.png" alt></p>
 <p>分析源码：</p>
 <ol>
@@ -57,7 +57,7 @@
 </ol>
 <p>考查知识：PHP弱类型，MD5。</p>
 <p>解题方式：?a= s1502113478a</p>
-<h3 id="0x03-签到2"><a href="#0x03-签到2" class="headerlink" title="0x03  签到2"></a>0x03  签到2</h3><p>打开题目。</p>
+<h1 id="0x03-签到2"><a href="#0x03-签到2" class="headerlink" title="0x03  签到2"></a>0x03  签到2</h1><p>打开题目。</p>
 <p><img src="/2019/11/04/CG-WEB/sign_in2.png" alt></p>
 <p>输入 zhimakaimen ，无果。</p>
 <p>口令错误？F12查看页面信息。</p>
@@ -68,13 +68,13 @@
 <li>maxlength=”10”* 字段修改为 <em>maxlength=”11”</em> 或是更大的值 ，并输入zhimakaimen。</li>
 <li>post传值text1=zhimakaimen。</li>
 </ol>
-<h3 id="0x04-这题不是WEB"><a href="#0x04-这题不是WEB" class="headerlink" title="0x04  这题不是WEB"></a><strong>0x04  这题不是WEB</strong></h3><p>下载图片，记事本打开。</p>
+<h1 id="0x04-这题不是WEB"><a href="#0x04-这题不是WEB" class="headerlink" title="0x04  这题不是WEB"></a>0x04  这题不是WEB</h1><p>下载图片，记事本打开。</p>
 <p>考查知识：图片隐写。</p>
-<h3 id="0x05-层层递进"><a href="#0x05-层层递进" class="headerlink" title="0x05  层层递进"></a><strong>0x05  层层递进</strong></h3><p>此题“白嫖”。</p>
+<h1 id="0x05-层层递进"><a href="#0x05-层层递进" class="headerlink" title="0x05  层层递进"></a>0x05  层层递进</h1><p>此题“白嫖”。</p>
 <p>解题方式：F12查看页面信息，跟随链接，依次访问<code>SO.html</code> -&gt; <code>S0.html</code>-&gt;<code>SO.htm</code> -&gt;<code>S0.htm</code>-&gt;<code>404.html</code> ，查看源码。</p>
 <p><img src="/2019/11/04/CG-WEB/layer.png" alt></p>
 <p>所以，你是几秒看出flag？</p>
-<h3 id="0x06-AAencode"><a href="#0x06-AAencode" class="headerlink" title="0x06  AAencode"></a><strong>0x06  AAencode</strong></h3><p>打开题目。</p>
+<h1 id="0x06-AAencode"><a href="#0x06-AAencode" class="headerlink" title="0x06  AAencode"></a>0x06  AAencode</h1><p>打开题目。</p>
 <p><img src="/2019/11/04/CG-WEB/aaencode1.png" alt></p>
 <p>虽然看上去像aaencode编码，但是其中包含乱码，所以需要去乱码。</p>
 <p>ALT键-&gt;查看-&gt;文字编码-&gt;Unicode </p>
@@ -83,24 +83,24 @@
 <p>解题方式：</p>
 <p>​    1.控制台console 直接执行。</p>
 <p>​    2.在线aaencode解码网站解码。</p>
-<h3 id="0x07-单身二十年"><a href="#0x07-单身二十年" class="headerlink" title="0x07  单身二十年"></a>0x07  单身二十年</h3><p>打开题目，点击“到这里找key”。</p>
+<h1 id="0x07-单身二十年"><a href="#0x07-单身二十年" class="headerlink" title="0x07  单身二十年"></a>0x07  单身二十年</h1><p>打开题目，点击“到这里找key”。</p>
 <p><img src="/2019/11/04/CG-WEB/single1.png" alt></p>
 <p>这里永远没有钥匙~</p>
 <p>回最初页面，找线索。</p>
 <p><img src="/2019/11/04/CG-WEB/single2.png" alt></p>
 <p>仔细观察，URL有所不同。点击！叮！flag！</p>
 <p>考查知识：URL重定向。</p>
-<h3 id="0x08-php-decode"><a href="#0x08-php-decode" class="headerlink" title="0x08  php decode"></a>0x08  php decode</h3><p>考查知识：PHP函数之eval()</p>
+<h1 id="0x08-php-decode"><a href="#0x08-php-decode" class="headerlink" title="0x08  php decode"></a>0x08  php decode</h1><p>考查知识：PHP函数之eval()</p>
 <p>解题方式：eval()-&gt;echo()源码直接执行。</p>
-<h3 id="0x09-文件包含"><a href="#0x09-文件包含" class="headerlink" title="0x09  文件包含"></a>0x09  文件包含</h3><p>打开页面，访问链接。</p>
+<h1 id="0x09-文件包含"><a href="#0x09-文件包含" class="headerlink" title="0x09  文件包含"></a>0x09  文件包含</h1><p>打开页面，访问链接。</p>
 <p><img src="/2019/11/04/CG-WEB/Include.png" alt></p>
 <p>小贴上：形如?file=xxx.php，可能有文件包含。</p>
 <p>题目提示（考查知识）：文件包含（LFI、RFI）,PHP://filter。</p>
 <p>解题方式：?file=php://filter/read=convert.base64-encode/resource=index.php，base64解码。</p>
 <p><img src="/2019/11/04/CG-WEB/Included.png" alt></p>
-<h3 id="0x10-单身一百年也没用"><a href="#0x10-单身一百年也没用" class="headerlink" title="0x10  单身一百年也没用"></a>0x10  单身一百年也没用</h3><p>单身二十年不够？单身一百年？</p>
+<h1 id="0x10-单身一百年也没用"><a href="#0x10-单身一百年也没用" class="headerlink" title="0x10  单身一百年也没用"></a>0x10  单身一百年也没用</h1><p>单身二十年不够？单身一百年？</p>
 <p>解题方式：F12查看网络信息，消息头。</p>
-<h3 id="0x11-Download"><a href="#0x11-Download" class="headerlink" title="0x11  Download~!"></a>0x11  Download~!</h3><p>此题访问失败，再次“白嫖”。</p>
+<h1 id="0x11-Download"><a href="#0x11-Download" class="headerlink" title="0x11  Download~!"></a>0x11  Download~!</h1><p>此题访问失败，再次“白嫖”。</p>
 <p><img src="/2019/11/04/CG-WEB/download.png" alt></p>
 </section>
     
