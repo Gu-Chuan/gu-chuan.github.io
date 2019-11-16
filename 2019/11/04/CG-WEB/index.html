@@ -79,10 +79,29 @@
 <p>虽然看上去像aaencode编码，但是其中包含乱码，所以需要去乱码。</p>
 <p>ALT键-&gt;查看-&gt;文字编码-&gt;Unicode </p>
 <p><img src="/2019/11/04/CG-WEB/aaencode2.png" alt></p>
-<p>题目提示（考查知识）： javascript aaencode </p>
+<p>题目提示（考查知识）： javascript aaencode 。</p>
 <p>解题方式：</p>
 <p>​    1.控制台console 直接执行。</p>
 <p>​    2.在线aaencode解码网站解码。</p>
+<h3 id="0x07-单身二十年"><a href="#0x07-单身二十年" class="headerlink" title="0x07  单身二十年"></a>0x07  单身二十年</h3><p>打开题目，点击“到这里找key”。</p>
+<p><img src="/2019/11/04/CG-WEB/single1.png" alt></p>
+<p>这里永远没有钥匙~</p>
+<p>回最初页面，找线索。</p>
+<p><img src="/2019/11/04/CG-WEB/single2.png" alt></p>
+<p>仔细观察，URL有所不同。点击！叮！flag！</p>
+<p>考查知识：URL重定向。</p>
+<h3 id="0x08-php-decode"><a href="#0x08-php-decode" class="headerlink" title="0x08  php decode"></a>0x08  php decode</h3><p>考查知识：PHP函数之eval()</p>
+<p>解题方式：eval()-&gt;echo()源码直接执行。</p>
+<h3 id="0x09-文件包含"><a href="#0x09-文件包含" class="headerlink" title="0x09  文件包含"></a>0x09  文件包含</h3><p>打开页面，访问链接。</p>
+<p><img src="/2019/11/04/CG-WEB/Include.png" alt></p>
+<p>小贴上：形如?file=xxx.php，可能有文件包含。</p>
+<p>题目提示（考查知识）：文件包含（LFI、RFI）,PHP://filter。</p>
+<p>解题方式：?file=php://filter/read=convert.base64-encode/resource=index.php，base64解码。</p>
+<p><img src="/2019/11/04/CG-WEB/Included.png" alt></p>
+<h3 id="0x10-单身一百年也没用"><a href="#0x10-单身一百年也没用" class="headerlink" title="0x10  单身一百年也没用"></a>0x10  单身一百年也没用</h3><p>单身二十年不够？单身一百年？</p>
+<p>解题方式：F12查看网络信息，消息头。</p>
+<h3 id="0x11-Download"><a href="#0x11-Download" class="headerlink" title="0x11  Download~!"></a>0x11  Download~!</h3><p>此题访问失败，再次“白嫖”。</p>
+<p><img src="/2019/11/04/CG-WEB/download.png" alt></p>
 </section>
     
         
