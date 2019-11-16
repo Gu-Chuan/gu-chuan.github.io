@@ -129,7 +129,54 @@
 <li><code>?id=%df&#39; union select 1,flag from ctf4--+</code>  //得到flag。</li>
 </ol>
 <h1 id="0x15-x00"><a href="#0x15-x00" class="headerlink" title="0x15  /x00"></a>0x15  /x00</h1><p>打开题目，源码给出。</p>
-<p><img src="/2019/11/04/CG-WEB/CG-WEB%5Cx00.png" alt></p>
+<p><img src="/2019/11/04/CG-WEB/x00.png" alt></p>
+<p>分析源码：变量nctf，GET传值。变量nctf必须是数字，并且变量nctf包含#biubiubiu。</p>
+<p>考查知识：PHP函数之ereg()、PHP函数之strpos()。逻辑漏洞。</p>
+<p>解题方式：</p>
+<ol>
+<li><code>?nctf=1%00%23biubiubiu</code>   //ereg()漏洞之%00截断</li>
+<li><code>?nctf[]=123</code>     //ereg()、strpos()处理数组，返回null，且null !==false。</li>
+</ol>
+<h1 id="0x16-bypass-again"><a href="#0x16-bypass-again" class="headerlink" title="0x16  bypass again"></a>0x16  bypass again</h1><p>源码。</p>
+<p><img src="/2019/11/04/CG-WEB/by_pass.png" alt></p>
+<p>分析源码：</p>
+<ol>
+<li>变量a、变量b，GET传值。</li>
+<li>变量a不等于变量b，但变量a的MD5值等于变量b的MD5值。</li>
+</ol>
+<p>考查知识：MD5、PHP弱类型。</p>
+<p>解题方式：</p>
+<ol>
+<li><code>?a[]=123&amp;b[]=456</code>  //md5()处理数组，返回null。</li>
+<li><code>?a=s878926199a&amp;b=s1091221200a</code>  //PHP弱类型。</li>
+</ol>
+<h1 id="0x17-变量覆盖"><a href="#0x17-变量覆盖" class="headerlink" title="0x17  变量覆盖"></a>0x17  变量覆盖</h1><p>打开题目，提交页面? source at /source.php ?</p>
+<p><img src="/2019/11/04/CG-WEB/extract.png" alt></p>
+<p>分析源码：提交的数据是POST方式传来的 ，变量pass和变量thepassword_123的值相等。</p>
+<p>考查知识：变量覆盖之extract()、POST传参、PHP之$_SERVER[]获取环境变量。</p>
+<p>解题方式：The Ducks页面POST <code>pass=1&amp;thepassword_123=1</code> </p>
+<h1 id="0x18-PHP是世界上最好的语言"><a href="#0x18-PHP是世界上最好的语言" class="headerlink" title="0x18  PHP是世界上最好的语言"></a>0x18  PHP是世界上最好的语言</h1><p>打不开呀打不开，贴一下源码。</p>
+<p><img src="/2019/11/04/CG-WEB/PHP.png" alt></p>
+<p>分析源码：</p>
+<ol>
+<li>GET方式传来的变量id不等于hackerDJ，并且变量id要经过一次URL解码。</li>
+<li>解码后的变量id，等于hackerDJ</li>
+</ol>
+<p>考查知识： 二次编码。页面传递时，自动进行一次URLdecode 。URL编码。</p>
+<p>解题方式：</p>
+<ol>
+<li><code>?id=%2568%2561%2563%256b%2565%2572%2544%254a</code></li>
+<li><code>?id= %2568ackerDJ</code></li>
+</ol>
+<h1 id="0x19-伪装者"><a href="#0x19-伪装者" class="headerlink" title="0x19  伪装者"></a>0x19  伪装者</h1><p>打开题目。“ 管理系统只能在本地登陆，本系统外部禁止访问， 不是本地登陆你还想要flag？  ”</p>
+<p>考查知识：X-Forwarded-For、Client-IP。即获取客户端IP。</p>
+<p>解题方式：F12网络状态，请求头加入Client-IP: 127.0.0.1，查看响应。</p>
+<h1 id="0x20-Header"><a href="#0x20-Header" class="headerlink" title="0x20  Header"></a>0x20  Header</h1><p> 头啊！！头啊！！！ —————&gt;F12一系列操作。</p>
+<h1 id="0x21-上传绕过"><a href="#0x21-上传绕过" class="headerlink" title="0x21  上传绕过"></a>0x21  上传绕过</h1><p><img src="/2019/11/04/CG-WEB/upload1.png" alt></p>
+<p>分析源码：”hidden”隐藏dir的value，猜测dir和file相连。”filename”判断jpg，“/uploads/”判断php。</p>
+<p>考查知识：文件上传之%00截断。</p>
+<p>解题方式：上传一张<code>qqq.jpg</code>图片，抓包后修改<code>/uploads/</code>为<code>/uploads/aaa.php_</code>，然后file保持<code>qqq.jpg</code>，连起来后就是<code>/uploads/aaa.php_qqq.jpg</code>， 然后打开hex编码寻找<code>_</code>及59，将其修改为00，回车确认。 此时变成<code>/uploads/aaa.php qqq.jpg</code>，则既绕过了白名单验证又上传了PHP后缀的文件。（0x00是指修改16进制值，不可见。）</p>
+<p><img src="/2019/11/04/CG-WEB/upload2.png" alt></p>
 </section>
     
         
