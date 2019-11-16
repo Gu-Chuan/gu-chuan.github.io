@@ -67,10 +67,10 @@
 <p>解题方式：</p>
 <ol>
 <li>maxlength=”10”* 字段修改为 <em>maxlength=”11”</em> 或是更大的值 ，并输入zhimakaimen。</li>
-<li>post传值text1=zhimakaimen。</li>
+<li>POST  <code>text1=zhimakaimen</code></li>
 </ol>
-<h1 id="0x04-这题不是WEB"><a href="#0x04-这题不是WEB" class="headerlink" title="0x04  这题不是WEB"></a>0x04  这题不是WEB</h1><p>下载图片，记事本打开。</p>
-<p>考查知识：图片隐写。</p>
+<h1 id="0x04-这题不是WEB"><a href="#0x04-这题不是WEB" class="headerlink" title="0x04  这题不是WEB"></a>0x04  这题不是WEB</h1><p>考查知识：图片隐写。</p>
+<p>解题方式：下载图片，记事本打开。</p>
 <h1 id="0x05-层层递进"><a href="#0x05-层层递进" class="headerlink" title="0x05  层层递进"></a>0x05  层层递进</h1><p>此题“白嫖”。</p>
 <p>解题方式：F12查看页面信息，跟随链接，依次访问<code>SO.html</code> -&gt; <code>S0.html</code>-&gt;<code>SO.htm</code> -&gt;<code>S0.htm</code>-&gt;<code>404.html</code> ，查看源码。</p>
 <p><img src="/2019/11/04/CG-WEB/layer.png" alt></p>
@@ -97,7 +97,7 @@
 <p><img src="/2019/11/04/CG-WEB/Include.png" alt></p>
 <p>小贴上：形如?file=xxx.php，可能有文件包含。</p>
 <p>题目提示（考查知识）：文件包含（LFI、RFI），PHP://filter。</p>
-<p>解题方式：?file=php://filter/read=convert.base64-encode/resource=index.php，base64解码。</p>
+<p>解题方式：<code>?file=php://filter/read=convert.base64-encode/resource=index.php</code>，base64解码。</p>
 <p><img src="/2019/11/04/CG-WEB/Included.png" alt></p>
 <h1 id="0x10-单身一百年也没用"><a href="#0x10-单身一百年也没用" class="headerlink" title="0x10  单身一百年也没用"></a>0x10  单身一百年也没用</h1><p>单身二十年不够？单身一百年？</p>
 <p>解题方式：F12查看网络信息，消息头。</p>
@@ -115,7 +115,7 @@
 <li>mysql数据库连接，查询id等于所传变量的行。</li>
 </ol>
 <p>考查知识：robots协议，PHP传参方法，PHP函数之intval()，MySQL。</p>
-<p>解题方式：?id=1024.111</p>
+<p>解题方式：<code>?id=1024.111</code></p>
 <p>小贴士：别放过细节，不会无缘无故给1024。</p>
 <h1 id="0x14-GBK-InJection"><a href="#0x14-GBK-InJection" class="headerlink" title="0x14   GBK InJection"></a>0x14   GBK InJection</h1><p>此题涨知识，所以还是“白嫖”。</p>
 <p>打开题目，可以知道是SQL注入。加个单引号试试，单引号被转义。即单引号自动被转义。</p>
