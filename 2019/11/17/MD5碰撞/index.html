@@ -52,10 +52,12 @@
 <h1 id="案例二：基于PHP的“-”比较"><a href="#案例二：基于PHP的“-”比较" class="headerlink" title="案例二：基于PHP的“ !== ”比较"></a>案例二：基于PHP的“ !== ”比较</h1><p>PHP进行强比较（=== 和 !==）时，要求类型和数值都相等。</p>
 <p>解决方式：数组类型绕过。</p>
 <p>在PHP中，MD5处理数组时，返回null。</p>
+<p>小贴士： sha1()函数无法处理数组类型，将报错并返回null。</p>
 <h1 id="案列三：基于PHP的“-”比较"><a href="#案列三：基于PHP的“-”比较" class="headerlink" title="案列三：基于PHP的“ === ”比较"></a>案列三：基于PHP的“ === ”比较</h1><p>神器收藏！</p>
 <p><a href="http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5.exe.zip" target="_blank" rel="noopener">fastcoll_v1.0.0.5.exe.zip </a></p>
 <p><a href="http://www.win.tue.nl/hashclash/fastcoll_v1.0.0.5_source.zip" target="_blank" rel="noopener">源代码</a></p>
 <p><a href="https://tail-for-windows.en.softonic.com/" target="_blank" rel="noopener">tail.exe</a></p>
+<p><a href="https://github.com/thereal1024/python-md5-collision" target="_blank" rel="noopener">python-md5-collision</a></p>
 <h2 id="两个MD5相同"><a href="#两个MD5相同" class="headerlink" title="两个MD5相同"></a>两个MD5相同</h2><p>步骤：</p>
 <ol>
 <li>创建一个文本文件，命名为init.txt，内容为123。</li>
@@ -71,6 +73,11 @@
 
 
 <h2 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h2><p>同理，稍改即可。</p>
+<h1 id="其他小知识"><a href="#其他小知识" class="headerlink" title="其他小知识"></a>其他小知识</h1><p><a href="https://baike.baidu.com/item/%E5%BD%A9%E8%99%B9%E8%A1%A8/689313?fr=aladdin" target="_blank" rel="noopener">彩虹表</a>是一个用于加密散列函数加密散列函数)逆运算的预先计算好的表, 为破解密码的散列值（或称哈希值、微缩图、摘要、指纹、哈希密文）而准备。 简单来说，就是将一类经常出现的值全部算出md5值然后保存为一个巨大的表。 </p>
+<p><a href="https://baike.baidu.com/item/Hash/390310?fr=aladdin" target="_blank" rel="noopener">Hash</a>（散列函数），一般翻译做散列、杂凑，或音译为哈希，是把任意长度的输入（又叫做预映射pre-image）通过散列算法变换成固定长度的输出，该输出就是散列值。</p>
+<p>常见的hash算法有MD5、SHA-1。</p>
+<p><a href="https://www.freebuf.com/news/67007.html" target="_blank" rel="noopener">参考WriteUp</a></p>
+<p><a href="https://xz.aliyun.com/t/2232" target="_blank" rel="noopener">参考WriteUp</a></p>
 <p><a href="https://xz.aliyun.com/t/4741#toc-7" target="_blank" rel="noopener">参考WriteUp</a></p>
 </section>
     
