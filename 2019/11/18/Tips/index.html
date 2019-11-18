@@ -4,6 +4,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
+  <meta name="description" content="POCpoc，proof of concept，译为“ 观点证明 ”。
+在漏洞报告中，poc表示一段说明或者一个攻击的样例。
+EXPexp，exploit，译为“ 漏洞利用 ”。
+在漏洞报告中，exp表示一段对漏洞如何利用的详细说明或者一个演示的漏洞攻击代码。
+VULvul，vulnerabilit">
+
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
 <meta name="theme-color" content="#a1d0f6">
@@ -36,7 +42,34 @@
         </h2>
     </header>
 </article>
-<section id="post-body"></section>
+<section id="post-body"><h1 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h1><p>poc，proof of concept，译为“ 观点证明 ”。</p>
+<p>在漏洞报告中，poc表示一段说明或者一个攻击的样例。</p>
+<h1 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h1><p>exp，exploit，译为“ 漏洞利用 ”。</p>
+<p>在漏洞报告中，exp表示一段对漏洞如何利用的详细说明或者一个演示的漏洞攻击代码。</p>
+<h1 id="VUL"><a href="#VUL" class="headerlink" title="VUL"></a>VUL</h1><p>vul，vulnerability，译为“ 漏洞 ”。</p>
+<p>在漏洞报告中，vul泛指漏洞。</p>
+<h1 id="CVE漏洞编码"><a href="#CVE漏洞编码" class="headerlink" title="CVE漏洞编码"></a>CVE漏洞编码</h1><p>CVE， Common Vulnerabilities &amp; Exposures，译为“ 公共漏洞和暴露 ”。</p>
+<p>在漏洞报告中，如 CVE-2015-0057、CVE-1999-0001 等表示已经发现的漏洞。CVE就好像是一个字典表，为广泛       认同的信息安全漏洞或者已经暴露出来的弱点给出一个公共的名称。如果在一个漏洞报告中指明的一个漏洞，如果              有CVE名称，你就可以快速地在任何其它CVE兼容的数据库中找到相应修补的信息，解决安全问题。 </p>
+<p><a href="https://cve.mitre.org/" target="_blank" rel="noopener">漏洞介绍</a></p>
+<p><a href="http://www.scap.org.cn/" target="_blank" rel="noopener">中文社区漏洞介绍</a></p>
+<h1 id="0DAY漏洞、0DAY攻击"><a href="#0DAY漏洞、0DAY攻击" class="headerlink" title="0DAY漏洞、0DAY攻击"></a>0DAY漏洞、0DAY攻击</h1><p>0DAY漏洞，Zero Dayexploit，译为“ 零日漏洞或零时差漏洞 ”。</p>
+<p>0DAY攻击，Zero Dayattack，译为“ 零日攻击或零时差攻击 ”。</p>
+<p>在漏洞报告中，0DAY漏洞表示还没有补丁的安全漏洞，0DAY攻击表示利用这种漏洞进行的攻击。</p>
+<h1 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h1><p>Payload，译为“ 有效载荷 ”。</p>
+<p>在漏洞报告中，payload表示在成功exp之后，在目标系统中真正执行的代码或指令。</p>
+<h1 id="WebShell"><a href="#WebShell" class="headerlink" title="WebShell"></a>WebShell</h1><p>webshell，译为“web入侵的脚本攻击工具”。</p>
+<p> webshell就是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将其称做为一种网页后        门。黑客在入侵了一个网站后，通常会将asp或php后门文件与网站服务器WEB目录下正常的网页文件混在一起，        然后就可以使用浏览器来访问asp或者php后门，得到一个命令执行环境，以达到控制网站服务器的目的。顾名思        义，“web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权限。webshell        常常被称为入侵者通过网站端口对网站服务器的某种程度上操作的权限。由于webshell其大多是以动态脚本的形        式出现，也有人称之为网站的后门工具。” </p>
+<p> webshell  最大的优点就是可以穿越防火墙，由于与被控制的服务器或远程主机交换的数据都是通过80端口传递        的，因此不会被防火墙拦截。并且使用webshell一般不会在系统日志中留下记录，只会在网站的web日志中留下        一些数据提交记录，没有经验的管理员是很难看出入侵痕迹的。 </p>
+<h1 id="Shellcode"><a href="#Shellcode" class="headerlink" title="Shellcode"></a>Shellcode</h1><p>Shellcode，译为“ shell代码 ”。</p>
+<p> Shellcode是Payload的一种,是用来发送到服务器利用特定漏洞的代码,一般可以获取权限。 </p>
+<p>一些小小小常识。</p>
+<p>参考文章，作者可能删了，所以我这里贴一下他的<a href="https://blog.csdn.net/wangjianno2" target="_blank" rel="noopener">博客</a>，望见谅！</p>
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
     
 
     <footer id="post-meta" class="clearfix">
