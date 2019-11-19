@@ -4,6 +4,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
+  <meta name="description" content="一篇对于cookie、session、token的浅浅浅浅浅理解。
+前因浏览器（browser）和服务器（server）之间通信使用HTTP协议，而HTTP是一种无状态的协议。简单来说，当用户向服务器发出页面请求时，服务器只是简单的进行响应，然后就关闭与该用户的连接。 因此，无论用户是否是第一次发送">
+
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
 <meta name="theme-color" content="#a1d0f6">
@@ -36,7 +39,44 @@
         </h2>
     </header>
 </article>
-<section id="post-body"></section>
+<section id="post-body"><p>一篇对于cookie、session、token的浅浅浅浅浅理解。</p>
+<h1 id="前因"><a href="#前因" class="headerlink" title="前因"></a>前因</h1><p>浏览器（browser）和服务器（server）之间通信使用HTTP协议，而HTTP是一种无状态的协议。简单来说，当用户向服务器发出页面请求时，服务器只是简单的进行响应，然后就关闭与该用户的连接。 因此，无论用户是否是第一次发送请求，服务器都会把每次请求当作一个新的HTTP协议，无法区分每个用户。</p>
+<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p><a href="https://baike.baidu.com/item/cookie/1119?fr=aladdin" target="_blank" rel="noopener">cookie</a>是存储在用户本地终端上的数据。cookie由服务器生成，发送给浏览器，浏览器把cookie以key-value形式保存到某个目录下的文本文件内，下一次请求同一网站时会把该cookie发送给服务器。由于cookie是存在客户端上的，所以浏览器加入了一些限制确保cookie不会被恶意使用，同时不会占据太多磁盘空间，所以每个域的cookie数量是有限的。</p>
+<p><code>cookie 组成</code></p>
+<p> Cookie是一段不超过4KB的小型文本数据，由一个名称（Name）、一个值（Value）和其它几个用于控制Cookie有效期、安全性、使用范围的可选属性组成。 </p>
+<p>(1)Name/Value：设置Cookie的名称及相对应的值，对于认证Cookie，Value值包括Web服务器所提供的访问令牌。</p>
+<p>(2)Expires属性：设置Cookie的生存期。有两种存储类型的Cookie：会话性与持久性。Expires属性缺省时，为会话性Cookie，仅保存在客户端内存中，并在用户关闭浏览器时失效；持久性Cookie会保存在用户的硬盘中，直至生存期到或用户直接在网页中单击“注销”等按钮结束会话时才会失效 。</p>
+<p>(3)Path属性：定义了Web站点上可以访问该Cookie的目录。</p>
+<p>(4)Domain属性：指定了可以访问该 Cookie 的 Web 站点或域。Cookie 机制并未遵循严格的同源策略，允许一个子域可以设置或获取其父域的 Cookie。当需要实现单点登录方案时，Cookie 的上述特性非常有用，然而也增加了 Cookie受攻击的危险，比如攻击者可以借此发动会话定置攻击。因而，浏览器禁止在 <a href="https://baike.baidu.com/item/Domain/68165" target="_blank" rel="noopener">Domain</a> 属性中设置.org、.com 等通用顶级域名、以及在国家及地区顶级域下注册的二级域名，以减小攻击发生的范围。</p>
+<p>(5)Secure属性：指定是否使用<a href="https://baike.baidu.com/item/HTTPS/285356" target="_blank" rel="noopener">HTTPS</a>安全协议发送Cookie。使用HTTPS安全协议，可以保护Cookie在浏览器和Web服务器间的传输过程中不被窃取和篡改。该方法也可用于Web站点的身份鉴别，即在HTTPS的连接建立阶段，浏览器会检查Web网站的<a href="https://baike.baidu.com/item/SSL/320778" target="_blank" rel="noopener">SSL</a>证书的有效性。但是基于兼容性的原因（比如有些网站使用自签署的证书）在检测到SSL证书无效时，浏览器并不会立即终止用户的连接请求，而是显示安全风险信息，用户仍可以选择继续访问该站点。由于许多用户缺乏安全意识，因而仍可能连接到Pharming攻击所伪造的网站。</p>
+<p>(6)HTTPOnly 属性  ：用于防止客户端脚本通过document.cookie属性访问Cookie，有助于保护Cookie不被跨站脚本攻击窃取或篡改。但是，HTTPOnly的应用仍存在局限性，一些浏览器可以阻止客户端脚本对Cookie的读操作，但允许写操作；此外大多数浏览器仍允许通过<a href="https://baike.baidu.com/item/XMLHTTP/481421" target="_blank" rel="noopener">XMLHTTP</a>对象读取<a href="https://baike.baidu.com/item/HTTP/243074" target="_blank" rel="noopener">HTTP</a>响应中的Set-Cookie头。</p>
+<p><code>cookie 安全威胁</code></p>
+<p>1.cookie捕获/重放    2.恶意cookie   3.会话定置   4.csrf攻击  </p>
+<p>来自百度百科。</p>
+<h1 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h1><p><a href="https://baike.baidu.com/item/Session/479100" target="_blank" rel="noopener">session</a>（会话控制）是指一个终端用户与交互系统进行通信的时间间隔，通常指从注册进入系统到注销退出系统之间所经过的时间。Session对象存储特定用户会话所需的属性及配置信息。当用户请求来自应用程序的 Web页时，如果该用户还没有会话，则Web服务器将自动创建一个 Session对象来保存用户信息，而用户离开网站后session会被销毁。</p>
+<p> <code>注意</code>会话状态仅在支持cookie的浏览器中保留，因为cookie中存储服务器生成的session id，客户端通过session id，找寻服务器中的session文件。  </p>
+<p><code>session 用途</code></p>
+<p>Session 是 用于保持状态的基于Web服务器的方法。Session允许通过将对象存储在Web服务器的内存中在整个用户会话过程中保持任何对象。</p>
+<p>存储需要在整个用户会话过程中保持其状态的信息，例如登录信息或用户浏览Web应用程序时需要的其它信息。</p>
+<p>存储只需要在页面重新加载过程中或按功能分组的一组页之间保持其状态的对象。</p>
+<p>Session的作用就是它在Web服务器上保持用户的状态信息供在任何时间从任何设备上的页面进行访问。因为浏览器不需要存储任何这种信息，所以可以使用任何浏览器，即使是像Pad或手机这样的浏览器设备。</p>
+<p><code>session 缺点</code></p>
+<p>1.进程依赖性   2.session状态使用范围的局限性  3.cookie依赖性</p>
+<h1 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h1><p><a href="https://baike.baidu.com/item/Token/2615248?fr=aladdin" target="_blank" rel="noopener">token</a>（令牌）是用户身份的验证方式。简单来说，Token是服务端根据用户信息加密生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端（并存储在客户端），以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。 </p>
+<p><code>token 优点</code></p>
+<p>1.无状态、可扩展  2.安全性   3.多平台跨域</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>cookie、token存储在客户端，session存储在服务器端。</li>
+<li>cookie安全性&lt;session安全性&lt;token安全性</li>
+</ol>
+<p><a href="https://blog.csdn.net/Double2hao/article/details/83744659" target="_blank" rel="noopener">参考文章</a></p>
+<p><a href="https://blog.csdn.net/qq_31201781/article/details/94575507" target="_blank" rel="noopener">参考文章</a></p>
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
     
 
     <footer id="post-meta" class="clearfix">
