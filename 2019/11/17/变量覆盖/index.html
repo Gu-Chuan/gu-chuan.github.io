@@ -4,6 +4,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
+  <meta name="description" content="简介变量覆盖是指可以将自定义的参数值替换原有变量值的情况。
+变量覆盖漏洞通常需要结合程序的其他功能来实现完整攻击。 
+变量覆盖漏洞函数$$、extract()、parse_str()、import_request_variables()、全局变量覆盖、以及等待发现...
+变量覆盖之 $$$$ 可变变">
+
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
 <meta name="theme-color" content="#a1d0f6">
@@ -36,7 +41,40 @@
         </h2>
     </header>
 </article>
-<section id="post-body"></section>
+<section id="post-body"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>变量覆盖是指可以将自定义的参数值替换原有变量值的情况。</p>
+<p>变量覆盖漏洞通常需要结合程序的其他功能来实现完整攻击。 </p>
+<h1 id="变量覆盖漏洞函数"><a href="#变量覆盖漏洞函数" class="headerlink" title="变量覆盖漏洞函数"></a>变量覆盖漏洞函数</h1><p><code>$$、extract()、parse_str()、import_request_variables()、全局变量覆盖、以及等待发现...</code></p>
+<h1 id="变量覆盖之"><a href="#变量覆盖之" class="headerlink" title="变量覆盖之 $$"></a>变量覆盖之 $$</h1><p>$$ <a href="https://www.php.net/manual/zh/language.variables.variable.php" target="_blank" rel="noopener">可变变量</a>， 获取一个普通变量的值作为这个可变变量的变量名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$$通常和foreach搭配，产生变量覆盖漏洞。</span><br><span class="line"></span><br><span class="line">foreach ($_POST as $key =&gt; $value)</span><br><span class="line">    $$key = $value;</span><br><span class="line"></span><br><span class="line">//POST:a=b  -&gt;  $a=b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">foreach ($_GET as $key =&gt; $value)</span><br><span class="line">$$key = $$value</span><br><span class="line"></span><br><span class="line">//GET:a=b   -&gt;  $a=$b</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="变量覆盖之-extract"><a href="#变量覆盖之-extract" class="headerlink" title="变量覆盖之 extract()"></a>变量覆盖之 extract()</h1><p><a href="https://www.php.net/extract" target="_blank" rel="noopener">extract()</a>，用来将变量从关联数组中导入到当前的符号表中，并检查每个键名看是否可以作为一个合法的变量名，同时也检查和符号表中已有的变量名的冲突。</p>
+<p>简单来说，extract()函数会将关联数组的键名当作变量名，值作为变量的值。对每个键／值对都会在当前的符号表中建立变量，并受到 <code>flags</code>和 <code>prefix</code> 参数的影响。 </p>
+<p>注意： 必须使用关联数组，数字索引的数组将不会产生结果，除非用了   <strong><code>EXTR_PREFIX_ALL</code></strong> 或者 <strong><code>EXTR_PREFIX_INVALID</code></strong>。       </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> extract ( array &amp;$array [, int $flags = EXTR_OVERWRITE [, string $prefix = NULL ]] ) : int</span><br><span class="line"> </span><br><span class="line">  flags</span><br><span class="line">    对待非法／数字和冲突的键名的方法将根据取出标记 flags 参数决定。可以是以下值之一：</span><br><span class="line"></span><br><span class="line">    EXTR_OVERWRITE                    //如果没有指定 flags，则被假定为 EXTR_OVERWRITE。默认。</span><br><span class="line">        如果有冲突，覆盖已有的变量。 </span><br><span class="line">    EXTR_SKIP</span><br><span class="line">        如果有冲突，不覆盖已有的变量。 </span><br><span class="line">    EXTR_PREFIX_SAME</span><br><span class="line">        如果有冲突，在变量名前加上前缀 prefix。 </span><br><span class="line">    EXTR_PREFIX_ALL</span><br><span class="line">        给所有变量名加上前缀 prefix。 </span><br><span class="line">    EXTR_PREFIX_INVALID</span><br><span class="line">        仅在非法／数字的变量名前加上前缀 prefix。 </span><br><span class="line">    EXTR_IF_EXISTS</span><br><span class="line">        仅在当前符号表中已有同名变量时，覆盖它们的值。其它的都不处理。 举个例子，以下情况非常有用：定义一些有效变量，然后从 $_REQUEST 中仅导入这些已定义的变量。 </span><br><span class="line">    EXTR_PREFIX_IF_EXISTS</span><br><span class="line">        仅在当前符号表中已有同名变量时，建立附加了前缀的变量名，其它的都不处理。 </span><br><span class="line">    EXTR_REFS</span><br><span class="line">        将变量作为引用提取。这有力地表明了导入的变量仍然引用了 array 参数的值。可以单独使用这个标志或者在 flags 中用 OR 与其它任何标志结合使用。 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">prefix</span><br><span class="line">    注意 prefix 仅在 flags 的值是 EXTR_PREFIX_SAME，EXTR_PREFIX_ALL，EXTR_PREFIX_INVALID 或 EXTR_PREFIX_IF_EXISTS 时需要。 如果附加了前缀后的结果不是合法的变量名，将不会导入到符号表中。前缀和数组键名之间会自动加上一个下划线。</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="变量覆盖之-parse-str"><a href="#变量覆盖之-parse-str" class="headerlink" title="变量覆盖之 parse_str()"></a>变量覆盖之 parse_str()</h1><p> <a href="https://www.php.net/parse_str" target="_blank" rel="noopener">parse_str()</a>，将字符串解析成多个变量。 如果 <code>encoded_string</code> 是 URL 传递入的查询字符串（query string），则将它解析为变量并设置到当前作用域（如果 <code>result</code> 提供了array 参数则会设置到该数组里；如果没有array 参数，则由该函数设置的变量将覆盖已存在的同名变量。）</p>
+<p>简单来说，parse_str()解析字符串并生成变量，如果该变量存在，直接覆盖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> parse_str ( string $encoded_string [, array &amp;$result ] ) : void</span><br><span class="line"> </span><br><span class="line">encoded_string</span><br><span class="line">    输入的字符串。</span><br><span class="line">    </span><br><span class="line">result</span><br><span class="line">    如果设置了第二个变量 result， 变量将会以数组元素的形式存入到这个数组，作为替代。</span><br><span class="line">    </span><br><span class="line">    Warning</span><br><span class="line">    极度不建议 在没有 result 参数的情况下使用此函数，并且在 PHP 7.2 中将废弃不设置参数的行为。</span><br><span class="line">    在函数中动态设置变量会和 register_globals 有同样的问题。</span><br><span class="line">    </span><br><span class="line">	注释：php.ini 文件中的 magic_quotes_gpc 设置影响该函数的输出。如果已启用，那么在 parse_str() 解析之前，变量会被 addslashes() 转换。</span><br></pre></td></tr></table></figure>
+
+<p>小贴士：类似的函数有<a href="https://www.php.net/manual/zh/function.mb-parse-str.php" target="_blank" rel="noopener">mb_parse_str()</a>( 解析 GET/POST/COOKIE 数据并设置全局变量 )，用法基本一致。 </p>
+<h1 id="变量覆盖之-import-request-variables"><a href="#变量覆盖之-import-request-variables" class="headerlink" title="变量覆盖之 import_request_variables()"></a>变量覆盖之 import_request_variables()</h1><p><a href="https://www.php.net/manual/zh/function.import-request-variables.php" target="_blank" rel="noopener">import_request_variables()</a>， 将 GET／POST／Cookie 变量导入到全局作用域中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> import_request_variables ( string $types [, string $prefix ] ) : bool</span><br><span class="line"></span><br><span class="line">将 GET／POST／Cookie 变量导入到全局作用域中。如果你禁止了 register_globals（即register_global = off），但又想用到一些全局变量，那么此函数就很有用。</span><br><span class="line"></span><br><span class="line">你可以使用 types 参数指定需要导入的变量。可以用字母‘G’、‘P’和‘C’分别表示 GET、POST 和 Cookie。这些字母不区分大小写，所以你可以使用‘g’、‘p’和‘c’的任何组合。POST 包含了通过 POST 方法上传的文件信息。注意这些字母的顺序，当使用“gp”时，POST 变量将使用相同的名字覆盖 GET 变量。任何 GPC 以外的字母都将被忽略。</span><br><span class="line"></span><br><span class="line">prefix 参数作为变量名的前缀，置于所有被导入到全局作用域的变量之前。所以如果你有个名为“userid”的 GET 变量，同时提供了“pref_”作为前缀，那么你将获得一个名为 $pref_userid 的全局变量。</span><br><span class="line"></span><br><span class="line">如果你对导入其它全局变量（例如 SERVER 变量）感兴趣，请考虑使用 extract()。</span><br></pre></td></tr></table></figure>
+
+<p> 该函数在最新版本的 PHP 中已经不支持。（ PHP 4 &gt;= 4.1.0, PHP 5 &lt; 5.4.0 ）</p>
+<h1 id="变量覆盖之-全局变量覆盖"><a href="#变量覆盖之-全局变量覆盖" class="headerlink" title="变量覆盖之 全局变量覆盖"></a>变量覆盖之 全局变量覆盖</h1><p> <a href="https://www.php.net/manual/zh/security.globals.php" target="_blank" rel="noopener">register_globals</a> ，注册为全局变量，当 register_globals=On 时，传递过来的值会被直接的注册为全局变量并直接使用，而 register_globals=Off 时，我们需要到特定的数组里去得到它。 </p>
+<p> 本特性已自 PHP 5.3.0 起<em>废弃</em>并将自 PHP 5.4.0 起<em>移除</em>。</p>
+<p><a href="https://p0sec.net/index.php/archives/35/" target="_blank" rel="noopener">参考文章</a></p>
+<hr>
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
     
 
     <footer id="post-meta" class="clearfix">
