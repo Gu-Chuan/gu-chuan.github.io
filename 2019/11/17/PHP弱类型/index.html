@@ -4,6 +4,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
+  <meta name="description" content="起因在写PHP代码时，我们可以注意到，不用给变量声明其数据类型。PHP会根据变量的值，自动把变量转换为正确的数据类型。
+“弱类型语言对变量的数据类型没有限制，可以在人很适合将变量赋值给人以的其他类型变量，同时变量可以转换成任意其他类型的数据。而在强类型的编程语言中，我们必须在使用变量前先声明（定义）">
+
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
 <meta name="theme-color" content="#a1d0f6">
@@ -36,7 +39,82 @@
         </h2>
     </header>
 </article>
-<section id="post-body"></section>
+<section id="post-body"><h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>在写PHP代码时，我们可以注意到，不用给变量声明其数据类型。PHP会根据变量的值，自动把变量转换为正确的数据类型。</p>
+<p>“弱类型语言对变量的数据类型没有限制，可以在人很适合将变量赋值给人以的其他类型变量，同时变量可以转换成任意其他类型的数据。而在强类型的编程语言中，我们必须在使用变量前先声明（定义）变量的类型和名称。”</p>
+<p><a href="https://cloud.tencent.com/developer/article/1402633" target="_blank" rel="noopener">详情请见：从php内核角度分析php弱类型</a></p>
+<h1 id="三种等号"><a href="#三种等号" class="headerlink" title="三种等号"></a>三种等号</h1><p><code>单等号（=）</code></p>
+<ol>
+<li>赋值作用。 定义变量时，对变量进行赋值，即变量初始化。</li>
+<li>引用作用。 为对象另起一个名字，两个变量指向同一个对象（地址）。</li>
+</ol>
+<p><code>双等号（==）</code></p>
+<p>双等号在进行比较的时候，会先将不同类型转换为相同类型，再进行值比较。</p>
+<p><img src="/2019/11/17/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare1.png" alt> </p>
+<p><img src="/2019/11/17/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare2.png" alt></p>
+<p>来自<a href="https://www.php.net/manual/zh/types.comparisons.php" target="_blank" rel="noopener">PHP手册</a>。图如果看懂了，基本上差不多了。</p>
+<p>下面具体说明：</p>
+<p><code>类型转换</code></p>
+<p>1.转换成布尔类型的原则</p>
+<p>　　以下值都将转换成布尔类型中的false:</p>
+<p>　　A.布尔类型的false;</p>
+<p>　　B.空字符串’’</p>
+<p>　　C.正数0或浮点数0.0或字符串’0’(不包括字符串’0.0’)</p>
+<p>　　D.没有成员的数组—-array()</p>
+<p>　　E.null</p>
+<p>　　除此之外其它值都转换成true.</p>
+<p>2.转换成数值型的原则</p>
+<p>　　A.如果字符串为合法的数字字符串,同时不包含./e/E,而且没有超过整型的存数范围时,将转换为整型;否则转换成浮点型;</p>
+<p>　　B.如果数字字符串以非法的字符开头,则转换成0;</p>
+<p>　　C.布尔型的true转换成整数1,false转换成整数0;</p>
+<p>　　D.null转换为0</p>
+<p>　　E.浮点数转换成整数时向下取整</p>
+<p>3.转换成字符串的原则</p>
+<p>　　A.数值转换成字符串即数值本身;</p>
+<p>　　B.布尔型的true转换成字符串’1’;false转换成字符串’’;</p>
+<p>　　C.null转化成空字符串’’;</p>
+<p>　　D.数组转换成Array</p>
+<p>　　E.资源将转换成Resourse id #数字</p>
+<p><code>运算转换</code></p>
+<p>基本原则：<br>        对于数学运算<code>+-*/</code>，字符串转换为数值。<br>        对于字符串运算 <code>.</code> ，数值转换为字符串。</p>
+<p><a href="https://www.php.net/manual/zh/language.types.type-juggling.php#language.types.typecasting" target="_blank" rel="noopener">详情请见：PHP手册</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo 1 + &quot;1a&quot;;//2</span><br><span class="line">echo 1 . &quot;1a&quot;;//11a</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><code>比较转换</code></p>
+<p>基本原则：</p>
+<p> 如果比较一个数字和字符串或者比较涉及到数字内容的字符串，则字符串会被转换为数值并且比较按照数值来进行。</p>
+<p> 如果任一值是 true，把它转换成 1 再比较；如果任一值是 false，把它转换成 0 再比较。</p>
+<p> 如果一个是对象，另一个是数值或字符串，把对象转换成基础类型的值再比较。</p>
+<p> 如果一个字符串是0x开头的时候，PHP会将此字符串解析成为十进制然后再进行比较。</p>
+<p> 如果一个字符串是0e开头的时候， PHP将会解释为科学计数法的浮点数，转换为0。</p>
+<p> 任何其他组合，都不相等。  </p>
+<p><img src="/2019/11/17/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare4.png" alt></p>
+<p><a href="https://www.php.net/manual/zh/language.operators.comparison.php" target="_blank" rel="noopener">详情请见：PHP手册</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">例子：</span><br><span class="line">null==flase         //true</span><br><span class="line">&apos;&apos;==null            //true</span><br><span class="line">0 ==&apos;0&apos;             //true</span><br><span class="line">0 == &apos;abcdefg&apos;      //true</span><br><span class="line">1 == &apos;1abcdef&apos;      //true</span><br><span class="line">&quot;0x1e240&quot;==&quot;123456&quot; //true</span><br><span class="line">&quot;0x1e240&quot;==123456   //true</span><br><span class="line">&quot;0e1abc&quot;==&quot;0&quot;       //true</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>三等号（===）</code></p>
+<p>三等号在进行比较的时候，会先判断两种字符串的类型是否相等，再比较。 即不做类型转换，类型不同的一定不等。</p>
+<p>基本原则：</p>
+<p>如果类型不同，则不相等；</p>
+<p>如果两个都是数值，并且是同一个值，那么相等； </p>
+<p>如果两个都是字符串，每个位置的字符都一样，那么相等，否则不相等；</p>
+<p>如果两个值都是true，或者都是false，那么相等；</p>
+<p>如果两个值都引用同一个对象或函数，那么相等，否则不相等；</p>
+<p>如果两个值都是null，或者都是undefined，那么相等。</p>
+<p><img src="/2019/11/17/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare3.png" alt></p>
+<h1 id="PHP弱类型函数"><a href="#PHP弱类型函数" class="headerlink" title="PHP弱类型函数"></a>PHP弱类型函数</h1><p>strcmp()、json_decode()、switch()、in_array()、array_search()</p>
+<p><a href="https://blog.csdn.net/m0_37482190/article/details/87404037" target="_blank" rel="noopener">参考文章</a>、<a href="https://www.cnblogs.com/pjdsy/p/4663590.html" target="_blank" rel="noopener">参考文章</a></p>
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
     
 
     <footer id="post-meta" class="clearfix">
