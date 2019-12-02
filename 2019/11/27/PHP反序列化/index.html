@@ -42,7 +42,7 @@
 </article>
 <section id="post-body"><p>一篇很浅很浅很浅的PHP反序列化漏洞理解。</p>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>序列化：将对象或数组转换为字符串；反序列化：将字符串转换为对象或数组。</p>
-<p>在PHP中序列化和反序列化对应的函数是 <code>serialize()</code> 和 <code>unserialize()</code> ；在 JSON(JavaScript Object Notation)中序列化和反序列化对应的函数是 <code>json_encode</code> 和 <code>json_decode</code> 。</p>
+<p>在PHP中序列化和反序列化对应的函数是 <code>serialize()</code> 和 <code>unserialize()</code> ；在 JSON(JavaScript Object Notation)中序列化和反序列化对应的函数是 <code>json_encode()</code> 和 <code>json_decode()</code> 。</p>
 <p>序列化和反序列化的<code>目的</code>是保存和转储对象，使程序间传输对象方便。</p>
 <p> PHP 反序列化漏洞( PHP 对象注入漏洞 )产生<code>原因</code>： 程序对输入数据处理不当,导致用户对数据可控，从而利用反序列化构造payload攻击。</p>
 <p>PHP反序列化攻击的<code>条件</code>：</p>
