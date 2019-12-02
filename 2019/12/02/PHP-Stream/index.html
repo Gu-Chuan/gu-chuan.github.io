@@ -4,6 +4,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
+  <meta name="description" content="正文PHP Stream ( PHP4.3 )
+
+ 流的作用是提供统一的公共函数来处理文件、网络和数据压缩等操作。简单而言，流是具有流式行为的资源对象，也就是说，流可以线性读写，并且可以通过 fseek() 之类的函数定位到流中的任何位置。   ——-官方介绍
+
+流的作用是在出发地和目的地之间传输数">
+
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
 <meta name="theme-color" content="#a1d0f6">
@@ -36,7 +42,28 @@
         </h2>
     </header>
 </article>
-<section id="post-body"></section>
+<section id="post-body"><h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p><a href="https://www.php.net/manual/zh/book.stream.php" target="_blank" rel="noopener">PHP Stream ( PHP4.3 )</a></p>
+<blockquote>
+<p> 流的作用是提供统一的公共函数来处理文件、网络和数据压缩等操作。简单而言，流是具有流式行为的资源对象，也就是说，流可以线性读写，并且可以通过 fseek() 之类的函数定位到流中的任何位置。   ——-官方介绍</p>
+</blockquote>
+<p><code>流的作用是在出发地和目的地之间传输数据</code>。出发地和目的地可以是文件、命令行进程、网络连接、ZIP 或 TAR 压缩文件、临时内存、标准输入或输出，或者是通过PHP 流封装协议实现的任何其他资源。 </p>
+<p>因为流式数据的种类各异，所以每种类型需要独特的协议，以便读写数据，我们称这些协议为流封装协议。例如，我们可以读写文件系统（php://stdin、php://stdout），可以通过 HTTP、HTTPS 或 SSH 与远程 Web 服务器通信，还可以打开并读写 ZIP、RAR 或 PHAR 压缩文件。</p>
+<p>流为很多PHP IO 函数提供了底层实现，如 <code>file_get_contents</code>、<code>fopen</code>、<code>fread</code> 和 <code>fwrite</code> 等。PHP 的流函数提供了不同资源的统一接口。 </p>
+<p>每一种流都实现了一个包装器(wrapper)，包装器包含一些额外的代码用来处理特殊的协议和编码。PHP提供了一些内置的包装器，我们也可以很轻松的创建和注册自定义的包装器。我们甚至可以使用上下文(contexts)和过滤器来改变和增强包装器。 </p>
+<p> PHP中流的形式： <scheme>://<target>。其中<scheme>是包装器的名字，<target>中的内容是由包装器的语法指定，不同的包装器的语法会有所不同。 </target></scheme></target></scheme></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">查看计算机PHP配置</span><br><span class="line">&lt;?php</span><br><span class="line">var_dump(stream_get_transports());// 获取已注册的套接字传输协议列表 </span><br><span class="line">var_dump(stream_get_wrappers());// 获取已注册的流类型</span><br><span class="line">var_dump(stream_get_filters()); // 获取已注册的数据流过滤器列表</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>PHP Stream 无处不在！</p>
+<p>本篇结合PHP伪协议观看。</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://xueyuanjun.com/post/7459.html" target="_blank" rel="noopener">PHP统一资源处理API——-流的概述详解</a></p>
+<p><a href="https://www.freebuf.com/articles/web/193849.html" target="_blank" rel="noopener">渗透测试中PHP Stream Wrappers的利用技巧</a></p>
+<p><a href="https://www.jb51.net/article/65933.htm" target="_blank" rel="noopener">PHP Streams</a></p>
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
     
 
     <footer id="post-meta" class="clearfix">
