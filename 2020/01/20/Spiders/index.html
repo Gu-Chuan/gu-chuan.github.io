@@ -4,6 +4,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
+  <meta name="description" content="简介网络爬虫(网页蜘蛛)：是一种按照一定的规则、自动请求万维网网站并提取网络数据的程序或脚本。
+通常可以按照不同的维度对网络爬虫进行分类。按照使用场景可分为通用爬虫和聚焦爬虫、按照爬取形式可分为累积式爬虫和增量式爬虫、按照数据存在形式可分为表层爬虫和深层爬虫。在实际应用中，网络爬虫系统是由几种爬虫技">
+
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
 <meta name="theme-color" content="#a1d0f6">
@@ -36,7 +39,274 @@
         </h2>
     </header>
 </article>
-<section id="post-body"></section>
+<section id="post-body"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/5162711?fr=aladdin" target="_blank" rel="noopener">网络爬虫(网页蜘蛛)</a>：是一种按照一定的规则、自动请求万维网网站并提取网络数据的程序或脚本。</p>
+<p>通常可以按照不同的维度对网络爬虫进行分类。按照使用场景可分为通用爬虫和聚焦爬虫、按照爬取形式可分为累积式爬虫和增量式爬虫、按照数据存在形式可分为表层爬虫和深层爬虫。在实际应用中，网络爬虫系统是由几种爬虫技术相结合实现的。</p>
+<p><code>通用爬虫(全网爬虫)</code>：将爬取对象从一些种子URL扩充到整个网络，主要用于搜索引擎。</p>
+<p><code>聚焦爬虫(主题网络爬虫)</code>：指选择性地爬行那些与预先定义好的主题相关页面的网络爬虫。</p>
+<p><code>累积式爬虫</code>：指从某一时间点开始，通过遍历的方式爬取系统所允许存储和处理的所有网页。</p>
+<p><code>增量式爬虫</code>：指在具有一定量规模的网络页面集合的基础上，采用更新数据的方式选取已有集合中的过时网页进行爬取，保证所爬取数据的时效性。</p>
+<p><code>表层爬虫</code>：爬取表层网页(指传统搜索引擎可以索引的页面，以超链接可以到达的静态网页为主构成的 Web 页面)的爬虫。</p>
+<p><code>深层爬虫</code>：爬取深层网页(指那些大部分内容不能通过静态链接获取的、隐藏在搜索表单后的，只有用户提交一些关键词才能获得的 Web 页面)的爬虫。</p>
+<p>爬虫相关的网站文件：robots.txt和Sitemap.xml。</p>
+<p><a href="https://baike.baidu.com/item/robots%E5%8D%8F%E8%AE%AE/2483797?fromtitle=robots.txt&fromid=9518761&fr=aladdin" target="_blank" rel="noopener">robots.txt 文件</a>：网络爬虫排除标准，告诉搜索引擎哪些页面可以爬取，哪些页面不可以爬取。</p>
+<p><a href="https://baike.baidu.com/item/sitemap/6241567?fr=aladdin" target="_blank" rel="noopener">Sitemap.xml 文件</a>：列出了网站中的网址及每个网址的其他元数据(更新时间、更改频率、网址重要程度等)，用于通知爬虫遍历和更新网站的内容。</p>
+<p><code>防爬虫应对策略</code></p>
+<p>1.设置 User-Agent (用户代理)。</p>
+<p>2.使用代理 IP 。</p>
+<p>3.降低访问频率。</p>
+<p>4.验证码限制。</p>
+<p><img src="/2020/01/20/Spiders/spider1.png" alt></p>
+<h1 id="Python3之urllib库"><a href="#Python3之urllib库" class="headerlink" title="Python3之urllib库"></a>Python3之urllib库</h1><blockquote>
+<p>注意：</p>
+<p>在Python2中，有urllib和urllib2两个库来实现请求的发送；而在Python3中，已经不存在urllib2这个库，统一为urllib。</p>
+<p>urllib库是Python内置的HTTP请求库，可以看作是处理URL的组件集合。</p>
+</blockquote>
+<p>urllib库中的四个模块：</p>
+<p><code>urllib.request</code>：最基本的HTTP请求模块，可以用来模拟发送请求。</p>
+<p><code>urllib.error</code>：异常处理模块，如果出现请求错误，可以捕获异常，然后进行重试或者其他操作以保证程序不会以外终止。</p>
+<p><code>urllib.parse</code>：一个工具模块，提供了许多URL处理方法，例如拆分、解析、合并等。</p>
+<p><code>urllib.robotparser</code>：robots.txt 解析模块。</p>
+<table>
+<thead>
+<tr>
+<th><strong>Python2.X</strong></th>
+<th><strong>Python3.X</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>urllib</td>
+<td>urllib.request, urllib.error, urllib.parse</td>
+</tr>
+<tr>
+<td>urllib2</td>
+<td>urllib.request, urllib.error</td>
+</tr>
+<tr>
+<td>urllib2.urlopen</td>
+<td>urllib.request.urlopen</td>
+</tr>
+<tr>
+<td>urllib.urlencode</td>
+<td>urllib.parse.urlencode</td>
+</tr>
+<tr>
+<td>urllib.quote</td>
+<td>urllib.request.quote</td>
+</tr>
+<tr>
+<td>urllib2.Request</td>
+<td>urllib.request.Request</td>
+</tr>
+<tr>
+<td>urlparse</td>
+<td>urllib.parse</td>
+</tr>
+<tr>
+<td>urllib.urlretrieve</td>
+<td>urllib.request.urlretrieve</td>
+</tr>
+<tr>
+<td>urllib2.URLError</td>
+<td>urllib.error.URLError</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">例子1</span><br><span class="line"></span><br><span class="line">inport urllib.request        #导入urllib.request模块</span><br><span class="line">response = urllib.request.urlopen(&apos;http://www.baidu.com&apos;)     #调用urllib.request模块中urlopen()方法</span><br><span class="line">html = response.read().decode(&apos;UTF-8&apos;)       #以utf-8编码的格式进行请求阅读</span><br><span class="line">print(html)      #打印网页内容</span><br></pre></td></tr></table></figure>
+
+<p><code>urllib.request.urlopen(url, data=None, [timeout, ]*, cafile=None, capath=None, cadefault=False, context=None)</code></p>
+<p>url：目标资源在网站中的位置，一个URL字符串或一个urllib.request对象。</p>
+<p>data：指明向服务器发送请求的额外信息。注：只有打开http网址时，data参数(bytes对象)才有作用。</p>
+<p>​            默认为None，此时以GET方式发送请求，当添加data参数时，请求方式则为POST。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例如：data = bytes(urllib.parse.urlencode(&#123;&apos;word&apos;: &apos;hello&apos;&#125;).encoding=(&apos;utf-8&apos;))</span><br><span class="line"></span><br><span class="line">	 response = urllib.request.urlopen(&apos;http://httpbin.org/post&apos;,data=data)</span><br></pre></td></tr></table></figure>
+
+<p>timeout：可选参数，用于设置超时时间(s)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如：response = urllib.request.urlopen(&apos;http://httpbin.org/get&apos;, timeout=1)</span><br></pre></td></tr></table></figure>
+
+<p>cafile/capath/cadefault：可选参数，用于实现可信任CA证书的HTTPS请求。</p>
+<p>context：可选参数，用于实现SSL加密传输。</p>
+<p>调用urllib.request模块中urlopen()方法发送HTTP请求后，服务器返回的响应内容被封装在一个HTTPResponse类型的对象中。HTTPResponse类属于http.client模块，可以通过read()、geturl()、info()、getcode()等方法得到内容。</p>
+<p><code>print(response.read())</code>     #读取信息</p>
+<p><code>print(response.geturl())</code>   #获取响应信息对应的URL</p>
+<p><code>print(response.info())</code>     #获取响应码</p>
+<p><code>print(response.getcode())</code>  #获取页面元信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">例子2</span><br><span class="line"></span><br><span class="line">import urllib.request</span><br><span class="line">import urllib.parse</span><br><span class="line">url = &apos;http://www.baidu.com&apos;  #预定义url、header、data值</span><br><span class="line">header = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (compatible; MSIE 9.0; windows NT6.1; Trident/5.0)&quot;,&quot;Host&quot;:&quot;httpbin.org&quot;&#125;</span><br><span class="line">dict_demo = &#123;&quot;name&quot;:&quot;baidu&quot;&#125;</span><br><span class="line">data = bytes(urllib.parse.urlencode(dict_demo).encoding=(&apos;utf-8&apos;)) #urlencode()方法将key:value键值对转换为key=value的形式进行URL编码</span><br><span class="line">request = urllib.request.Request(url,data=data,headers=header)  #将url、data、header作为Request()方法的参数，并构造和返回一个Request对象</span><br><span class="line">response = urllib.request.urlopen(request) #将Request对象作为urlopen()方法的参数</span><br><span class="line">html = response.read().decode(&apos;UTF-8&apos;)</span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
+
+<p><code>添加特定 Headers---请求伪装</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.直接向header字典中添加</span><br><span class="line">如：header[&apos;User-Agent&apos;] = &apos;Mozilla/5.0 (compatible; MSIE 9.0; windows NT6.1; Trident/5.0)&quot;,&quot;Host&quot;:&quot;httpbin.org&apos;</span><br><span class="line"></span><br><span class="line">2.使用add_header方法添加</span><br><span class="line">如：request.add_header&#123;&apos;User-Agent&apos;,&apos;Mozilla/5.0 (compatible; MSIE 9.0; windows NT6.1; Trident/5.0)&quot;,&quot;Host&quot;:&quot;httpbin.org&apos;&#125;</span><br><span class="line"></span><br><span class="line">3.通过get_header()查看header信息</span><br><span class="line">如：print(request.get_header(&quot;User-Agent&quot;))</span><br></pre></td></tr></table></figure>
+
+<p><code>代理服务器</code></p>
+<p>opener 是urllib.request.OpenerDirector类的对象。其中urlopen就是模块构建好的一个opener，但是它不支持代理、cookie等其他的HTTP/HTTPS高级功能，则设置代理，要自定义opener。</p>
+<p><img src="/2020/01/20/Spiders/spider2.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1.使用自定义opener对象，调用open()方法</span><br><span class="line">import urllib.request</span><br><span class="line">import random</span><br><span class="line">proxy_list = [&#123;&quot;http&quot;:&quot;124.88.67.81:80&quot;&#125;,&#123;&quot;http&quot;:&quot;124.88.67.81:80&quot;&#125;]</span><br><span class="line">proxy = random.choice(proxy_list)        #随机选择一个代理</span><br><span class="line">proxy_handler = urllib.request.ProxyHandler(proxy)   #构建一个ProxyHandler处理器对象</span><br><span class="line">opener = urllib.request.build_opener(proxy_handler)  #创建一个opener对象</span><br><span class="line">request = urllib.request.Request(&quot;http://www.baidu.com/&quot;)  #构建Request请求</span><br><span class="line">response = opener.open(request)  #调用open()方法</span><br><span class="line">print(response.read())</span><br><span class="line"></span><br><span class="line">2.自定义opener设置为全局opener对象，再调用urlopen()方法</span><br><span class="line">import urllib.request</span><br><span class="line">import random</span><br><span class="line">url = &apos;http://www.whatismyip.com.tw&apos;</span><br><span class="line">iplist = [&apos;119.6.144.73:81&apos;,&apos;183.203.208.166:8118&apos;,&apos;111.1.32.28:81&apos;]</span><br><span class="line">proxy = &#123;&apos;http&apos;:random.choice(iplist)&#125;</span><br><span class="line">proxy_handler = urllib.request.ProxyHandler(proxy)</span><br><span class="line">opener = urllib.request.build_opener(proxy_handler)</span><br><span class="line">urllib.request.install_opener(opener)  #安装创建好的opener</span><br><span class="line">request = urllib.request.urlopen(url)  #调用自定义的opener对象的urlopen()方法</span><br><span class="line">html = response.read().decode(&apos;utf-8&apos;) </span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
+
+<p><code>异常捕获</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try...except</span><br><span class="line"></span><br><span class="line">import urllib.request</span><br><span class="line">import urllib.error</span><br><span class="line">request = urllib.request.Request(&quot;http://www.baidu.com&quot;)</span><br><span class="line">try:</span><br><span class="line">	urllib.request.urlopen(request,timeout=5)</span><br><span class="line">except urllib.error.URLError as err:       #urllib.error.HTTPError</span><br><span class="line">	print(err)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">关键字</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">try…except</td>
+<td align="center">捕获异常并处理</td>
+</tr>
+<tr>
+<td align="center">pass</td>
+<td align="center">忽略异常</td>
+</tr>
+<tr>
+<td align="center">as</td>
+<td align="center">定义异常实例（except MyError as e）</td>
+</tr>
+<tr>
+<td align="center">else</td>
+<td align="center">如果try中的语句没有引发异常，则执行else中的语句</td>
+</tr>
+<tr>
+<td align="center">finally</td>
+<td align="center">无论是否出现异常，都执行的代码</td>
+</tr>
+<tr>
+<td align="center">raise</td>
+<td align="center">抛出/引发异常</td>
+</tr>
+</tbody></table>
+<p>详情：<a href="https://blog.csdn.net/polyhedronx/article/details/81589196" target="_blank" rel="noopener">Python异常及处理方法总结</a></p>
+<h1 id="Python3之requests库"><a href="#Python3之requests库" class="headerlink" title="Python3之requests库"></a>Python3之requests库</h1><p>requests是基于python开发的HTTP库，与urllib标准库相比，它不仅使用方便，且节约大量工作。requests是在urllib的基础上进行高度封装，并支持cookie、自动响应内容等特性。注：默认安装的python没有提供requests模块，需要单独通过pip安装。</p>
+<blockquote>
+<p>注：</p>
+<p>urllib.request.urlopen()方法返回的是一个文件对象，需要调用read()方法一次性读取。</p>
+<p>requests.get()方法返回的是一个响应对象，可以根据不同属性查看响应的内容。</p>
+</blockquote>
+<p><code>requests.Request</code></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">requests.request()</td>
+<td align="center">构造一个请求，支撑以下各方法的基础方法</td>
+</tr>
+<tr>
+<td align="center">requests.get()</td>
+<td align="center">获取HTML网页的主要方法，对应HTTP的GET。</td>
+</tr>
+<tr>
+<td align="center">requests.head()</td>
+<td align="center">获取HTML网页头的信息方法，对应HTTP的HEAD</td>
+</tr>
+<tr>
+<td align="center">requests.post()</td>
+<td align="center">向HTML网页提交POST请求方法，对应HTTP的POST。</td>
+</tr>
+<tr>
+<td align="center">requests.put()</td>
+<td align="center">向HTML网页提交PUT请求的方法，对应HTTP的PUT</td>
+</tr>
+<tr>
+<td align="center">requests.patch()</td>
+<td align="center">向HTML网页提交局部修改请求，对应于HTTP的PATCH</td>
+</tr>
+<tr>
+<td align="center">requests.delete()</td>
+<td align="center">向HTML页面提交删除请求，对应HTTP的DELETE</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>发送get请求时，参数既可以在url中以?key=val方式传递，又可以使用params关键字传递，params参数可以通过字典构造成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">1.response = requests.get(&quot;http://www.baidu.com/get?name=guchuan&quot;)</span><br><span class="line">2.data = &#123;&quot;name&quot;:&quot;guchuan&quot;,&quot;age&quot;:0&#125;</span><br><span class="line">response = requests.get(&quot;http://www.baidu.com/get&quot;,params=data)</span><br></pre></td></tr></table></figure>
+
+<p>发送post请求时，参数传递要添加一个data关键字，data参数可以通过字典构造成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">data = &#123;&quot;name&quot;:&quot;guchuan&quot;,&quot;age&quot;:0&#125;</span><br><span class="line">response = requests.post(&quot;http://www.baidu.com/get&quot;,data=data)</span><br></pre></td></tr></table></figure>
+
+<p>requests.get( url ,  params , headers , auth , verify , proxies , timeout)</p>
+<p>requests.post( url , data , headers , auth , verify , proxies , timeout , files )</p>
+</blockquote>
+<p><code>requests.Response</code></p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">response.status_code</td>
+<td align="center">HTTP请求的返回状态</td>
+</tr>
+<tr>
+<td align="center">response.text</td>
+<td align="center">HTTP响应内容的字符串形式，即 url 对应的页面内容</td>
+</tr>
+<tr>
+<td align="center">response.encoding</td>
+<td align="center">从HTTP 请求头中猜测的响应内容编码方式</td>
+</tr>
+<tr>
+<td align="center">response.apparent_encoding</td>
+<td align="center">从内容中分析出的响应内容编码方式(备选编码方式)</td>
+</tr>
+<tr>
+<td align="center">response.content</td>
+<td align="center">HTTP响应内容的二进制形式,自动解码 gzip 和 deflate 压缩</td>
+</tr>
+<tr>
+<td align="center">response.raw</td>
+<td align="center">返回原始响应体，即 urllib 的response对象，使用 response.raw.read() 读取</td>
+</tr>
+<tr>
+<td align="center">response.cookies</td>
+<td align="center">返回响应内容的Cookie</td>
+</tr>
+<tr>
+<td align="center">response.headers</td>
+<td align="center">返回响应内容的请求头</td>
+</tr>
+<tr>
+<td align="center">response.url</td>
+<td align="center">获取发送请求的URL</td>
+</tr>
+<tr>
+<td align="center">respone.history</td>
+<td align="center">获取重定向历史</td>
+</tr>
+<tr>
+<td align="center">respone.json()</td>
+<td align="center">对响应进行json反序列化，仅在返回的数据为json格式时可使用</td>
+</tr>
+<tr>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+</tbody></table>
+<p><code>requests.Session</code></p>
+<p>session可以跨请求保持cookies。</p>
+<p>session可以为请求方法提供缺省数据，通过设置session对象的属性来实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">session = requests.session()</span><br><span class="line">session.get(&quot;https://www.baidu.com&quot;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">#N1</span><br><span class="line">import urllib.request</span><br><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">def tieba_spider(url,begin_page,end_page):</span><br><span class="line">	for page in range(begin_page,end_page+1):</span><br><span class="line">		pn = (page-1)*50</span><br><span class="line">		file_name = &quot;第&quot;+str(page)+&quot;页.html&quot;</span><br><span class="line">		full_url = url+&quot;&amp;ie=utf-8&quot;+&quot;&amp;pn=&quot;+str(pn)</span><br><span class="line">		html = load_page(full_url,file_name)</span><br><span class="line">		write_page(html,file_name)</span><br><span class="line"></span><br><span class="line">def load_page(url,filename):</span><br><span class="line">	headers = &#123;&quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0&quot;&#125;</span><br><span class="line">	request = urillib.request.Request(url,headers=headers)</span><br><span class="line">	return urillib.request.urlopen(request).read()</span><br><span class="line"></span><br><span class="line">def write_page(html,filename):</span><br><span class="line">	print(&quot;正在保存：&quot;+filename)</span><br><span class="line">	with open(filename,&apos;w&apos;) as file :</span><br><span class="line">		file.write(html,decode(&apos;utf-8&apos;))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">	kw = input(&quot;请输入需要爬取的贴吧：&quot;)</span><br><span class="line">	begin_page = int(input(&quot;请输入起始页：&quot;))</span><br><span class="line">	end_page = int(input(&quot;请输入结束页：&quot;))</span><br><span class="line">	url = &apos;http://tieba.baidu.com/f?&apos;</span><br><span class="line">	key = urillib.parse.urlencode(&#123;&quot;kw&quot;:kw&#125;)</span><br><span class="line">	url = url+key</span><br><span class="line">	tieba_spider(url,begin_page,end_page)</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">#N2</span><br><span class="line">import urllib.request</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">def url_open(url):</span><br><span class="line">	req = urllib.request.Request(url)</span><br><span class="line">	req.add_header(&apos;User-Agent&apos;,&apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0&apos;)</span><br><span class="line">	response = urllib.request.urlopen(url)</span><br><span class="line">	html = response.read()</span><br><span class="line">	return html</span><br><span class="line">	</span><br><span class="line">def get_page(url):</span><br><span class="line">	html = url_open(url).decode(&apos;utf-8&apos;)</span><br><span class="line">	a = html.find(&apos;current-comment-page&apos;)+23</span><br><span class="line">	b = html.find(&apos;]&apos;,a)</span><br><span class="line">	return html[a:b]</span><br><span class="line">	</span><br><span class="line">def find_imgs(url):</span><br><span class="line">	html = url_open(url).decode(&apos;utf-8&apos;)</span><br><span class="line">	img_addrs = []</span><br><span class="line">	a = html.find(&apos;img src=&apos;)</span><br><span class="line">	while a!=-1:</span><br><span class="line">		b = html.find(&apos;.jpg&apos;,a,a+255)</span><br><span class="line">		if b!=-1:</span><br><span class="line">			img_addrs.append(html[a+9:b+4])</span><br><span class="line">		else:</span><br><span class="line">			b = a+9</span><br><span class="line">		a = html.find(&apos;img src=&apos;,b)</span><br><span class="line">		return img_addrs</span><br><span class="line"></span><br><span class="line">def save_imgs(folder,img_addrs):</span><br><span class="line">	for each in img_addrs:</span><br><span class="line">		filename = each.split(&apos;/&apos;)[-1]</span><br><span class="line">		with open(filename,&apos;wb&apos;) as file</span><br><span class="line">		img = open_url(each)</span><br><span class="line">		file.write(img)</span><br><span class="line">		</span><br><span class="line">def download_mm(floder=&quot;pic&quot;,pages=10):</span><br><span class="line">	os.mkdir(folder)</span><br><span class="line">	os.chdir(folder)</span><br><span class="line">	url = &quot;http://jandan.net/ooxx/&quot;</span><br><span class="line">	page_num = int(get_page(url))</span><br><span class="line">	for i in range(pages):</span><br><span class="line">	page_num -= i</span><br><span class="line">	page_url = url +&apos;page-&apos;+str(page_num)+&apos;#comments&apos;</span><br><span class="line">	img_addrs = find_imgs(page_url)</span><br><span class="line">	save_imgs(floder,img_addrs)</span><br><span class="line">	</span><br><span class="line">if __name__==&apos;__main__&apos;:</span><br><span class="line">	download__mm()</span><br></pre></td></tr></table></figure>
+
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
     
 
     <footer id="post-meta" class="clearfix">
