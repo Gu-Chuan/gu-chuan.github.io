@@ -4,6 +4,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
+  <meta name="description" content="所谓SQL注入，就是通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。 
+所谓防止SQL注入，就是永远不要信任用户的输入，必须认定用户输入的数据都是不安全的，从而需要对用户输入的数据进行过滤处理。
+具体方面：一、对用户的输入进行校验，可以通">
+
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
 <meta name="theme-color" content="#a1d0f6">
@@ -36,7 +40,19 @@
         </h2>
     </header>
 </article>
-<section id="post-body"></section>
+<section id="post-body"><p>所谓SQL注入，就是通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。 </p>
+<p>所谓防止SQL注入，就是永远不要信任用户的输入，必须认定用户输入的数据都是不安全的，从而需要对用户输入的数据进行过滤处理。</p>
+<p>具体方面：一、对用户的输入进行校验，可以通过正则表达式，限制长度。二、对单引号和 双”-“进行转换。 三、对用户输入的数据进行转义从而来防止SQL注入。 四、不要使用动态拼装sql命令，可以使用参数化的sql命令或者直接使用存储过程进行数据查询存取。 五、不要使用管理员权限的数据库连接，为每个应用使用单独的权限有限的数据库连接。六、不要把机密信息直接存放，加密或者hash掉密码和敏感的信息。七、应用的异常信息应该给出尽可能少的提示，最好使用自定义的错误信息对原始错误信息进行包装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#输入的用户名必须为字母、数字及下划线的组合，且用户名长度为8到20个字符之间。</span><br><span class="line">if (preg_match(&quot;/^\w&#123;8,20&#125;$/&quot;, $_GET[&apos;username&apos;], $matches))</span><br><span class="line">&#123;</span><br><span class="line">   $result = mysqli_query($conn, &quot;SELECT * FROM users WHERE username=$matches[0]&quot;);</span><br><span class="line">&#125;</span><br><span class="line"> else </span><br><span class="line">&#123;</span><br><span class="line">   echo &quot;username 输入异常&quot;;</span><br><span class="line">&#125;</span><br><span class="line">#对用户输入的特殊字符进行转义。</span><br><span class="line">if (get_magic_quotes_gpc()) </span><br><span class="line">&#123;</span><br><span class="line">  $name = stripslashes($name);</span><br><span class="line">&#125;</span><br><span class="line">$name = mysqli_real_escape_string($conn, $name);</span><br><span class="line">mysqli_query($conn, &quot;SELECT * FROM users WHERE name=&apos;&#123;$name&#125;&apos;&quot;);</span><br><span class="line">//mysqli_real_escape_string()转义的字符是NUL(ASCII 0)、\n、\r、\、&apos;、&quot;、Control-Z。</span><br><span class="line"></span><br><span class="line">$sub = addcslashes(mysqli_real_escape_string($conn, &quot;%something_&quot;), &quot;%_&quot;);//$sub=\%something\_</span><br><span class="line">// addcslashes(string,characters)characters:规定受 addcslashes() 影响的字符或字符范围。</span><br><span class="line"> mysqli_query($conn, &quot;SELECT * FROM messages WHERE subject LIKE &apos;&#123;$sub&#125;%&apos;&quot;);</span><br></pre></td></tr></table></figure>
+
+
+
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
     
 
     <footer id="post-meta" class="clearfix">

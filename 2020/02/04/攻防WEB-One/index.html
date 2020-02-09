@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="0x01 View_source据题名、题目描述可知，考查F12查看源代码。
+0x02 Robots据题名、题目描述可知，考查robots协议。
+
+Robots协议（也称为爬虫协议、机器人协议等）的全称是“网络爬虫排除标准”（Robots Exclusion Protocol），网站通过Robots">
+
+
+<link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
+<meta name="theme-color" content="#a1d0f6">
+<title>攻防WEB-One - Gu Chuan&#39;s blog</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="stylesheet" href="/css/style.css">
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/about/">About</a>
+	
+	    <a href="/archives/">Archives</a>
+	
+	    <a href="/links/">Links</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>攻防WEB-One</h1>
+        
+        <h2 class="headline">Feb 04 2020
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><h1 id="0x01-View-source"><a href="#0x01-View-source" class="headerlink" title="0x01 View_source"></a>0x01 View_source</h1><p>据题名、题目描述可知，考查F12查看源代码。</p>
+<h1 id="0x02-Robots"><a href="#0x02-Robots" class="headerlink" title="0x02 Robots"></a>0x02 Robots</h1><p>据题名、题目描述可知，考查robots协议。</p>
+<blockquote>
+<p>Robots协议（也称为爬虫协议、机器人协议等）的全称是“网络爬虫排除标准”（Robots Exclusion Protocol），网站通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些页面不能抓取。</p>
+<p>robots.txt 文件是一个文本文件，robots.txt 是搜索引擎中访问网站的时候要查看的第一个文件。robots.txt 文件告诉蜘蛛程序在服务器上什么文件是可以被查看的。</p>
+</blockquote>
+<p>解题：访问 ./robots.txt 文件  &gt;&gt;&gt;得到 f1ag_1s_h3re.php 信息 &gt;&gt;&gt;访问 ./f1ag_1s_h3re.php 文件</p>
+<h1 id="0x03-backup"><a href="#0x03-backup" class="headerlink" title="0x03 backup"></a>0x03 backup</h1><p>据题名、题目描述可知，考查备份文件。</p>
+<p>解题：访问 ./index.php.bak 文件 &gt;&gt;&gt;下载文件</p>
+<blockquote>
+<p><a href="https://baike.baidu.com/item/%E5%B8%B8%E7%94%A8%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D/10227127?fr=aladdin" target="_blank" rel="noopener">后缀名小知识</a>：exe 、com 可执行文件，rar 、zip 压缩包，gz Unix压缩文件，html 网页，pdf PDF文档，tmp 临时文件，mdf 虚拟光驱镜像文件，iso 镜像文件，txt 记事本，doc word文档，mid 数字乐谱信息文件，wps WPS文件，xls Excel工作表，bmp、gif、jpg、pic、png、tif 图像，avi、mpg、mov、swf rm 视频文件，int、sys、dll、adt 系统文件，bak 备份文件，bat、cmd 批处理文件。</p>
+</blockquote>
+<h1 id="0x04-Cookie"><a href="#0x04-Cookie" class="headerlink" title="0x04 Cookie"></a>0x04 Cookie</h1><p>据题名、题目描述可知，考查cookie。</p>
+<blockquote>
+<p>cookie 工作原理 ：服务端 向客户端发送的 HTTP 响应中设置 Set-Cookie 消息头  ，Web 服务器可以指定存储一个 cookie。</p>
+<p>  Set-Cookie:value [ ;expires=date ] [ ;domain=domain] [ ;path=path] [ ;secure] </p>
+<p>客户端 向服务端发送的 HTTP 请求中设置 Cookie 消息头， 并且只包含了 cookie 的值，其它的选项全部被去除。 </p>
+<p> Cookie:user=name</p>
+</blockquote>
+<p>解题：F12查看网络状况 &gt;&gt;&gt;得到 Cookie:look-here=cookie.php &gt;&gt;&gt;访问 ./cookie.php 文件&gt;&gt;&gt; 得到”See the http response”信息</p>
+<h1 id="0x05-disabled-button"><a href="#0x05-disabled-button" class="headerlink" title="0x05 disabled_button"></a>0x05 disabled_button</h1><p>据题名、题目描述可知，考查HTML知识。</p>
+<p>解题：F12查看按钮部分源代码&gt;&gt;&gt;发现&lt; input  class=”btn btn-default” disabled=””&gt;信息 &gt;&gt;&gt;删除disabled=””点击按钮</p>
+<h1 id="0x06-weak-auth"><a href="#0x06-weak-auth" class="headerlink" title="0x06 weak_auth"></a>0x06 weak_auth</h1><p>据题名、题目描述可知，考查弱口令爆破。</p>
+<p>解题：随便登录&gt;&gt;&gt;得到 username=admin &gt;&gt;&gt;进行密码爆破</p>
+<blockquote>
+<p><a href="http://www.baidu.com/link?url=rg85ITbZ_6gCOfUWA6_Qb2u1nvUf32JoEj99zuLSH4jDJ0YWIxnHVYj9_YsIA4CP" target="_blank" rel="noopener">Burp Suite</a> 爆破步骤指路。</p>
+</blockquote>
+<h1 id="0x07-simple-php"><a href="#0x07-simple-php" class="headerlink" title="0x07 simple_php"></a>0x07 simple_php</h1><p>据题名、题目描述可知，考查PHP代码审计之弱比较。</p>
+<p>分析：GET方法得到变量a、b。变量a==0且变量a为真，变量b不为数字且变量b&gt;1234。</p>
+<p>解题：?a=aaa&amp;b[]=1234</p>
+<blockquote>
+<p> 如果比较一个数字和字符串或者比较涉及到数字内容的字符串，则字符串会被转换为数值并且比较按照数值来进行。 </p>
+<p>object 类型、array 类型 与 任何其它类型 比较时，object 类型、array 类型总是更大。</p>
+</blockquote>
+<h1 id="0x08-GET-POST"><a href="#0x08-GET-POST" class="headerlink" title="0x08 GET_POST"></a>0x08 GET_POST</h1><p>据题名、题名描述可知，考查GET、POST方法提交变量方式。</p>
+<p>解题：?a=1 &gt;&gt;&gt;post b=2</p>
+<h1 id="0x09-XFF-REFERER"><a href="#0x09-XFF-REFERER" class="headerlink" title="0x09 XFF_REFERER"></a>0x09 XFF_REFERER</h1><p>据题名、题名描述可知，考查X-Forwarded-For、HTTP Referer。</p>
+<blockquote>
+<p>X-Forwarded-For(XFF) 是用来识别通过HTTP代理或负载均衡方式连接到Web服务器的客户端最原始的IP地址的HTTP请求头字段。</p>
+<p> X-Forwarded-For: client1, proxy1, proxy2, proxy3 </p>
+<p>HTTP Referer是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器该网页是从哪个页面链接过来的，服务器因此可以获得一些信息用于处理。</p>
+<p>Referer: URL</p>
+</blockquote>
+<p>解题：X-Forwarded-For: 123.123.123.123 &gt;&gt;&gt; Referer: <a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a> </p>
+<h1 id="0x10-WebShell"><a href="#0x10-WebShell" class="headerlink" title="0x10 WebShell"></a>0x10 WebShell</h1><p>据题名、题名描述可知，考查<a href="https://baike.baidu.com/item/%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC/1845646?fr=aladdin" target="_blank" rel="noopener">一句话木马</a>的运用。</p>
+<blockquote>
+<p> Webshell：以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境(网页后门)。黑客在入侵了一个网站后，通常会将asp或php后门文件与网站服务器目录下正常的网页文件混在一起，然后就可以使用浏览器来访问asp或者<a href="https://baike.baidu.com/item/php后门/15691774" target="_blank" rel="noopener">php后门</a>，得到一个命令执行环境，以达到控制网站服务器的目的。 </p>
+</blockquote>
+<p>解题：PHP一句话木马&gt;&gt;&gt;中国菜刀&gt;&gt;&gt;flag.txt</p>
+<p><a href="https://www.jianshu.com/p/910b10d5ff4d" target="_blank" rel="noopener">中国菜刀</a>使用步骤指路。</p>
+<h1 id="0x11-command-execution"><a href="#0x11-command-execution" class="headerlink" title="0x11 command_execution"></a>0x11 command_execution</h1><p>据题名、题名描述可知，考查 linux 命令。</p>
+<blockquote>
+<p> ;   每个命令按照从左到右的顺序，顺序执行，彼此之间不关心是否失败，所有命令都会执行。</p>
+<p>&amp;   设置此进程为后台进程。<a href="http://www.baidu.com/link?url=xpGZzsiHp0i-GDO7Tp03TeNaLW6SkcEvPq3DVsRswMU2QthzLYd23zBkSVz0Tu9V&wd=&eqid=8b3500800032331a000000035e3e7be1" target="_blank" rel="noopener">技术<em>|Linux</em> 中的 &amp;</a></p>
+<p>|  将前一个命令的结果传递给后一个命令作为输入 。</p>
+<p>&amp;&amp;    只有在左边命令返回真，右边命令才会被执行。 只要有一个命令返回假，后面的命令就不会被执行。 </p>
+<p>||     只有在左边命令返回假，右边命令才会被执行。 只要有一个命令返回真，后面的命令就不会被执行。 </p>
+<p>注：Windows：ttl=128 ； Linux ：ttl=64。</p>
+</blockquote>
+<p>解题： 找flag文件：127.0.0.1 &amp;&amp;  find / -name “flag*”&gt;&gt;&gt;连接flag文件：127.0.0.1 &amp;&amp;  cat /home/flag.txt 或</p>
+<p>|| cat /home/flag.txt  或 &amp; cat /home/flag.txt 或 127.0.0.1 |  cat /home/flag.txt </p>
+<h1 id="0x12-Simple-JS"><a href="#0x12-Simple-JS" class="headerlink" title="0x12 Simple_JS"></a>0x12 Simple_JS</h1><p>据题名、题名描述可知，考查 JavaScript 知识。</p>
+<p>解题：查看源码得到 JS 代码&gt;&gt;&gt;注意dechiffre()、String.fromCharCode()方法</p>
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/ctf/#ctf">ctf</a>
+        </h2>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/guchuan.JPG">
+        <div>
+            <span class="dark">Gu Chuan&#39;s blog</span>
+            <span>没学过从来不是理由</span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2020/02/04/%E6%94%BB%E9%98%B2WEB-One/ - 攻防WEB-One @" target="_blank" rel="noopener"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "攻防WEB-One",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">©  Gu Chuan&#39;s blog| Powered by Hexo & 
+			<a href="https://github.com/F0r3at/Lights" target="_blank" rel="noopener"> Lights</a>
+		</p>
+	</div>
+</footer>
+
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+

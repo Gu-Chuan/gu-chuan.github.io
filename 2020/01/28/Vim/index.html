@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="随笔Vim 是从 Vi 发展出来的一个文本编辑器。
+Vi(Visual interface)没有图形界面的功能强大的编辑器；只能编辑文本内容，不能对字体、段落进行排版；不支持鼠标操作和没有菜单，只有命令。
+Vim(Vi improved)vi的提升，支持代码补全、编译、错误跳转等功能。
+
+用法创建、">
+
+
+<link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
+<meta name="theme-color" content="#a1d0f6">
+<title>Vim - Gu Chuan&#39;s blog</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="stylesheet" href="/css/style.css">
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/about/">About</a>
+	
+	    <a href="/archives/">Archives</a>
+	
+	    <a href="/links/">Links</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>Vim</h1>
+        
+        <h2 class="headline">Jan 28 2020
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><h1 id="随笔"><a href="#随笔" class="headerlink" title="随笔"></a>随笔</h1><p>Vim 是从 Vi 发展出来的一个文本编辑器。</p>
+<p><code>Vi(Visual interface)</code>没有图形界面的功能强大的编辑器；只能编辑文本内容，不能对字体、段落进行排版；不支持鼠标操作和没有菜单，只有命令。</p>
+<p><code>Vim(Vi improved)</code>vi的提升，支持代码补全、编译、错误跳转等功能。</p>
+<p><img src="/2020/01/28/Vim/vim.png" alt></p>
+<h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1><p><code>创建、打开文件：vi 文件名</code></p>
+<p>在终端输入 vi 文件名 。若文件已经存在，则直接打开该文件；若文件不存在，则新建一个文件。</p>
+<p><code>定位打开文件：vi 文件名 + 行数</code></p>
+<p>行数代表定位的行位置，若不指定行数，则直接定位到文件末尾。</p>
+<p><code>文件异常处理</code></p>
+<p>vi/vim 异常退出时，磁盘上可能会保存交换文件。</p>
+<p>O键：以只读方式打开；E键：直接编辑；R键：恢复；D键：删除交换文件；Q键：退出；A键：中止。</p>
+<blockquote>
+<p>vi/vim 可分为五种模式，即命令模式(Command mode)、输入模式(Insert mode)、底线命令模式(Last line mode)、可视模式(Visual mode)、替换模式(Replace mode)。</p>
+</blockquote>
+<p><code>命令模式</code></p>
+<p>用户刚刚启动 vi/vim，便进入了命令模式。在其他模式下按 ESC 键 或 ctrl + [ 快捷键，就回到了命令模式。命令模式是vi/vim 的入口。注：命令模式下每个键都是命令，而非输入字符。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">命令</span><br><span class="line">i 切换到输入模式，以输入字符 (常用)</span><br><span class="line">x 删除当前光标所在处的字符 (常用)</span><br><span class="line">：切换到底线命令模式，以在最底一行输入命令 (常用)</span><br><span class="line">数字+命令 该命令重复执行指定次数 (常用)</span><br><span class="line">h 光标向左移动</span><br><span class="line">j 光标向下移动</span><br><span class="line">k 光标向上移动</span><br><span class="line">l 光标向右移动</span><br><span class="line">Ctrl+f 向下翻一页 (常用)</span><br><span class="line">Ctrl+b 向上翻一页 (常用)</span><br><span class="line">Ctrl+d 向下翻半页 </span><br><span class="line">Ctrl+u 向上翻半页</span><br><span class="line">+ 光标移动到非空格符的下一行</span><br><span class="line">- 光标移动到非空格符的上一行 </span><br><span class="line">0 光标移动到该行的最前面字符处 (常用)</span><br><span class="line">^ 光标移动到该行的最前面非空白字符处</span><br><span class="line">$ 光标移动到该行的最后面字符处 (常用)</span><br><span class="line">H 光标移动到屏幕顶行的第一个字符</span><br><span class="line">M 光标移动到屏幕中行的第一个字符</span><br><span class="line">L 光标移动到屏幕底行的第一个字符</span><br><span class="line">G 光标移动到文件的最后一行 (常用)</span><br><span class="line">nG 光标移动到文件的第n行 (常用)</span><br><span class="line">gg 光标移动到文件的第一行 (常用)</span><br><span class="line">:数字 光标移动到数字对应的行 (常用)</span><br><span class="line">/word 光标处向下寻找‘word’字符串 (常用)</span><br><span class="line">？word 光标处向上寻找‘word’字符串 (常用)</span><br><span class="line">n 英文按键n，代表重复前一个搜寻动作</span><br><span class="line">N 英文按键N，代表反向进行前一个搜寻动作</span><br><span class="line"># 后前查找当前光标所在单词</span><br><span class="line">* 向后查找当前光标所在单词</span><br><span class="line">x 向后删除一个字符 (常用)</span><br><span class="line">X 向前删除一个字符 (常用)</span><br><span class="line">d命令 删除对应命令的内容</span><br><span class="line">D 删除至行尾</span><br><span class="line">dd 删除整行 (常用)</span><br><span class="line">d1G 删除光标所在到第一行的所有数据</span><br><span class="line">dG 删除光标所在到最后一行的所有数据</span><br><span class="line">d0 删除光标所在到该行的最前一个字符</span><br><span class="line">d$ 删除光标所在到该行的最后一个字符</span><br><span class="line">y命令 复制对应命令的内容</span><br><span class="line">yy 复制光标所在行 (常用)</span><br><span class="line">y1G 复制光标所在到第一行的所有数据</span><br><span class="line">yG 复制光标所在到最后一行的所有数据</span><br><span class="line">y0 复制光标所在到该行的最前一个字符</span><br><span class="line">y$ 复制光标所在到该行的最后一个字符</span><br><span class="line">p 数据在光标下一行粘贴 (常用)</span><br><span class="line">P 数据在光标上一行粘贴 (常用)</span><br><span class="line">J 将光标所在行和下一行的数据结合成同一行</span><br><span class="line">c 重复删除多个数据 (常用)</span><br><span class="line">u 撤销，复原前一个动作 (常用)</span><br><span class="line">Ctrl+r 重做前一个动作 (常用)</span><br><span class="line">. 重复前一个动作 (常用)</span><br><span class="line">% 括号匹配及切换 (常用)</span><br><span class="line">&#123; 前移相关代码上一段</span><br><span class="line">&#125; 后移相关代码下一段</span><br><span class="line">( 前移1句</span><br><span class="line">) 后移1句</span><br><span class="line">m字母 添加标记</span><br><span class="line">&apos;字母 直接定位到标记所在位置</span><br><span class="line">&gt;&gt; 向右增加缩进</span><br><span class="line">&lt;&lt; 向左减少缩进</span><br><span class="line">Ctrl+W 切换带下一个窗口</span><br><span class="line">Ctrl+r 互换窗口</span><br><span class="line">Ctrl+c 关闭当前窗口，不关闭最后一个窗口</span><br><span class="line">Ctrl+q 退出当前窗口</span><br><span class="line">Ctrl+o 关闭其他窗口</span><br><span class="line">+ 增加窗口高度</span><br><span class="line">- 减少窗口高度</span><br><span class="line">&gt; 增加窗口宽度</span><br><span class="line">&lt; 减少窗口宽度</span><br><span class="line">= 等分窗口大小</span><br></pre></td></tr></table></figure>
+
+<p><code>输入模式</code></p>
+<p>在命令模式下按 i、a、o 键，就进入了输入模式。输入模式是正常的编辑文字模式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">按键说明</span><br><span class="line">i, I 	进入输入模式(Insert mode)</span><br><span class="line">i ：从目前光标所在处输入</span><br><span class="line">I ：在目前所在行的第一个非空格符处开始输入 (常用)</span><br><span class="line">a, A 	进入输入模式(Insert mode)</span><br><span class="line">a ：从目前光标所在的下一个字符处开始输入 </span><br><span class="line">A ：从光标所在行的最后一个字符处开始输入 (常用)</span><br><span class="line">o, O 	进入输入模式(Insert mode)</span><br><span class="line">o ：在目前光标所在处的下一行输入新的一行</span><br><span class="line">O ：在目前光标所在处的上一行输入新的一行 (常用)</span><br><span class="line"></span><br><span class="line">字符按键以及Shift组合，输入字符</span><br><span class="line">ENTER，回车键，换行</span><br><span class="line">BACK SPACE，退格键，删除光标前一个字符</span><br><span class="line">DEL，删除键，删除光标后一个字符</span><br><span class="line">方向键，在文本中移动光标</span><br><span class="line">HOME/END，移动光标到行首/行尾</span><br><span class="line">Page Up/Page Down，上/下翻页</span><br><span class="line">Insert，切换光标为输入/替换模式，光标将变成竖线/下划线</span><br><span class="line">ESC，退出输入模式，切换到命令模式</span><br></pre></td></tr></table></figure>
+
+<p><code>底线命令模式</code></p>
+<p>在命令模式下按 : 键，就进入了底线命令模式。底线命令模式是vi/vim 的出口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">:w 保存文件 (常用)</span><br><span class="line">:w! 若文件属性为只读时，强制写入该文件 </span><br><span class="line">:q 退出程序 注：如何没有保存，不允许退出。(常用)</span><br><span class="line">:q! 强制退出 </span><br><span class="line">:wq 保存并退出 (常用) </span><br><span class="line">:%s/旧文本/新文本/gc 文本替换 (常用)</span><br><span class="line">:e 打开内置文件浏览器，并浏览当前文件</span><br><span class="line">x 保存并退出</span><br><span class="line">ZZ 若文件没有更动，则不存储离开；若文件已经更动，则存储后离开。</span><br><span class="line">:w [filename] 将编辑的数据储存成另一个文件(另存新档)</span><br><span class="line">:n [filename] 新建文件</span><br><span class="line">:r [filename] 在编辑的数据中，读入另一个文件数据</span><br><span class="line">:n1,n2 w [filename] 将 n1 到 n2 的内容储存成 filename 这个文件</span><br><span class="line">:!command 暂时离开 vi 到指令行模式下执行 command 的显示结果</span><br><span class="line">:sp [filename] 横向增加分屏</span><br><span class="line">:vsp [filename] 纵向增加分屏</span><br></pre></td></tr></table></figure>
+
+<p><code>可视模式</code></p>
+<p>在命令模式下按 v、V 键，就进入了可视模式。可视模式用于选中文本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v 从光标位置开始按照正常模式选择文本 (常用)</span><br><span class="line">V 选中光标经过的完整行 (常用)</span><br><span class="line">Ctrl+v 垂直方向选中文本</span><br><span class="line">ggVG 选中所以内容 (常用)</span><br></pre></td></tr></table></figure>
+
+<p><code>替换模式</code></p>
+<p>在命令模式下按 r、R 键，就进入了替换模式。可视模式用于替换文本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r 只会取代光标所在的那一个字符一次</span><br><span class="line">R 会一直取代光标所在的文字，直到按下 ESC 为止 (常用)</span><br></pre></td></tr></table></figure>
+
+
+
+</section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/guchuan.JPG">
+        <div>
+            <span class="dark">Gu Chuan&#39;s blog</span>
+            <span>没学过从来不是理由</span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2020/01/28/Vim/ - Vim @" target="_blank" rel="noopener"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "Vim",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">©  Gu Chuan&#39;s blog| Powered by Hexo & 
+			<a href="https://github.com/F0r3at/Lights" target="_blank" rel="noopener"> Lights</a>
+		</p>
+	</div>
+</footer>
+
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+

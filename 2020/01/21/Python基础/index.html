@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+
+  <meta name="description" content="Python 是一种解释型、面向对象、动态数据类型的高级程序设计语言。
+解释型：意味源代码不是直接翻译成机器语言，而是先翻译成中间代码，再由解释器对中间代码进行解释运行。 
+面向对象：意味采用代码封装在对象的编程技术。
+动态数据类型： 意味变量没有类型，只有数据有类型，变量可以持有任意类型的数据，运">
+
+
+<link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
+<meta name="theme-color" content="#a1d0f6">
+<title>Python - Gu Chuan&#39;s blog</title>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="stylesheet" href="/css/style.css">
+<nav class="main-nav">
+	
+	    <a href="/">← Home</a>
+	
+	
+	    <a href="/about/">About</a>
+	
+	    <a href="/archives/">Archives</a>
+	
+	    <a href="/links/">Links</a>
+	
+	<a class="cta" href="/atom.xml" data-no-instant>Subscribe</a>
+</nav>
+
+<section id="wrapper">
+    <article class="post">
+    <header>
+        
+            <h1>Python</h1>
+        
+        <h2 class="headline">Jan 21 2020
+        
+        </h2>
+    </header>
+</article>
+<section id="post-body"><blockquote>
+<p>Python 是一种解释型、面向对象、动态数据类型的高级程序设计语言。</p>
+<p>解释型：意味源代码不是直接翻译成机器语言，而是先翻译成中间代码，再由解释器对中间代码进行解释运行。 </p>
+<p>面向对象：意味采用代码封装在对象的编程技术。</p>
+<p>动态数据类型： 意味变量没有类型，只有数据有类型，变量可以持有任意类型的数据，运行时才会确定类型。 </p>
+</blockquote>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p><code>Python 标识符</code></p>
+<p>在 Python 里，标识符由字母、数字、下划线组成。</p>
+<p>在 Python 中，所有标识符可以包括英文、数字以及下划线(_)，但不能以数字开头。</p>
+<p>Python 中的标识符是区分大小写的。</p>
+<p>以下划线开头的标识符是有特殊意义的。以单下划线开头 _foo 的代表不能直接访问的类属性，需通过类提供的接口进行访问，不能用 from xxx import * 而导入。</p>
+<p>以双下划线开头的 __ foo 代表类的私有成员，以双下划线开头和结尾的 __ foo __ 代表 Python 里特殊方法专用的标识，如 __ init __() 代表类的构造函数。</p>
+<p><code>Python 保留字符</code></p>
+<p>注： 所有 Python 的关键字只包含小写字母。 </p>
+<table>
+<thead>
+<tr>
+<th>and</th>
+<th>exec</th>
+<th>not</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assert</td>
+<td>finally</td>
+<td>or</td>
+</tr>
+<tr>
+<td>break</td>
+<td>for</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>class</td>
+<td>from</td>
+<td>print</td>
+</tr>
+<tr>
+<td>continue</td>
+<td>global</td>
+<td>raise</td>
+</tr>
+<tr>
+<td>def</td>
+<td>if</td>
+<td>return</td>
+</tr>
+<tr>
+<td>del</td>
+<td>import</td>
+<td>try</td>
+</tr>
+<tr>
+<td>elif</td>
+<td>in</td>
+<td>while</td>
+</tr>
+<tr>
+<td>else</td>
+<td>is</td>
+<td>with</td>
+</tr>
+<tr>
+<td>except</td>
+<td>lambda</td>
+<td>yield</td>
+</tr>
+</tbody></table>
+<p><code>Python 注释</code></p>
+<p>Python中单行注释采用 # 开头。 </p>
+<p>Python中多行注释使用三个单引号(‘’’)或三个双引号(“””)。 </p>
+<p><code>Python 变量赋值</code></p>
+<p>Python有五个标准的数据类型： Numbers（数字）  String（字符串）  List（列表）  Tuple（元组）  Dictionary（字典） </p>
+<p>Python中的变量赋值不需要类型声明，类型属于对象。每个变量在内存中创建，都包括变量的标识，名称和数据这些信息。每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。</p>
+<blockquote>
+<p>注：Python允许多个变量赋值。</p>
+<p>​        a = b = c = 1  </p>
+<p>​        a, b, c = 1, 2, 3</p>
+</blockquote>
+<p><code>Python 变量作用域</code></p>
+<p>一个程序的所有的变量并不是在哪个位置都可以访问的。访问权限决定于这个变量是在哪里赋值的。变量的作用域决定了在哪一部分程序你可以访问哪个特定的变量名称。</p>
+<p>基本的变量作用域分为全局变量和局部变量。定义在函数内部的变量拥有一个局部作用域，定义在函数外的拥有全局作用域。局部变量只能在其被声明的函数内部访问，而全局变量可以在整个程序范围内访问。调用函数时，所有在函数内声明的变量名称都将被加入到作用域中。 </p>
+<blockquote>
+<p>注：global 关键字将函数内的变量定义为全局变量，从而实现在函数内部改变全局变量的值。</p>
+</blockquote>
+<p><code>Python 数字</code></p>
+<p> Python数据类型用于存储数值。数据类型是不允许改变的,这就意味着如果改变Number数据类型的值，将重新分配内存空间。 </p>
+<blockquote>
+<p>注：Python中可以通过 del 语句删除数据类型对象引用。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Python 数据类型转换</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.runoob.com/python/python-func-int.html" target="_blank" rel="noopener">int(x ,base])</a></td>
+<td>将x转换为一个整数</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-long.html" target="_blank" rel="noopener">long(x ,base] )</a></td>
+<td>将x转换为一个长整数</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-float.html" target="_blank" rel="noopener">float(x)</a></td>
+<td>将x转换到一个浮点数</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-complex.html" target="_blank" rel="noopener">complex(real ,imag])</a></td>
+<td>创建一个复数</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-str.html" target="_blank" rel="noopener">str(x)</a></td>
+<td>将对象 x 转换为字符串</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-repr.html" target="_blank" rel="noopener">repr(x)</a></td>
+<td>将对象 x 转换为表达式字符串</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-eval.html" target="_blank" rel="noopener">eval(str)</a></td>
+<td>用来计算在字符串中的有效Python表达式,并返回一个对象</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-tuple-tuple.html" target="_blank" rel="noopener">tuple(s)</a></td>
+<td>将序列 s 转换为一个元组</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-list.html" target="_blank" rel="noopener">list(s)</a></td>
+<td>将序列 s 转换为一个列表</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-set.html" target="_blank" rel="noopener">set(s)</a></td>
+<td>转换为可变集合</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-dict.html" target="_blank" rel="noopener">dict(d)</a></td>
+<td>创建一个字典。d 必须是一个序列 (key,value)元组。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-frozenset.html" target="_blank" rel="noopener">frozenset(s)</a></td>
+<td>转换为不可变集合</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-chr.html" target="_blank" rel="noopener">chr(x)</a></td>
+<td>将一个整数转换为一个字符</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-unichr.html" target="_blank" rel="noopener">unichr(x)</a></td>
+<td>将一个整数转换为Unicode字符</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-ord.html" target="_blank" rel="noopener">ord(x)</a></td>
+<td>将一个字符转换为它的整数值</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-hex.html" target="_blank" rel="noopener">hex(x)</a></td>
+<td>将一个整数转换为一个十六进制字符串</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-oct.html" target="_blank" rel="noopener">oct(x)</a></td>
+<td>将一个整数转换为一个八进制字符串</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-bin.html" target="_blank" rel="noopener">bin(x)</a></td>
+<td>将一个整数 int 或者长整数 long int 转换为二进制</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-hash.html" target="_blank" rel="noopener">hash(x)</a></td>
+<td>将获取一个对象（字符串或者数值等）的哈希值。</td>
+</tr>
+</tbody></table>
+<p><code>Python 字符串 &#39;&#39;、&quot;&quot;</code></p>
+<p>Python字符串或串(String)是由数字、字母、下划线组成的一串字符。Python不支持单字符类型，单字符在 Python 中也是作为一个字符串使用。 </p>
+<p>Python的子字符串有2种取值顺序: </p>
+<ul>
+<li>从左到右索引默认0开始的，最大范围是字符串长度少1</li>
+<li>从右到左索引默认-1开始的，最大范围是字符串开头</li>
+</ul>
+<p><img src="/2020/01/21/Python%E5%9F%BA%E7%A1%80/string.png" alt></p>
+<p>Python从字符串中获取一段子字符串，使用 [头下标:尾下标] 来截取相应的字符串 。</p>
+<blockquote>
+<p>注：[头下标:尾下标] 获取的子字符串包含头下标的字符，但不包含尾下标的字符。</p>
+<p>​        [头下标:尾下标:截取步长]  获取从头下标开始到尾下标结束中的步长为截取步长的字符和头字符。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">字符串运算符</span><br><span class="line">+    字符串连接。   &apos;Hello&apos;+&apos;Python&apos;&gt;&gt;&gt;&apos;HelloPython&apos;</span><br><span class="line">*    重复输出字符串。&apos;Python&apos;*2&gt;&gt;&gt;&apos;PythonPython&apos;</span><br><span class="line">%    格式字符串。即将一个值插入到一个有字符串格式符&apos;%&apos;的字符串中。</span><br><span class="line">	 print &quot;My name is %s.&quot; % (&apos;Guchuan&apos;)&gt;&gt;&gt;My name is Guchuan.</span><br><span class="line">r(R) 原始字符串。即所有的字符串都是直接按照字面的意思来使用，没有转义特殊或不能打印的字符。print r&apos;\n&apos;&gt;&gt;&gt;\n</span><br><span class="line">u    定义Unicode字符串。u&apos;Hello\u0020World !&apos;&gt;&gt;&gt;u&apos;Hello World !&apos;</span><br><span class="line">     注：计算机只能处理数字，如果要处理文本，就必须先把文本转换为数字才能处理。Unicode把所有语言都统一到一套编码里，这      样就不会再有乱码问题了。</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>格式化符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%c</td>
+<td>格式化字符及其ASCII码</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>格式化字符串</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>格式化整数</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>格式化无符号整型</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>格式化无符号八进制数</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>格式化无符号十六进制数</td>
+</tr>
+<tr>
+<td>%X</td>
+<td>格式化无符号十六进制数（大写）</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>格式化浮点数字，可指定小数点后的精度</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>用科学计数法格式化浮点数</td>
+</tr>
+<tr>
+<td>%E</td>
+<td>作用同%e，用科学计数法格式化浮点数</td>
+</tr>
+<tr>
+<td>%g</td>
+<td>%f和%e的简写</td>
+</tr>
+<tr>
+<td>%G</td>
+<td>%F 和 %E 的简写</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>用十六进制数格式化变量的地址</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>格式化符号辅助指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>定义宽度或者小数点精度</td>
+</tr>
+<tr>
+<td>-</td>
+<td>用做左对齐</td>
+</tr>
+<tr>
+<td>+</td>
+<td>在正数前面显示加号( + )</td>
+</tr>
+<tr>
+<td>&lt; sp &gt;</td>
+<td>在正数前面显示空格</td>
+</tr>
+<tr>
+<td>#</td>
+<td>在八进制数前面显示零(‘0’)，在十六进制前面显示’0x’或者’0X’(取决于用的是’x’还是’X’)</td>
+</tr>
+<tr>
+<td>0</td>
+<td>显示的数字前面填充’0’而不是默认的空格</td>
+</tr>
+<tr>
+<td>%</td>
+<td>‘%%’输出一个单一的’%’</td>
+</tr>
+<tr>
+<td>(var)</td>
+<td>映射变量(字典参数)</td>
+</tr>
+<tr>
+<td>m.n.</td>
+<td>m 是显示的最小总宽度,n 是小数点后的位数(如果可用的话)</td>
+</tr>
+</tbody></table>
+<p>注：在 Python 中，字符串格式化使用与 C 中 sprintf 函数一样的语法。 Python2.6 开始，新增了一种格式化字符串的函数 <a href="https://www.runoob.com/python/att-string-format.html" target="_blank" rel="noopener">str.format()</a>，它增强了字符串格式化的功能。 </p>
+<table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\ (在行尾时)</td>
+<td>续行符</td>
+</tr>
+<tr>
+<td>\ \</td>
+<td>反斜杠符号</td>
+</tr>
+<tr>
+<td>\ ‘</td>
+<td>单引号</td>
+</tr>
+<tr>
+<td>\ “</td>
+<td>双引号</td>
+</tr>
+<tr>
+<td>\a</td>
+<td>响铃</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>退格(Backspace)</td>
+</tr>
+<tr>
+<td>\e</td>
+<td>转义</td>
+</tr>
+<tr>
+<td>\000</td>
+<td>空</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>纵向制表符</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>横向制表符</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>换页</td>
+</tr>
+<tr>
+<td>\oyy</td>
+<td>八进制数，yy代表的字符，例如：\o12代表换行</td>
+</tr>
+<tr>
+<td>\xyy</td>
+<td>十六进制数，yy代表的字符，例如：\x0a代表换行</td>
+</tr>
+<tr>
+<td>\other</td>
+<td>其它的字符以普通格式输出</td>
+</tr>
+</tbody></table>
+<p><code>Python 列表 []</code></p>
+<p>List（列表） 是 Python 中使用最频繁的数据类型。列表可以完成大多数集合类的数据结构实现。它支持字符，数字，字符串甚至可以包含列表（即嵌套）。列表中值的切割也可以用到变量 [头下标:尾下标] ，就可以截取相应的列表，从左到右索引默认 0 开始，从右到左索引默认 -1 开始，下标可以为空表示取到头或尾。 </p>
+<blockquote>
+<p>注：列表对 + 和  * 的操作符与字符串相似。+ 号用于组合列表，* 号用于重复列表。 </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Python内置列表方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.runoob.com/python/att-list-append.html" target="_blank" rel="noopener">list.append(obj)</a></td>
+<td>在列表末尾添加新的对象。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-count.html" target="_blank" rel="noopener">list.count(obj)</a></td>
+<td>统计某个元素在列表中出现的次数。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-extend.html" target="_blank" rel="noopener">list.extend(seq)</a></td>
+<td>在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-index.html" target="_blank" rel="noopener">list.index(obj)</a></td>
+<td>从列表中找出某个值第一个匹配项的索引位置。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-insert.html" target="_blank" rel="noopener">list.insert(index, obj)</a></td>
+<td>将对象插入列表。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-pop.html" target="_blank" rel="noopener">list.pop(index=-1])</a></td>
+<td>移除列表中的一个元素（默认最后一个元素），并且返回该元素的值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-remove.html" target="_blank" rel="noopener">list.remove(obj)</a></td>
+<td>移除列表中某个值的第一个匹配项。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-reverse.html" target="_blank" rel="noopener">list.reverse()</a></td>
+<td>反向列表中元素。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-sort.html" target="_blank" rel="noopener">list.sort(cmp=None, key=None, reverse=False)</a></td>
+<td>对原列表进行排序。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-len.html" target="_blank" rel="noopener">len(seq)</a></td>
+<td>返回元素个数。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注： remove 和 del 之间的区别： remove 移除的是列表中元素的位置，而del 删除是按索引来的，索引起始位置为 0。</p>
+<p>​         <strong>列表解析 List Comprehensions</strong> </p>
+<p>​         表达式：[expression for iter_val in iterable if cond_expr] </p>
+<p>​         <strong>[expression]</strong>：最后执行的结果 </p>
+<p>​         <strong>[for iter_val in iterable]</strong>：这个可以是一个多层循环 </p>
+<p>​         <strong>[if cond_expr]</strong>：两个for间是不能有判断语句的，判断语句只能在最后；顺序不定，默认是左到右。 </p>
+</blockquote>
+<p><code>Python 元组 ()</code></p>
+<p>元组是一个类似列表的数据类型，内部元素用逗号隔开。但是元组不能二次赋值，相当于只读列表。元组是不允许更新(二次赋值)，而列表是允许更新的。元组中的元素值是不允许删除的，但允许删除整个元组。元组与列表的区别，元组它的关键是不可变性。</p>
+<blockquote>
+<p>注：创建空元组：tup = ()    创建单元素元组：tup = (1,)</p>
+<p>​       与字符串一样，元组之间可以使用 + 号和 * 号进行运算 </p>
+<p>​       元组的一级元素不可被修改增加删除但可以修改二级后的元素。如修改元祖中列表、字典等内容。</p>
+</blockquote>
+<p><code>Python 字典 {}</code></p>
+<p>字典由索引(key)和它对应的值value组成，即 key : value。列表是有序的对象集合，字典是无序的对象集合。两者之间的区别在于：字典当中的元素是通过键来存取的，而不是通过偏移存取。</p>
+<blockquote>
+<p>注：值可以取任何数据类型，但键必须是不可变的，如字符串，数字或元组。 </p>
+<p>​        不允许同一个键出现两次。即创建时如果同一个键被赋值两次，后一个值会覆盖前一个值。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Python内置字典方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.runoob.com/python/att-dictionary-clear.html" target="_blank" rel="noopener">dict.clear()</a></td>
+<td>删除字典内所有元素。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-dictionary-copy.html" target="_blank" rel="noopener">dict.copy()</a></td>
+<td>返回一个字典的浅复制。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-dictionary-fromkeys.html" target="_blank" rel="noopener">dict.fromkeys(seq, val])</a></td>
+<td>创建一个新字典，以序列 seq 中元素做字典的键，val 为字典所有键对应的初始值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-dictionary-get.html" target="_blank" rel="noopener">dict.get(key, default=None)</a></td>
+<td>返回指定键的值，如果值不在字典中返回default值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-dictionary-has_key.html" target="_blank" rel="noopener">dict.has_key(key)</a></td>
+<td>如果键在字典dict里返回true，否则返回false。Python3.x已弃用。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-dictionary-items.html" target="_blank" rel="noopener">dict.items()</a></td>
+<td>以列表返回可遍历的(键, 值) 元组数组。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-dictionary-keys.html" target="_blank" rel="noopener">dict.keys()</a></td>
+<td>以列表返回一个字典所有的键。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-dictionary-setdefault.html" target="_blank" rel="noopener">dict.setdefault(key, default=None)</a></td>
+<td>和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-dictionary-update.html" target="_blank" rel="noopener">dict.update(dict2)</a></td>
+<td>把字典dict2的键/值对更新到dict里。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-dictionary-values.html" target="_blank" rel="noopener">dict.values()</a></td>
+<td>以列表返回字典中的所有值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-att-dictionary-pop.html" target="_blank" rel="noopener">pop(key,default])</a></td>
+<td>删除字典给定键 key 所对应的值，返回值为被删除的值。key值必须给出，否则返回default值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-att-dictionary-popitem.html" target="_blank" rel="noopener"> popitem()</a></td>
+<td>返回并删除字典中的最后一对键和值。</td>
+</tr>
+</tbody></table>
+<p><code>Python 运算符</code></p>
+<p>Python支持一下类型运算符：算术运算符、比较(关系)运算符、赋值运算符、逻辑运算符、位运算符、成员运算符、身份运算符。</p>
+<blockquote>
+<p>注： Python 中没有 ++ 或 – 自运算符。因为在 Python 里的数值和字符串之类的都是不可变对象，对不可变对象操作的结果都会生成一个新的对象。 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">算术运算符</span><br><span class="line">+  加法运算</span><br><span class="line">-  减法运算</span><br><span class="line">*  乘法运算、重复字符串</span><br><span class="line">/  除法运算  注：Python2.x 里，整数除整数，只能得出整数。如果要得到小数部分，把其中一个数改成浮点数即可。</span><br><span class="line">%  取模运算(返回余数)</span><br><span class="line">** 幂运算 </span><br><span class="line">// 取整除运算(向下取整，返回商)</span><br><span class="line"></span><br><span class="line">比较(关系)运算符</span><br><span class="line">== 等于</span><br><span class="line">!= 不等于</span><br><span class="line">&lt;&gt; 不等于 注：Python3.x已废弃。</span><br><span class="line">&gt;  大于</span><br><span class="line">&lt;  小于</span><br><span class="line">&gt;= 大于等于</span><br><span class="line">&lt;= 小于等于</span><br><span class="line"></span><br><span class="line">赋值运算符</span><br><span class="line">=   赋值运算    注：两种赋值方式:传递引用(a=b)和拷贝(a=b[:])。</span><br><span class="line">+=  加法赋值运算 注：a += b 等效于 a = a + b，以下类推。</span><br><span class="line">-=  减法赋值运算</span><br><span class="line">*=  乘法赋值运算</span><br><span class="line">/=  除法赋值运算</span><br><span class="line">%=  取模赋值运算</span><br><span class="line">**= 幂赋值运算</span><br><span class="line">//= 取整除赋值运算</span><br><span class="line"></span><br><span class="line">逻辑运算符</span><br><span class="line">and 与 x and y  如果 x 为 False，x and y 返回 False，否则它返回 y 的计算值。</span><br><span class="line">or  或 x or y   如果 x 是非 0，它返回 x 的值，否则它返回 y 的计算值。</span><br><span class="line">not 非 not x    如果 x 为 True，返回 False 。如果 x 为 False，它返回 True。</span><br><span class="line"></span><br><span class="line">位运算符(把数字看作二进制来进行计算)</span><br><span class="line">&amp;  按位与运算符：如果两个相应位都为1,则该位的结果为1,否则为0</span><br><span class="line">|  按位或运算符：只要对应的两个二进位有一个为1时，结果位就为1。</span><br><span class="line">^  按位异或运算符：当两对应的二进位相异时，结果为1。</span><br><span class="line">~  按位取反运算符：对数据的每个二进制位取反,即把1变为0,把0变为1 。~x 类似于-x-1。</span><br><span class="line">&lt;&lt; 左移动运算符：把&quot;&gt;&gt;&quot;左边的运算数的各二进位全部左移若干位，由 &lt;&lt; 右边的数字指定了移动的位数，高位丢弃，低位补0。</span><br><span class="line">&gt;&gt; 右移动运算符：把&quot;&gt;&gt;&quot;左边的运算数的各二进位全部右移若干位，由 &gt;&gt; 右边的数字指定了移动的位数，高位丢弃，低位补0。</span><br><span class="line"></span><br><span class="line">成员运算符</span><br><span class="line">in     如果在指定的序列中找到值返回 True，否则返回 False。</span><br><span class="line">not in 如果在指定的序列中没有找到值返回 True，否则返回 False。</span><br><span class="line"></span><br><span class="line">身份运算符</span><br><span class="line">is     是判断两个标识符是不是引用自一个对象。x is y, 类似 id(x) == id(y)。</span><br><span class="line">is not 是判断两个标识符是不是引用自不同对象。x is not y, 类似 id(a) != id(b)。</span><br><span class="line">注：id() 函数用于获取对象内存地址。</span><br><span class="line">   is 与 == 区别：is 用于判断两个变量引用对象是否为同一个(同一块内存空间)， == 用于判断引用变量的值是否相等。</span><br><span class="line">   Python会为每个出现的对象分配内存，包括他们的值完全相等，所分配的内存空间也不同。依情况而定。</span><br></pre></td></tr></table></figure>
+
+<p><code>Python 运算符优先级</code></p>
+<table>
+<thead>
+<tr>
+<th>算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>**</td>
+<td>指数 (最高优先级)</td>
+</tr>
+<tr>
+<td>~ + -</td>
+<td>按位翻转, 一元加号和减号 (最后两个的方法名为 +@ 和 -@)</td>
+</tr>
+<tr>
+<td>* / % //</td>
+<td>乘，除，取模和取整除</td>
+</tr>
+<tr>
+<td>+ -</td>
+<td>加法减法</td>
+</tr>
+<tr>
+<td>&gt;&gt; &lt;&lt;</td>
+<td>右移，左移运算符</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>位 ‘AND’</td>
+</tr>
+<tr>
+<td>^ |</td>
+<td>位运算符</td>
+</tr>
+<tr>
+<td>&lt;= &lt; &gt; &gt;=</td>
+<td>比较运算符</td>
+</tr>
+<tr>
+<td>&lt;&gt; == !=</td>
+<td>等于运算符</td>
+</tr>
+<tr>
+<td>= %= /= //= -= += <em>= *</em>=</td>
+<td>赋值运算符</td>
+</tr>
+<tr>
+<td>is is not</td>
+<td>身份运算符</td>
+</tr>
+<tr>
+<td>in not in</td>
+<td>成员运算符</td>
+</tr>
+<tr>
+<td>not and or</td>
+<td>逻辑运算符</td>
+</tr>
+</tbody></table>
+<p><code>Python 条件语句</code></p>
+<p>Python指定任何非0和非空( null )值为 true，而0或 null 为 false。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">if 判断条件:</span><br><span class="line">    执行语句</span><br><span class="line">else:</span><br><span class="line">    执行语句</span><br><span class="line"></span><br><span class="line">注：相同缩进来表示同一范围</span><br><span class="line">--------------</span><br><span class="line">if 判断条件1:</span><br><span class="line">    执行语句1</span><br><span class="line">elif 判断条件2:</span><br><span class="line">    执行语句2</span><br><span class="line">elif 判断条件3:</span><br><span class="line">    执行语句3</span><br><span class="line">else:</span><br><span class="line">    执行语句4</span><br><span class="line"></span><br><span class="line">注：python 并不支持 switch 语句。</span><br></pre></td></tr></table></figure>
+
+<p><code>Python 循环语句</code></p>
+<p>循环语句允许我们执行一个语句或语句组多次。Python 提供了 for 循环和 while 循环(在 Python 中没有 do..while 循环)。循环控制语句可以更改语句执行的顺序。Python 提供了 break 控制、continue 控制、pass 控制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#循环语句</span><br><span class="line">for 循环：</span><br><span class="line">         for 相关变量(索引) in 测定序列(range()):</span><br><span class="line">            执行语句</span><br><span class="line">注：range(1,10)==range(1,10,1) 输出结果：1,2,3,4,5,6,7,8,9</span><br><span class="line">while 循环：</span><br><span class="line">         while 判断条件:</span><br><span class="line">                执行语句</span><br><span class="line">      </span><br><span class="line">嵌套循环： while循环、for循环、else语句块相嵌套。</span><br><span class="line"></span><br><span class="line">#循环控制语句</span><br><span class="line">break 语句     在语句块执行过程中终止循环，并且跳出整个循环。</span><br><span class="line">continue 语句  在语句块执行过程中终止当前循环，跳出当前循环，执行下一次循环。</span><br><span class="line">pass 语句      pass是空语句，是为了保持程序结构的完整性、正常运行。即pass不做任何事情，一般用做占位语句。</span><br></pre></td></tr></table></figure>
+
+<p><code>Python 函数</code></p>
+<p>函数是组织好的，可重复使用的，用来实现单一或相关联功能的代码段。函数分为内置函数和自定义函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">自定义简单规则</span><br><span class="line">函数代码块以 def 关键词开头，接着函数名和圆括号()。参数和自变量放在圆括号之中，函数内容以冒号起始，并且缩进。return [表达式] 结束函数，选择性地返回一个值给调用方。不带表达式的return相当于返回None。</span><br><span class="line"></span><br><span class="line">def functionname(parameters):</span><br><span class="line">   function_suite</span><br><span class="line">   return [expression]</span><br><span class="line"></span><br><span class="line">必备参数：定义函数时所需参数，调用时必须传入参数，且按序传入，参数数量必须和声明时一样。</span><br><span class="line">        def functionname(parameters):</span><br><span class="line">关键字参数：定义函数时参数的命名，调用时可以通过参数名来确定传入的参数值。</span><br><span class="line">        def functionname(paranames):</span><br><span class="line">默认参数：调用函数时，默认参数的值如果没有传入，则被认为是默认值。</span><br><span class="line">        def functionname(paranames=parameters):</span><br><span class="line">不定长参数：调用函数时，所需参数比定义时多。</span><br><span class="line">        def functionname([formal_args,] *var_args_tuple ):</span><br><span class="line">注：加了星号（*）的变量名会存放所有未命名的变量参数。*输出一般都是元组的结构形式，**输出的都是字典形式。</span><br></pre></td></tr></table></figure>
+
+<p><code>匿名函数</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">python 使用 lambda 来创建匿名函数。</span><br><span class="line"></span><br><span class="line">lambda只是一个表达式，函数体比def简单很多。</span><br><span class="line">lambda的主体是一个表达式，而不是一个代码块。仅仅能在lambda表达式中封装有限的逻辑进去。</span><br><span class="line">lambda函数拥有自己的命名空间，且不能访问自有参数列表之外或全局命名空间里的参数。</span><br><span class="line">虽然lambda函数看起来只能写一行，却不等同于C或C++的内联函数，后者的目的是调用小函数时不占用栈内存从而增加运行效率。</span><br><span class="line"></span><br><span class="line">lambda [arg1 [,arg2,.....argn]]:expression</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：在 python 中，strings, tuples, 和 numbers 是不可更改的对象，而 list,dict 等则是可以更改的对象。 </p>
+<p>​       不可变类型：变量赋值 a=5 后再赋值 a=10，实际上是新生成一个 int 值对象 10，再让 a 指向它，而 5 被丢弃，不是改变a的值，相当于新生成了a。 (类似值传递)</p>
+<p>​       可变类型：变量赋值 la=[1,2,3,4] 后再赋值 la[2]=5，则是将 list la 的第三个元素值更改，本身la没有动，是其内部的一部分值被修改了。  (类似指针传递)</p>
+</blockquote>
+<p><code>Python 模块</code></p>
+<p>Python模块(Module)，是一个Python文件，以 .py 结尾，包含了Python对象的定义和Python语句，即模块能定义函数，类和变量，模块里也能包含可执行的代码。模块让你能够有逻辑地组织你的Python代码段。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import module1[, module2[,... moduleN]]          引入指定模块，导入整个模块。</span><br><span class="line">	module.funcname                              调用模块中的函数。(引用)</span><br><span class="line">from modname import name1[, name2[, ... nameN]]  从模块中导入一个指定的部分到当前命名空间中。</span><br><span class="line">from modname import *                            把一个模块的所有内容全都导入到当前的命名空间中。</span><br><span class="line">	funcname                                     调用模块中的函数。(拷贝)</span><br><span class="line">dir()                                            返回指定模块中的所有模块、变量、函数。</span><br><span class="line">globals()                                        返回全局命名空间中的函数名，返回类型是字典。</span><br><span class="line">locals()                                         返回局部命名空间中的函数名，返回类型是字典。</span><br><span class="line">reload()                                         重新导入之前导入过的模块。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：变量是拥有匹配对象的名字（标识符）。命名空间是一个包含了变量名称们（键）和它们各自相应的对象们（值）的字典。 每个函数都有自己的命名空间。 (类似作用域)</p>
+<p>​       一个 Python 表达式可以访问局部命名空间和全局命名空间里的变量。如果一个局部变量和一个全局变量重名，则局部变量会覆盖全局变量。</p>
+</blockquote>
+<p><code>Python 包</code></p>
+<p>Python包是一个分层次的文件目录结构，它定义了一个由模块及子包，和子包下的子包等组成的 Python 的应用环境。 简单来说，包就是文件夹，但该文件夹下必须存在 __ init __ .py 文件, 该文件的内容可以为空。 __ init __.py 用于标识当前文件夹是一个包。 </p>
+<p><code>Python 文件I/O</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">输入I</span><br><span class="line">Python提供了两个内置函数从标准输入读入一行文本：raw_input语句、input语句。</span><br><span class="line">raw_input([prompt])从标准输入读取一个行，并返回一个字符串(去掉结尾的换行符)。直接读取控制台的输入(任何类型的输入它都可以接收)。</span><br><span class="line">input([prompt])读取一个合法的python表达式，即你输入字符串的时候必须使用引号将它括起来，否则它会引发一个SyntaxError。</span><br><span class="line">注：Python2.x 中input()相等eval(raw_input(prompt))用来获取控制台的输入。Python3.x 中input()函数接受一个标准输入数据，返回为string类型。</span><br><span class="line"></span><br><span class="line">输出O</span><br><span class="line">最简单的输出方法是用print语句，你可以给它传递零个或多个用逗号隔开的表达式。此函数把你传递的表达式转换成一个字符串表达式，并将结果写到标准输出。</span><br><span class="line">print(*objects, sep=&apos; &apos;, end=&apos;\n&apos;, file=sys.stdout, flush=False)</span><br><span class="line">    objects :复数，表示可以一次输出多个对象。输出多个对象时，需要用 , 分隔。</span><br><span class="line">    sep :用来间隔多个对象，默认值是一个空格。</span><br><span class="line">    end :用来设定以什么结尾。默认值是换行符 \n，我们可以换成其他字符串。</span><br><span class="line">    file :要写入的文件对象。</span><br><span class="line">    flush :输出是否被缓存通常决定于 file，但如果 flush 关键字参数为 True，流会被强制刷新。</span><br><span class="line">注：print在Python3.x是一个函数，但在Python2.x版本不是一个函数，只是一个关键字。</span><br></pre></td></tr></table></figure>
+
+<p><code>Python 文件操作</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">open() 打开文件，创建file对象。注：别名file(name[, mode[, buffering]])。</span><br><span class="line">注：使用open()方法一定要保证关闭文件对象，即调用close()方法。</span><br><span class="line">file object = open(file_name [, access_mode][, buffering=-1], encoding=None, errors=None,                          newline=None, closefd=True, opener=None)</span><br><span class="line">   file_name: 文件路径(相对或者绝对路径)字符串。</span><br><span class="line">   access_mode: 文件打开模式：只读，写入，追加等。这个参数是非强制的，默认文件访问模式为只读(r)。</span><br><span class="line">   buffering: 如果buffering的值被设为0，就不会有寄存。如果buffering的值取1，访问文件时会寄存行。如果将   buffering的值设为大于1的整数，表明了这就是的寄存区的缓冲大小。如果取负值，寄存区的缓冲大小则为系统默认。</span><br><span class="line">   encoding: 一般使用utf8。</span><br><span class="line">   errors: 报错级别。</span><br><span class="line">   newline: 区分换行符。</span><br><span class="line">   closefd: 传入的file参数类型。</span><br><span class="line">   opener：处理器。</span><br><span class="line">   </span><br><span class="line">fileObject.close() 关闭文件。刷新缓冲区里任何还没写入的信息，并关闭该文件，这之后便不能再进行写入。 </span><br><span class="line">注：当一个文件对象的引用被重新指定给另一个文件时，Python 会关闭之前的文件。</span><br><span class="line"></span><br><span class="line">fileObject.write(string) 写入文件。将任何字符串写入一个打开的文件。</span><br><span class="line">需要重点注意的是，Python字符串可以是二进制数据，而不是仅仅是文字。</span><br><span class="line">注：write()方法不会在字符串的结尾添加换行符(&apos;\n&apos;)</span><br><span class="line"></span><br><span class="line">fileObject.read([count]) 读出文件。从一个打开的文件中读取一个字符串(字节计数)。</span><br><span class="line">注：此方法从文件的开头开始读入，如果没有传入count，它会尝试尽可能多地读取更多的内容，很可能是直到文件的末尾。</span><br><span class="line"></span><br><span class="line">fileObject.tell() 文件定位。返回文件内的当前位置。即下一次的读写会发生在文件开fileObject.tell()字节之后</span><br><span class="line"></span><br><span class="line">fileObject.seek(offset[,from]) 文件重新定位。offset表示要移动的字节数。from指定开始移动字节的参考位置。</span><br><span class="line">如果from被设为0，这意味着将文件的开头作为移动字节的参考位置。如果设为1，则使用当前的位置作为参考位置。如果它被设为2，那么该文件的末尾将作为参考位置。 </span><br><span class="line"></span><br><span class="line">fileObject.next() 返回文件下一行。</span><br><span class="line">fileObject.truncate([size]) 截取文件。截取的字节通过size指定，默认为当前文件位置。 </span><br><span class="line">fileObject.readline([size]) 读取整行，包括 &quot;\n&quot; 字符。</span><br><span class="line">fileObject.readlines([sizeint]) 读取所有行并返回列表，若给定sizeint&gt;0，则是设置一次读多少字节。</span><br><span class="line">file.writelines(sequence) 向文件写入一个序列字符串列表，如果需要换行则要自己加入每行的换行符。</span><br><span class="line">fileObject.isatty() 如果文件连接到一个终端设备返回 True，否则返回 False。</span><br><span class="line">fileObject.flush()  刷新文件内部缓冲，直接把内部缓冲区的数据立刻写入文件, 而不是被动的等待输出缓冲区写入。</span><br><span class="line">fileObject.fileno() 返回一个整型的文件描述符(file descriptor FD 整型), 可以用在如os模块的read方法等一些底层操作上。</span><br><span class="line"></span><br><span class="line">注：在 write 内容后，直接 read 文件输出会出错，是因为指针已经在内容末尾。两种解决方式: 其一，先 close 文件，open 后再读取，其二，可以设置指针回到文件最初后再 read。</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>打开文件模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>t</td>
+<td>文本模式 (默认)。</td>
+</tr>
+<tr>
+<td>x</td>
+<td>写模式，新建一个文件，如果该文件已存在则会报错。</td>
+</tr>
+<tr>
+<td>b</td>
+<td>二进制模式。</td>
+</tr>
+<tr>
+<td>+</td>
+<td>打开一个文件进行更新(可读可写)。</td>
+</tr>
+<tr>
+<td>U</td>
+<td>通用换行模式（不推荐）。</td>
+</tr>
+<tr>
+<td>r</td>
+<td>以只读方式打开文件。文件的指针将会放在文件的开头。这是默认模式。</td>
+</tr>
+<tr>
+<td>rb</td>
+<td>以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>打开一个文件用于读写。文件指针将会放在文件的开头。</td>
+</tr>
+<tr>
+<td>rb+</td>
+<td>以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>w</td>
+<td>打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td>wb</td>
+<td>以二进制格式打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td>wb+</td>
+<td>以二进制格式打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>a</td>
+<td>打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</td>
+</tr>
+<tr>
+<td>ab</td>
+<td>以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。</td>
+</tr>
+<tr>
+<td>ab+</td>
+<td>以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>file对象属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>file.closed</td>
+<td>返回true如果文件已被关闭，否则返回false。</td>
+</tr>
+<tr>
+<td>file.mode</td>
+<td>返回被打开文件的访问模式。</td>
+</tr>
+<tr>
+<td>file.name</td>
+<td>返回文件的名称。</td>
+</tr>
+<tr>
+<td>file.softspace</td>
+<td>如果用print输出后，必须跟一个空格符，则返回false。否则返回true。</td>
+</tr>
+</tbody></table>
+<p><code>Python 异常处理</code></p>
+<p>异常是Python对象，表示一个错误。当Python脚本发生异常时我们需要捕获处理它，否则程序会终止执行。 </p>
+<p>捕捉异常可以使用try/except、try-finally语句。 try/except语句用来检测try语句块中的错误，从而让except语句捕获异常信息并处理。  try-finally语句无论是否发生异常都将执行最后的代码。  try/except和try-finally语句可以嵌套。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">&lt;语句&gt;        #运行别的代码</span><br><span class="line">except [&lt;Error&gt;]:</span><br><span class="line">&lt;语句&gt;        #如果在try部份引发了&apos;Error&apos;异常</span><br><span class="line">except [&lt;ValueError&gt;,&lt;Arguments&gt;]:</span><br><span class="line">&lt;语句&gt;        #如果引发了&apos;ValueError&apos;异常，获得附加的数据Arguments</span><br><span class="line">else:</span><br><span class="line">&lt;语句&gt;        #如果没有异常发生</span><br><span class="line"></span><br><span class="line">try的工作原理：当开始一个try语句后，python就在当前程序的上下文中作标记，这样当异常出现时就可以回到这里，try子句先执行，接下来会发生什么依赖于执行时是否出现异常。 </span><br><span class="line">如果当try后的语句执行时发生异常，python就跳回到try并执行第一个匹配该异常的except子句，异常处理完毕，控制流就通过整个try语句（除非在处理异常时又引发新的异常）。</span><br><span class="line">如果在try后的语句里发生了异常，却没有匹配的except子句，异常将被递交到上层的try，或者到程序的最上层（这样将结束程序，并打印默认的出错信息）。</span><br><span class="line">如果在try子句执行时没有发生异常，python将执行else语句后的语句（如果有else的话），然后控制流通过整个try语句。 </span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">&lt;语句&gt;</span><br><span class="line">finally:</span><br><span class="line">&lt;语句&gt;    #退出try时总会执行</span><br><span class="line"></span><br><span class="line">raise [Exception [, args [, traceback]]] #触发异常</span><br><span class="line">Exception 是异常的类型。 args 是自已提供的异常参数。 traceback 参数是可选的是跟踪异常对象。</span><br></pre></td></tr></table></figure>
+
+<p><code>自定义异常</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">自定义异常</span><br><span class="line">def functionName( level ):</span><br><span class="line">    if level &lt; 1:</span><br><span class="line">        raise Exception(&quot;Invalid level!&quot;, level) # 触发异常后，后面的代码就不会再执行</span><br><span class="line">                </span><br><span class="line">例子</span><br><span class="line">#!/usr/bin/python</span><br><span class="line"># -*- coding: UTF-8 -*-</span><br><span class="line"></span><br><span class="line"># 定义函数</span><br><span class="line">def myerr( level ):</span><br><span class="line">    if level &lt; 1:</span><br><span class="line">        raise Exception,&quot;Invalid level!&quot; # 触发异常后，后面的代码就不会再执行</span><br><span class="line">        </span><br><span class="line">try:</span><br><span class="line">    myerr(0) # 触发异常</span><br><span class="line">except Exception,err:</span><br><span class="line">    print 1,err</span><br><span class="line">else:</span><br><span class="line">    print 2</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>异常名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BaseException</td>
+<td>所有异常的基类</td>
+</tr>
+<tr>
+<td>SystemExit</td>
+<td>解释器请求退出</td>
+</tr>
+<tr>
+<td>KeyboardInterrupt</td>
+<td>用户中断执行(通常是输入^C)</td>
+</tr>
+<tr>
+<td>Exception</td>
+<td>常规错误的基类</td>
+</tr>
+<tr>
+<td>StopIteration</td>
+<td>迭代器没有更多的值</td>
+</tr>
+<tr>
+<td>GeneratorExit</td>
+<td>生成器(generator)发生异常来通知退出</td>
+</tr>
+<tr>
+<td>StandardError</td>
+<td>所有的内建标准异常的基类</td>
+</tr>
+<tr>
+<td>ArithmeticError</td>
+<td>所有数值计算错误的基类</td>
+</tr>
+<tr>
+<td>FloatingPointError</td>
+<td>浮点计算错误</td>
+</tr>
+<tr>
+<td>OverflowError</td>
+<td>数值运算超出最大限制</td>
+</tr>
+<tr>
+<td>ZeroDivisionError</td>
+<td>除(或取模)零 (所有数据类型)</td>
+</tr>
+<tr>
+<td>AssertionError</td>
+<td>断言语句失败</td>
+</tr>
+<tr>
+<td>AttributeError</td>
+<td>对象没有这个属性</td>
+</tr>
+<tr>
+<td>EOFError</td>
+<td>没有内建输入,到达EOF 标记</td>
+</tr>
+<tr>
+<td>EnvironmentError</td>
+<td>操作系统错误的基类</td>
+</tr>
+<tr>
+<td>IOError</td>
+<td>输入/输出操作失败</td>
+</tr>
+<tr>
+<td>OSError</td>
+<td>操作系统错误</td>
+</tr>
+<tr>
+<td>WindowsError</td>
+<td>系统调用失败</td>
+</tr>
+<tr>
+<td>ImportError</td>
+<td>导入模块/对象失败</td>
+</tr>
+<tr>
+<td>LookupError</td>
+<td>无效数据查询的基类</td>
+</tr>
+<tr>
+<td>IndexError</td>
+<td>序列中没有此索引(index)</td>
+</tr>
+<tr>
+<td>KeyError</td>
+<td>映射中没有这个键</td>
+</tr>
+<tr>
+<td>MemoryError</td>
+<td>内存溢出错误(对于Python 解释器不是致命的)</td>
+</tr>
+<tr>
+<td>NameError</td>
+<td>未声明/初始化对象 (没有属性)</td>
+</tr>
+<tr>
+<td>UnboundLocalError</td>
+<td>访问未初始化的本地变量</td>
+</tr>
+<tr>
+<td>ReferenceError</td>
+<td>弱引用(Weak reference)试图访问已经垃圾回收了的对象</td>
+</tr>
+<tr>
+<td>RuntimeError</td>
+<td>一般的运行时错误</td>
+</tr>
+<tr>
+<td>NotImplementedError</td>
+<td>尚未实现的方法</td>
+</tr>
+<tr>
+<td>SyntaxError</td>
+<td>Python 语法错误</td>
+</tr>
+<tr>
+<td>IndentationError</td>
+<td>缩进错误</td>
+</tr>
+<tr>
+<td>TabError</td>
+<td>Tab 和空格混用</td>
+</tr>
+<tr>
+<td>SystemError</td>
+<td>一般的解释器系统错误</td>
+</tr>
+<tr>
+<td>TypeError</td>
+<td>对类型无效的操作</td>
+</tr>
+<tr>
+<td>ValueError</td>
+<td>传入无效的参数</td>
+</tr>
+<tr>
+<td>UnicodeError</td>
+<td>Unicode 相关的错误</td>
+</tr>
+<tr>
+<td>UnicodeDecodeError</td>
+<td>Unicode 解码时的错误</td>
+</tr>
+<tr>
+<td>UnicodeEncodeError</td>
+<td>Unicode 编码时错误</td>
+</tr>
+<tr>
+<td>UnicodeTranslateError</td>
+<td>Unicode 转换时错误</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>警告的基类</td>
+</tr>
+<tr>
+<td>DeprecationWarning</td>
+<td>关于被弃用的特征的警告</td>
+</tr>
+<tr>
+<td>FutureWarning</td>
+<td>关于构造将来语义会有改变的警告</td>
+</tr>
+<tr>
+<td>OverflowWarning</td>
+<td>旧的关于自动提升为长整型(long)的警告</td>
+</tr>
+<tr>
+<td>PendingDeprecationWarning</td>
+<td>关于特性将会被废弃的警告</td>
+</tr>
+<tr>
+<td>RuntimeWarning</td>
+<td>可疑的运行时行为(runtime behavior)的警告</td>
+</tr>
+<tr>
+<td>SyntaxWarning</td>
+<td>可疑的语法的警告</td>
+</tr>
+<tr>
+<td>UserWarning</td>
+<td>用户代码生成的警告</td>
+</tr>
+</tbody></table>
+<h1 id="Python-内置模块"><a href="#Python-内置模块" class="headerlink" title="Python 内置模块"></a>Python 内置模块</h1><table>
+<thead>
+<tr>
+<th>内置模块函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.runoob.com/python/python-func-help.html" target="_blank" rel="noopener">help(obj)</a></td>
+<td>在线帮助, 任何类型对象。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-__import__.html" target="_blank" rel="noopener">__ import __()</a></td>
+<td>用于动态加载类和函数 。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-input.html" target="_blank" rel="noopener">input([prompt])</a></td>
+<td>标准输入。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python3/python-func-print.html" target="_blank" rel="noopener">print([prompt])</a></td>
+<td>标准输出。</td>
+</tr>
+<tr>
+<td>[open(name<a href="https://www.runoob.com/python/python-func-open.html" target="_blank" rel="noopener">, mode[, buffering])</a></td>
+<td>函数用于打开一个文件，创建一个file对象，相关的方法才可以调用它进行读写。</td>
+</tr>
+<tr>
+<td>[file(name<a href="https://www.runoob.com/python/python-func-file.html" target="_blank" rel="noopener">, mode[, buffering])</a></td>
+<td>函数用于创建一个文件对象，别名叫open()。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-all.html" target="_blank" rel="noopener">all(iterable)</a></td>
+<td>函数用于判断给定的可迭代参数 iterable 中的所有元素是否都不为0、’’、False，如果是返回True，否则返回False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-any.html" target="_blank" rel="noopener">any(iterable)</a></td>
+<td>函数用于判断给定的可迭代参数 iterable 是否全部为False，则返回False，如果有一个为True，则返True。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-enumerate.html" target="_blank" rel="noopener">enumerate(sequence, [start=0])</a></td>
+<td>函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在for循环当中。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-filter.html" target="_blank" rel="noopener">filter(function, iterable)</a></td>
+<td>函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的新列表。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-dir.html" target="_blank" rel="noopener">dir(obj)</a></td>
+<td>返回模块的属性列表。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-iter.html" target="_blank" rel="noopener">iter(obj)</a></td>
+<td>用来生成迭代器。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-next.html" target="_blank" rel="noopener">next(iterator[, default])</a></td>
+<td>返回迭代器的下一个项目。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-eval.html" target="_blank" rel="noopener">eval(str)</a></td>
+<td>执行一个字符串表达式，返回这个表达式。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-exec.html" target="_blank" rel="noopener">exec 内置表达式</a></td>
+<td>执行储存在字符串或文件中的Python语句。</td>
+</tr>
+<tr>
+<td>[execfile(filename<a href="https://www.runoob.com/python/python-func-execfile.html" target="_blank" rel="noopener">, globals[, locals])</a></td>
+<td>用来执行一个文件。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-super.html" target="_blank" rel="noopener">super(type[, object-or-type])</a></td>
+<td>函数是用于调用父类(超类)的一个方法。注：Python3.x和Python2.x的一个区别是:Python 3可以使用直接使用super().xxx代替super(Class,self).xxx。callable(obj) 查看一个obj是不是可以像函数一样调用。</td>
+</tr>
+<tr>
+<td>[property([fget[, fset<a href="https://www.runoob.com/python/python-func-property.html" target="_blank" rel="noopener">, fdel[, doc])</a></td>
+<td>在新式类中返回属性值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-divmod.html" target="_blank" rel="noopener">divmod(a,b)</a></td>
+<td>函数把除数和余数运算结果结合起来，返回一个包含商和余数的元组(a // b, a % b)。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-issubclass.html" target="_blank" rel="noopener">issubclass(class, classinfo)</a></td>
+<td>判断参数 class 是否是类型参数 classinfo 的子类。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-isinstance.html" target="_blank" rel="noopener">isinstance(object, classinfo)</a></td>
+<td>判断一个对象是否是一个已知的类型，会认为子类是一种父类类型，考虑继承关系。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-type.html" target="_blank" rel="noopener">type(object)</a></td>
+<td>查看一个对象的类型，不会认为子类是一种父类类型，不考虑继承关系。注：type(name, bases, dict)三个参数返回新的类型对象。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-list-reverse.html" target="_blank" rel="noopener">reverse()</a></td>
+<td>反向列表中元素。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-range.html" target="_blank" rel="noopener">range(start, stop[, step])</a></td>
+<td>创建一个整数列表，一般用在 for 循环中。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-xrange.html" target="_blank" rel="noopener">xrange(start, stop[, step])</a></td>
+<td>生成的不是一个数组，而是一个生成器。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-format.html" target="_blank" rel="noopener">format()</a></td>
+<td>格式化字符串。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-globals.html" target="_blank" rel="noopener">globals()</a></td>
+<td>会以字典类型返回当前位置的全部全局变量。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-locals.html" target="_blank" rel="noopener">locals()</a></td>
+<td>以字典类型返回当前位置的全部局部变量。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-reduce.html" target="_blank" rel="noopener">reduce(function, iterable[, initializer])</a></td>
+<td>参数序列中元素进行累积。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-frozenset.html" target="_blank" rel="noopener">frozenset([iterable])</a></td>
+<td>返回一个冻结的集合，冻结后集合不能再添加或删除任何元素。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-reload.html" target="_blank" rel="noopener">reload(module)</a></td>
+<td>重新载入之前载入的模块。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-vars.html" target="_blank" rel="noopener">vars([object])</a></td>
+<td>返回对象object的属性和属性值的字典对象。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-getattr.html" target="_blank" rel="noopener">getattr(object, name[, default])</a></td>
+<td>返回一个对象属性值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-setattr.html" target="_blank" rel="noopener">setattr(object, name, value)</a></td>
+<td>设置属性值，该属性不一定是存在的。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-hasattr.html" target="_blank" rel="noopener">hasattr(object, name)</a></td>
+<td>判断对象是否包含对应的属性。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-delattr.html" target="_blank" rel="noopener">delattr(object, name)</a></td>
+<td>删除属性。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-map.html" target="_blank" rel="noopener">map(function, iterable)</a></td>
+<td>根据提供的函数对指定序列做映射。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-repr.html" target="_blank" rel="noopener">repr(object)</a></td>
+<td>将对象转化为供解释器读取的形式。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-zip.html" target="_blank" rel="noopener">zip([iterable, …])</a></td>
+<td>将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-compile.html" target="_blank" rel="noopener">compile()</a></td>
+<td>将一个字符串编译为字节代码。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-memoryview.html" target="_blank" rel="noopener">memoryview(obj)</a></td>
+<td>返回给定参数的内存查看对象(Momory view)。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-set.html" target="_blank" rel="noopener">set([iterable])</a></td>
+<td>创建一个无序不重复元素集，可进行关系测试，删除重复数据，还可以计算交集、差集、并集等。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-slice.html" target="_blank" rel="noopener">slice(start, stop[, step])</a></td>
+<td>切片操作。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-id.html" target="_blank" rel="noopener">id([object])</a></td>
+<td>获取对象的内存地址。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-sorted.html" target="_blank" rel="noopener">sorted(iterable, cmp=None, key=None, reverse=False)</a></td>
+<td>对所有可迭代的对象进行排序操作。</td>
+</tr>
+<tr>
+<td>[bytearray(source<a href="https://www.runoob.com/python/python-func-bytearray.html" target="_blank" rel="noopener">, encoding[, errors])</a></td>
+<td>返回一个新字节数组。这个数组里的元素是可变的，并且每个元素的值范围: 0 &lt;= x &lt; 256。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-callable.html" target="_blank" rel="noopener">callable(object)</a></td>
+<td>检查一个对象是否是可调用的。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-basestring.html" target="_blank" rel="noopener">basestring()</a></td>
+<td>str 和 unicode 的超类(父类)，也是抽象类，因此不能被调用和实例化，但可以被用来判断一个对象是否为 str 或者 unicode 的实例，isinstance(obj, basestring) 等价于 isinstance(obj, (str, unicode))。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-staticmethod.html" target="_blank" rel="noopener">staticmethod()</a></td>
+<td>返回函数的静态方法。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-func-classmethod.html" target="_blank" rel="noopener">classmethod()</a></td>
+<td>修饰符对应的函数不需要实例化，不需要 self 参数，但第一个参数需要是表示自身类的 cls 参数，可以来调用类的属性，类的方法，实例化对象等。</td>
+</tr>
+</tbody></table>
+<h1 id="Python-math模块-cmath模块"><a href="#Python-math模块-cmath模块" class="headerlink" title="Python math模块 cmath模块"></a>Python math模块 cmath模块</h1><p>Python中数学运算常用的函数基本都在math模块和cmath模块中。cmath 模块的函数跟 math 模块函数基本一致，区别是 cmath 模块运算的是复数，math 模块运算的是数学运算。 </p>
+<table>
+<thead>
+<tr>
+<th>数学函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.runoob.com/python/func-number-abs.html" target="_blank" rel="noopener">abs(x)</a></td>
+<td>内置函数，适用于复数，返回数字的绝对值，如abs(-10) 返回 10。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-ceil.html" target="_blank" rel="noopener">ceil(x) </a></td>
+<td>返回数字的上入整数，如math.ceil(4.1) 返回 5。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-cmp.html" target="_blank" rel="noopener">cmp(x, y)</a></td>
+<td>如果 x &lt; y 返回 -1, 如果  x == y 返回 0,  如果 x &gt; y 返回 1。Python3.x不可用。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-exp.html" target="_blank" rel="noopener">exp(x) </a></td>
+<td>返回e的x次幂(ex),如math.exp(1) 返回2.718281828459045。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-fabs.html" target="_blank" rel="noopener">fabs(x)</a></td>
+<td>math模块，返回数字的绝对值，如math.fabs(-10) 返回10.0。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-floor.html" target="_blank" rel="noopener">floor(x) </a></td>
+<td>返回数字的下舍整数，如math.floor(4.9)返回 4。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-log.html" target="_blank" rel="noopener">log(x) </a></td>
+<td>如math.log(math.e)返回1.0,math.log(100,10)返回2.0。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-log10.html" target="_blank" rel="noopener">log10(x) </a></td>
+<td>返回以10为基数的x的对数，如math.log10(100)返回 2.0。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-max.html" target="_blank" rel="noopener">max(x1, x2,…) </a></td>
+<td>返回给定参数的最大值，参数可以为序列。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-min.html" target="_blank" rel="noopener">min(x1, x2,…) </a></td>
+<td>返回给定参数的最小值，参数可以为序列。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-modf.html" target="_blank" rel="noopener">modf(x) </a></td>
+<td>返回x的整数部分与小数部分，两部分的数值符号与x相同，整数部分以浮点型表示。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-pow.html" target="_blank" rel="noopener">pow(x, y)</a></td>
+<td>x**y 运算后的值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-round.html" target="_blank" rel="noopener">round(x ,n])</a></td>
+<td>返回浮点数x的四舍五入值，如给出n值，则代表舍入到小数点后的位数。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-sqrt.html" target="_blank" rel="noopener">sqrt(x) </a></td>
+<td>返回数字x的平方根。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>随机数函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.runoob.com/python/func-number-choice.html" target="_blank" rel="noopener">choice(seq)</a></td>
+<td>从序列的元素中随机挑选一个元素，比如random.choice(range(10))，从0到9中随机挑选一个整数。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-randrange.html" target="_blank" rel="noopener">randrange ([start,] stop [,step]) </a></td>
+<td>从指定范围内，按指定基数递增的集合中获取一个随机数，基数默认值为 1。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-random.html" target="_blank" rel="noopener">random() </a></td>
+<td>随机生成下一个实数，它在[0,1)范围内。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-seed.html" target="_blank" rel="noopener">seed(x]) </a></td>
+<td>改变随机数生成器的种子seed。如果你不了解其原理，你不必特别去设定seed，Python会帮你选择seed。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-shuffle.html" target="_blank" rel="noopener">shuffle(lst) </a></td>
+<td>将序列的所有元素随机排序。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-uniform.html" target="_blank" rel="noopener">uniform(x, y)</a></td>
+<td>随机生成下一个实数，它在[x,y]范围内。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>三角函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.runoob.com/python/func-number-acos.html" target="_blank" rel="noopener">acos(x)</a></td>
+<td>返回x的反余弦弧度值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-asin.html" target="_blank" rel="noopener">asin(x)</a></td>
+<td>返回x的反正弦弧度值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-atan.html" target="_blank" rel="noopener">atan(x)</a></td>
+<td>返回x的反正切弧度值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-atan2.html" target="_blank" rel="noopener">atan2(y, x)</a></td>
+<td>返回给定的 X 及 Y 坐标值的反正切值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-cos.html" target="_blank" rel="noopener">cos(x)</a></td>
+<td>返回x的弧度的余弦值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-hypot.html" target="_blank" rel="noopener">hypot(x, y)</a></td>
+<td>返回欧几里德范数 sqrt(x<em>x + y</em>y)。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-sin.html" target="_blank" rel="noopener">sin(x)</a></td>
+<td>返回的x弧度的正弦值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-tan.html" target="_blank" rel="noopener">tan(x)</a></td>
+<td>返回x弧度的正切值。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-degrees.html" target="_blank" rel="noopener">degrees(x)</a></td>
+<td>将弧度转换为角度,如degrees(math.pi/2) ，  返回90.0。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/func-number-radians.html" target="_blank" rel="noopener">radians(x)</a></td>
+<td>将角度转换为弧度。</td>
+</tr>
+</tbody></table>
+<h1 id="Python-string模块"><a href="#Python-string模块" class="headerlink" title="Python string模块"></a>Python string模块</h1><table>
+<thead>
+<tr>
+<th>函数(方法)</th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.runoob.com/python/att-string-capitalize.html" target="_blank" rel="noopener">string.capitalize()</a></td>
+<td>把字符串的第一个字符大写。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-center.html" target="_blank" rel="noopener">string.center(width)</a></td>
+<td>返回一个原字符串居中,并使用空格填充至长度 width 的新字符串。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-count.html" target="_blank" rel="noopener">string.count(str, beg=0, end=len(string))</a></strong></td>
+<td>返回 str 在 string 里面出现的次数，如果 beg 或者 end 指定则返回指定范围内 str 出现的次数。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-decode.html" target="_blank" rel="noopener">string.decode(encoding=’UTF-8’, errors=’strict’)</a></td>
+<td>以 encoding 指定的编码格式解码 string，如果出错默认报一个 ValueError 的 异 常 ， 除非 errors 指 定 的 是 ‘ignore’ 或 者’replace’。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-encode.html" target="_blank" rel="noopener">string.encode(encoding=’UTF-8’, errors=’strict’)</a></td>
+<td>以 encoding 指定的编码格式编码 string，如果出错默认报一个ValueError 的异常，除非 errors 指定的是’ignore’或者’replace’。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-endswith.html" target="_blank" rel="noopener">string.endswith(obj, beg=0, end=len(string))</a></strong></td>
+<td>检查字符串是否以 obj 结束，如果beg 或者 end 指定则检查指定的范围内是否以 obj 结束，如果是，返回 True,否则返回 False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-expandtabs.html" target="_blank" rel="noopener">string.expandtabs(tabsize=8)</a></td>
+<td>把字符串 string 中的 tab 符号转为空格，tab 符号默认的空格数是 8。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-find.html" target="_blank" rel="noopener">string.find(str, beg=0, end=len(string))</a></strong></td>
+<td>检测 str 是否包含在 string 中，如果 beg 和 end 指定范围，则检查是否包含在指定范围内，如果是返回开始的索引值，否则返回-1。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-format.html" target="_blank" rel="noopener">string.format()</a></strong></td>
+<td>格式化字符串。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-index.html" target="_blank" rel="noopener">string.index(str, beg=0, end=len(string))</a></strong></td>
+<td>跟find()方法一样，只不过如果str不在 string中会报一个异常。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-isalnum.html" target="_blank" rel="noopener">string.isalnum()</a></td>
+<td>如果 string 至少有一个字符并且所有字符都是字母或数字则返 回 True,否则返回 False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-isalpha.html" target="_blank" rel="noopener">string.isalpha()</a></td>
+<td>如果 string 至少有一个字符并且所有字符都是字母则返回 True, 否则返回 False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-isdecimal.html" target="_blank" rel="noopener">string.isdecimal()</a></td>
+<td>如果 string 只包含十进制数字则返回 True 否则返回 False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-isdigit.html" target="_blank" rel="noopener">string.isdigit()</a></td>
+<td>如果 string 只包含数字则返回 True 否则返回 False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-islower.html" target="_blank" rel="noopener">string.islower()</a></td>
+<td>如果 string 中包含至少一个区分大小写的字符，并且所有这些(区分大小写的)字符都是小写，则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-isnumeric.html" target="_blank" rel="noopener">string.isnumeric()</a></td>
+<td>如果 string 中只包含数字字符，则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-isspace.html" target="_blank" rel="noopener">string.isspace()</a></td>
+<td>如果 string 中只包含空格，则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-istitle.html" target="_blank" rel="noopener">string.istitle()</a></td>
+<td>如果 string 是标题化的(见 title())则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-isupper.html" target="_blank" rel="noopener">string.isupper()</a></td>
+<td>如果 string 中包含至少一个区分大小写的字符，并且所有这些(区分大小写的)字符都是大写，则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-join.html" target="_blank" rel="noopener">string.join(seq)</a></strong></td>
+<td>以 string 作为分隔符，将 seq 中所有的元素(的字符串表示)合并为一个新的字符串。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-ljust.html" target="_blank" rel="noopener">string.ljust(width)</a></td>
+<td>返回一个原字符串左对齐,并使用空格填充至长度 width 的新字符串。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-lower.html" target="_blank" rel="noopener">string.lower()</a></td>
+<td>转换 string 中所有大写字符为小写。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-lstrip.html" target="_blank" rel="noopener">string.lstrip()</a></td>
+<td>截掉 string 左边的空格。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-maketrans.html" target="_blank" rel="noopener">string.maketrans(intab, outtab])</a></td>
+<td>maketrans() 方法用于创建字符映射的转换表，对于接受两个参数的最简单的调用方式，第一个参数是字符串，表示需要转换的字符，第二个参数也是字符串表示转换的目标。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-max.html" target="_blank" rel="noopener">max(str)</a></td>
+<td>返回字符串 str 中最大的字母。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-min.html" target="_blank" rel="noopener">min(str)</a></td>
+<td>返回字符串 str 中最小的字母。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-partition.html" target="_blank" rel="noopener">string.partition(str)</a></strong></td>
+<td>有点像 find()和 split()的结合体,从 str 出现的第一个位置起,把 字 符 串 string 分 成 一 个 3 元 素 的 元 组 (string_pre_str,str,string_post_str),如果 string 中不包含str 则  string_pre_str == string。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-replace.html" target="_blank" rel="noopener">string.replace(str1, str2, num=string.count(str1))</a></strong></td>
+<td>把 string 中的 str1 替换成 str2,如果 num 指定，则替换不超过 num 次。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-rfind.html" target="_blank" rel="noopener">string.rfind(str, beg=0,end=len(string) )</a></td>
+<td>类似于 find()函数，不过是从右边开始查找。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-rindex.html" target="_blank" rel="noopener">string.rindex( str, beg=0,end=len(string))</a></td>
+<td>类似于 index()，不过是从右边开始。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-rjust.html" target="_blank" rel="noopener">string.rjust(width)</a></td>
+<td>返回一个原字符串右对齐,并使用空格填充至长度 width 的新字符串。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-rpartition.html" target="_blank" rel="noopener">string.rpartition(str)</a></td>
+<td>类似于 partition()函数,不过是从右边开始查找。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-rstrip.html" target="_blank" rel="noopener">string.rstrip()</a></td>
+<td>删除 string 字符串末尾的空格。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-split.html" target="_blank" rel="noopener">string.split(str=””, num=string.count(str))</a></strong></td>
+<td>以 str 为分隔符切片 string，如果 num 有指定值，则仅分隔 num+ 个子字符串。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-splitlines.html" target="_blank" rel="noopener">string.splitlines(keepends])</a></td>
+<td>按照行(‘\r’, ‘\r\n’, \n’)分隔，返回一个包含各行作为元素的列表，如果参数 keepends 为 False，不包含换行符，如果为 True，则保留换行符。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-startswith.html" target="_blank" rel="noopener">string.startswith(obj, beg=0,end=len(string))</a></td>
+<td>检查字符串是否是以 obj 开头，是则返回 True，否则返回 False。如果beg 和 end 指定值，则在指定范围内检查。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-strip.html" target="_blank" rel="noopener">string.strip(obj])</a></strong></td>
+<td>在 string 上执行 lstrip()和 rstrip()。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-swapcase.html" target="_blank" rel="noopener">string.swapcase()</a></td>
+<td>翻转 string 中的大小写。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-title.html" target="_blank" rel="noopener">string.title()</a></td>
+<td>返回”标题化”的 string,就是说所有单词都是以大写开始，其余字母均为小写(见 istitle())。</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/python/att-string-translate.html" target="_blank" rel="noopener">string.translate(str, del=””)</a></strong></td>
+<td>根据 str 给出的表(包含 256 个字符)转换 string 的字符, 要过滤掉的字符放到 del 参数中。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-upper.html" target="_blank" rel="noopener">string.upper()</a></td>
+<td>转换 string 中的小写字母为大写。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-string-zfill.html" target="_blank" rel="noopener">string.zfill(width)</a></td>
+<td>返回长度为 width 的字符串，原字符串 string 右对齐，前面填充0。</td>
+</tr>
+</tbody></table>
+<h1 id="Python-time模块-calendar模块-datetime模块"><a href="#Python-time模块-calendar模块-datetime模块" class="headerlink" title="Python time模块 calendar模块 datetime模块"></a>Python time模块 calendar模块 datetime模块</h1><blockquote>
+<p>注：时间间隔是以秒为单位的浮点小数。每个时间戳都以自从1970年1月1日午夜（历元）经过了多长时间来表示。</p>
+</blockquote>
+<p><code>时间元组</code> 很多Python函数用一个元组装起来的9组数字处理时间。</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>tm_year    年</td>
+<td>2008</td>
+</tr>
+<tr>
+<td>1</td>
+<td>tm_mon   月</td>
+<td>1 到 12</td>
+</tr>
+<tr>
+<td>2</td>
+<td>tm_mday 日</td>
+<td>1 到 31</td>
+</tr>
+<tr>
+<td>3</td>
+<td>tm_hour   时</td>
+<td>0 到 23</td>
+</tr>
+<tr>
+<td>4</td>
+<td>tm_min    分</td>
+<td>0 到 59</td>
+</tr>
+<tr>
+<td>5</td>
+<td>tm_sec     秒</td>
+<td>0 到 61 (60或61 是闰秒)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>tm_wday  周</td>
+<td>0到6 (0是周一)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>tm_yday   天</td>
+<td>1 到 366(儒略历)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>tm_isdst   夏令时</td>
+<td>-1, 0, 1, -1是决定是否为夏令时的旗帜</td>
+</tr>
+</tbody></table>
+<p><code>time 模块</code></p>
+<blockquote>
+<p>两个重要属性：</p>
+<p> time.timezone     当地时区（未启动夏令时）距离格林威治的偏移秒数（&gt;0，美洲;&lt;=0大部分欧洲，亚洲，非洲）。 </p>
+<p> time.tzname        包含一对根据情况的不同而不同的字符串，分别是带夏令时的本地时区名称，和不带的。 </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>time模块函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.runoob.com/python/att-time-altzone.html" target="_blank" rel="noopener">time.altzone</a></td>
+<td>返回格林威治西部的夏令时地区的偏移秒数。如果该地区在格林威治东部会返回负值（如西欧，包括英国）。对夏令时启用地区才能使用。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-asctime.html" target="_blank" rel="noopener">time.asctime(tupletime])</a></td>
+<td>接受时间元组并返回一个可读的形式为”Tue Dec 11 18:07:14 2008”（2008年12月11日 周二18时07分14秒）的24个字符的字符串。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-clock.html" target="_blank" rel="noopener">time.clock( )</a></td>
+<td>用以浮点数计算的秒数返回当前的CPU时间。用来衡量不同程序的耗时，比time.time()更有用。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-ctime.html" target="_blank" rel="noopener">time.ctime(secs])</a></td>
+<td>作用相当于asctime(localtime(secs))，未给参数相当于asctime()。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-gmtime.html" target="_blank" rel="noopener">time.gmtime(secs])</a></td>
+<td>接收时间戳（1970纪元后经过的浮点秒数）并返回格林威治天文时间下的时间元组t。注：t.tm_isdst始终为0。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-localtime.html" target="_blank" rel="noopener">time.localtime(secs])</a></td>
+<td>接收时间戳（1970纪元后经过的浮点秒数）并返回当地时间下的时间元组t（t.tm_isdst可取0或1，取决于当地当时是不是夏令时）。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-mktime.html" target="_blank" rel="noopener">time.mktime(tupletime)</a></td>
+<td>接受时间元组并返回时间戳（1970纪元后经过的浮点秒数）。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-sleep.html" target="_blank" rel="noopener">time.sleep(secs)</a></td>
+<td>推迟调用线程的运行，secs指秒数。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-strftime.html" target="_blank" rel="noopener">time.strftime(fmt,tupletime])</a></td>
+<td>接收以时间元组，并返回以可读字符串表示的当地时间，格式由fmt决定。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-strptime.html" target="_blank" rel="noopener">time.strptime(str,fmt=’%a %b %d %H:%M:%S %Y’)</a></td>
+<td>根据fmt的格式把一个时间字符串解析为时间元组。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-time.html" target="_blank" rel="noopener">time.time( )</a></td>
+<td>返回当前时间的时间戳（1970纪元后经过的浮点秒数）。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/att-time-tzset.html" target="_blank" rel="noopener">time.tzset()</a></td>
+<td>根据环境变量TZ重新初始化时间相关设置。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>时间日期格式化符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%y</td>
+<td>两位数的年份表示（00-99）</td>
+</tr>
+<tr>
+<td>%Y</td>
+<td>四位数的年份表示（000-9999）</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>月份（01-12）</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>月内中的一天（0-31）</td>
+</tr>
+<tr>
+<td>%H</td>
+<td>24小时制小时数（0-23）</td>
+</tr>
+<tr>
+<td>%I</td>
+<td>12小时制小时数（0-11）</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>分钟数（00=59）</td>
+</tr>
+<tr>
+<td>%S</td>
+<td>秒（00-59）</td>
+</tr>
+<tr>
+<td>%a</td>
+<td>本地简化星期名称（星期三为Web）</td>
+</tr>
+<tr>
+<td>%A</td>
+<td>本地完整星期名称（星期三为Wednesday）</td>
+</tr>
+<tr>
+<td>%b</td>
+<td>本地简化的月份名称（4月份为Apr）</td>
+</tr>
+<tr>
+<td>%B</td>
+<td>本地完整的月份名称（4月份为April）</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>本地相应的日期表示和时间表示（20/02/15 10:43:39）</td>
+</tr>
+<tr>
+<td>%j</td>
+<td>年内的一天（001-366）</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>本地A.M.或P.M.的等价符</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>一年中的星期数（00-53）星期天为星期的开始</td>
+</tr>
+<tr>
+<td>%w</td>
+<td>星期（0-6），星期天为星期的开始</td>
+</tr>
+<tr>
+<td>%W</td>
+<td>一年中的星期数（00-53）星期一为星期的开始</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>本地相应的日期表示</td>
+</tr>
+<tr>
+<td>%X</td>
+<td>本地相应的时间表示</td>
+</tr>
+<tr>
+<td>%Z</td>
+<td>当前时区的名称</td>
+</tr>
+<tr>
+<td>%%</td>
+<td>%号本身</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">常见代码</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">print time.localtime(time.time())</span><br><span class="line">&gt;&gt;&gt;time.struct_time(tm_year=2020, tm_mon=1, tm_mday=25, tm_hour=10, tm_min=3, tm_sec=27, tm_wday=3, tm_yday=98, tm_isdst=0)</span><br><span class="line"></span><br><span class="line">print time.asctime( time.localtime(time.time()) )</span><br><span class="line">&gt;&gt;&gt;Thu Jan 25 10:05:21 2020</span><br><span class="line"></span><br><span class="line">print time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;, time.localtime()) </span><br><span class="line">&gt;&gt;&gt;2020-01-25 10:25:09</span><br><span class="line"></span><br><span class="line">a = &quot;Sat Mar 28 22:24:24 2016&quot;</span><br><span class="line">print time.mktime(time.strptime(a,&quot;%a %b %d %H:%M:%S %Y&quot;))</span><br><span class="line">&gt;&gt;&gt;1459175064.0</span><br></pre></td></tr></table></figure>
+
+<p> <code>Calendar 模块</code>用来处理年历和月历。</p>
+<table>
+<thead>
+<tr>
+<th>Calendar模块</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>calendar.calendar(year,w=2,l=1,c=6)</td>
+<td>返回一个多行字符串格式的year年年历，3个月一行，间隔距离为c。 每日宽度间隔为w字符。每行长度为21* W+18+2* C。l是每星期行数。</td>
+</tr>
+<tr>
+<td>calendar.firstweekday( )</td>
+<td>返回当前每周起始日期的设置。默认情况下，首次载入 calendar 模块时返回 0，即星期一。</td>
+</tr>
+<tr>
+<td>calendar.isleap(year)</td>
+<td>判断是否闰年，闰年返回 True，否则为 False。</td>
+</tr>
+<tr>
+<td>calendar.leapdays(y1,y2)</td>
+<td>返回在Y1，Y2两年之间的闰年总数。</td>
+</tr>
+<tr>
+<td>calendar.month(year,month,w=2,l=1)</td>
+<td>返回一个多行字符串格式的year年month月日历，两行标题，一周一行。每日宽度间隔为w字符。每行的长度为7* w+6。l是每星期的行数。</td>
+</tr>
+<tr>
+<td>calendar.monthcalendar(year,month)</td>
+<td>返回一个整数的单层嵌套列表。每个子列表装载代表一个星期的整数。Year年month月外的日期都设为0;范围内的日子都由该月第几日表示，从1开始。</td>
+</tr>
+<tr>
+<td>calendar.monthrange(year,month)</td>
+<td>返回两个整数。第一个是该月的星期几的日期码，第二个是该月的日期码。日从0（星期一）到6（星期日）;月从1到12。</td>
+</tr>
+<tr>
+<td>calendar.prcal(year,w=2,l=1,c=6)</td>
+<td>相当于 print calendar.calendar(year,w=2,l=1,c=6)。</td>
+</tr>
+<tr>
+<td>calendar.prmonth(year,month,w=2,l=1)</td>
+<td>相当于 print calendar.month(year,month,w=2,l=1)。</td>
+</tr>
+<tr>
+<td>calendar.setfirstweekday(weekday)</td>
+<td>设置每周的起始日期码。0（星期一）到6（星期日）。</td>
+</tr>
+<tr>
+<td>calendar.timegm(tupletime)</td>
+<td>和time.gmtime相反：接受一个时间元组形式，返回该时刻的时间戳（1970纪元后经过的浮点秒数）。</td>
+</tr>
+<tr>
+<td>calendar.weekday(year,month,day)</td>
+<td>返回给定日期的日期码。0（星期一）到6（星期日）。月份为 1（一月） 到 12（12月）。</td>
+</tr>
+</tbody></table>
+<p><code>datetime 模块</code> 更直观、更容易调用。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">datetime模块描述</span><br><span class="line"></span><br><span class="line">datetime.MAXYEAR     最大年常量。</span><br><span class="line">datetime.MINYEAR     最小年常量。</span><br><span class="line">datetime.date        日期类，常用属性 year、month、year。</span><br><span class="line">datetime.time        时间类，常用属性hour、minute、second、microsecond、tzinfo=None。</span><br><span class="line">datetime.datetime    日期时间类。</span><br><span class="line">datetime.timedelta   时间间隔类。</span><br><span class="line">datetime.tzinfo      时区的相关信息。</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>class  datetime.date(year,month,day)</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>datetime.date.max、datetime.date.min</td>
+<td>返回最大、最小日期。date.max=9999，date.min=1。</td>
+</tr>
+<tr>
+<td>datetime.date.resolution</td>
+<td>返回日期的最小单位。</td>
+</tr>
+<tr>
+<td>datetime.date.today()</td>
+<td>返回当前本地日期。</td>
+</tr>
+<tr>
+<td>datetime.date.fromtimestamp(timestamp)</td>
+<td>返回给定的时间戮。</td>
+</tr>
+<tr>
+<td>datetime.fromordinal(ordinal)</td>
+<td>将Gregorian日历时间转换为date对象。</td>
+</tr>
+<tr>
+<td>datetime.date.replace(year, month, day)</td>
+<td>生成一个新的日期对象，用参数指定的年,月,日代替原有对象中的属性。注：原有对象仍保持不变。</td>
+</tr>
+<tr>
+<td>datetime.date.timetuple()</td>
+<td>返回日期对应的time.struct_time对象。</td>
+</tr>
+<tr>
+<td>datetime.date.toordinal()</td>
+<td>返回日期对应的Gregorian Calendar日期。</td>
+</tr>
+<tr>
+<td>datetime.date.weekday()</td>
+<td>返回weekday，如果是星期一，返回0；如果是星期2，返回1，以此类推。</td>
+</tr>
+<tr>
+<td>datetime.date.isoweekday()</td>
+<td>返回weekday，如果是星期一，返回1；如果是星期2，返回2，以此类推。</td>
+</tr>
+<tr>
+<td>datetime.date.isocalendar()</td>
+<td>返回格式如(year，month，day)的元组。</td>
+</tr>
+<tr>
+<td>datetime.date.isoformat()</td>
+<td>返回格式如’YYYY-MM-DD’的字符串。</td>
+</tr>
+<tr>
+<td>datetime.date.strftime(fmt)</td>
+<td>自定义格式化字符串。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>class  datetime.time(hour,minute,second,microsecond,tzinfo)</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr>
+<td>datetime.time.min、datetime.time.max</td>
+<td>返回最大、最小时间。time.min = time(0, 0, 0, 0)， time.max = time(23, 59, 59, 999999)。</td>
+</tr>
+<tr>
+<td>datetime.time.resolution</td>
+<td>返回时间的最小单位。</td>
+</tr>
+<tr>
+<td>datetime.time.replace([hour[, minute[, second[, microsecond[, tzinfo]]]]])</td>
+<td>创建一个新的时间对象，用参数指定的时、分、秒、微秒代替原有对象中的属性。注：原有对象仍保持不变。</td>
+</tr>
+<tr>
+<td>datetime.time.isoformat()</td>
+<td>返回型如”HH:MM:SS”格式的字符串表。</td>
+</tr>
+<tr>
+<td>datetime.time.strftime(fmt)</td>
+<td>返回自定义格式化字符串。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>class  datetime.datetime(year, month, day, hour=0, minute=0, second=0, microsecond=0, tzinfo=None)</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr>
+<td>datetime.datetime.min<strong>、</strong>datetime.datetime.max</td>
+<td>返回最大、最小日期时间。datetime.datetime.min=datetime(1, 1, 1, 0, 0)，datetime.datetime.max=datetime(9999, 12, 31, 23, 59, 59, 999999)。</td>
+</tr>
+<tr>
+<td>datetime.datetime.resolution</td>
+<td>返回日期时间的最小单位。</td>
+</tr>
+<tr>
+<td>datetime.datetime.today()</td>
+<td>返回一个表示当前本地时间的datetime对象。</td>
+</tr>
+<tr>
+<td>datetime.datetime.now([tz])</td>
+<td>返回一个表示当前本地时间的datetime对象。如果提供了参数tz，则获取tz参数所指时区的本地时间。</td>
+</tr>
+<tr>
+<td>datetime.datetime.utcnow()</td>
+<td>返回一个当前utc时间的datetime对象。</td>
+</tr>
+<tr>
+<td>datetime.datetime.fromtimestamp(timestamp[, tz])</td>
+<td>根据时间戮创建一个datetime对象，参数tz指定时区信息。</td>
+</tr>
+<tr>
+<td>datetime.datetime.utcfromtimestamp(timestamp)</td>
+<td>根据时间戮创建一个datetime对象。</td>
+</tr>
+<tr>
+<td>datetime.datetime.combine(date, time)</td>
+<td>根据date和time，创建一个datetime对象。</td>
+</tr>
+<tr>
+<td>datetime.datetime.strptime(date_string, format)</td>
+<td>将格式字符串转换为datetime对象，data 与 time 类没有提供该方法。</td>
+</tr>
+<tr>
+<td>datetime.datetime.date()</td>
+<td>获取date对象。</td>
+</tr>
+<tr>
+<td>datetime.datetime.time()</td>
+<td>获取time对象。</td>
+</tr>
+<tr>
+<td>datetime.datetime.replace([year[, month[, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]]]]]))</td>
+<td>创建一个新的时间对象，用参数指定的时、分、秒、微秒代替原有对象中的属性。注：原有对象仍保持不变。</td>
+</tr>
+<tr>
+<td>datetime.datetime.toordinal()</td>
+<td>返回日期对应的Gregorian Calendar日期时间。</td>
+</tr>
+<tr>
+<td>datetime.datetime.weekday()</td>
+<td>返回weekday，如果是星期一，返回0；如果是星期2，返回1，以此类推。</td>
+</tr>
+<tr>
+<td>datetime.datetime.isocalendar()</td>
+<td>返回格式如(year，month，day，hour，minute，second)的元组。</td>
+</tr>
+<tr>
+<td>datetime.datetime.isoformat([sep])</td>
+<td>返回格式如’YYYY-MM-DD HH:MM:SS’的字符串。</td>
+</tr>
+<tr>
+<td>datetime.datetime.ctime()</td>
+<td>返回一个日期时间的C格式字符串，等效于time.ctime(time.mktime(dt.timetuple()))。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>class  datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr>
+<td>datetime.timedelta.min</td>
+<td>时间间隔对象的最小值。timedelta(-999999999)</td>
+</tr>
+<tr>
+<td>datetime.timedelta.max</td>
+<td>时间间隔对象的最大值。timedelta(days=999999999, hours=23, minutes=59, seconds=59, microseconds=999999).</td>
+</tr>
+<tr>
+<td>datetime.timedelta.resolution</td>
+<td>返回时间间隔的最小单位。</td>
+</tr>
+<tr>
+<td>datetime.timedelta.total_seconds()</td>
+<td>计算时间间隔的总秒数。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注：datetime.date 类、datetime.datetime的对象能够重载简单的运算符(+-&lt;&gt;)。</p>
+<p>​        datetime.time 类的对象只能进行比较，无法进行加减操作。 </p>
+<p>​        datetime.timedelta 类的对象代表两个时间之间的的时间差，两个 date 或 datetime 对象相减时可以返回一个timedelta 对象。 datetime.timedelta 类的对象所有参数可选，且默认都是0，参数的值可以是整数，浮点数，正数或负数。内部只存储days，seconds，microseconds，其他参数的值会自动按如下规则抓转换。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>日期比大小方法名</th>
+<th>方法说明</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>__ eq __(…)</td>
+<td>等于(x==y)</td>
+<td>x.__ eq __(y)</td>
+</tr>
+<tr>
+<td>__ ge __(…)</td>
+<td>大于等于(x&gt;=y)</td>
+<td>x.__ ge __(y)</td>
+</tr>
+<tr>
+<td>__ gt __(…)</td>
+<td>大于(x&gt;y)</td>
+<td>x.__ gt __(y)</td>
+</tr>
+<tr>
+<td>__ le __(…)</td>
+<td>小于等于(x&lt;=y)</td>
+<td>x.__ le __(y)</td>
+</tr>
+<tr>
+<td>__ lt __(…)</td>
+<td>小于(x</td>
+<td>x.__ lt __(y)</td>
+</tr>
+<tr>
+<td>__ ne __(…)</td>
+<td>不等于(x!=y)</td>
+<td>x.__ ne __(y)</td>
+</tr>
+<tr>
+<td>__ sub__(…)</td>
+<td>正向减法(x - y)</td>
+<td>x.__ sub __(y)</td>
+</tr>
+<tr>
+<td>__ rsub __(…)</td>
+<td>反向减法(y - x)</td>
+<td>x.__ rsub __(y)</td>
+</tr>
+</tbody></table>
+<h1 id="Python-sys模块"><a href="#Python-sys模块" class="headerlink" title="Python sys模块"></a>Python sys模块</h1><p>sys模块：系统相关的信息模块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sys.argv 是一个 list,包含所有的命令行参数.    </span><br><span class="line">sys.stdout sys.stdin sys.stderr 分别表示标准输入输出,错误输出的文件对象.    </span><br><span class="line">sys.stdin.readline() 从标准输入读一行 sys.stdout.write(&quot;a&quot;) 屏幕输出a    </span><br><span class="line">sys.exit(exit_code) 退出程序    </span><br><span class="line">sys.modules 是一个dictionary，表示系统中所有可用的module    </span><br><span class="line">sys.platform 得到运行的操作系统环境    </span><br><span class="line">sys.path 是一个list,指明所有查找module，package的路径.</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h1 id="Python-os模块"><a href="#Python-os模块" class="headerlink" title="Python os模块"></a>Python os模块</h1><p>os模块：操作系统相关的调用和操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">os.rename(current_file_name, new_file_name) 文件重命名</span><br><span class="line">os.remove(file_name)                        文件删除</span><br><span class="line">os.environ         一个dictionary包含环境变量的映射关系   </span><br><span class="line">os.environ[&quot;HOME&quot;] 可以得到环境变量HOME的值</span><br><span class="line">os.mkdir(&quot;newdir&quot;) 当前目录下创建新的目录 os.mkdir(&quot;test&quot;)</span><br><span class="line">os.chdir(&quot;newdir&quot;) 改变当前目录 os.chdir(&apos;d:\\outlook&apos;) 注：windows下用到转义。</span><br><span class="line">os.rmdir(&apos;dirname&apos;)删除当前目录</span><br><span class="line">os.getcwd()  得到当前目录     </span><br><span class="line">os.getegid() 得到有效组id os.getgid() 得到组id     </span><br><span class="line">os.getuid()  得到用户  id os.geteuid()得到有效用户id     </span><br><span class="line">os.setegid() 设置当前进程有效组的id.在unix中有效。</span><br><span class="line">os.seteuid() 设置当前进程有效用户的id.在unix中有效。</span><br><span class="line">os.getgruops() 得到用户组名称列表     </span><br><span class="line">os.getlogin()  得到用户登录名称     </span><br><span class="line">os.getenv      得到环境变量     </span><br><span class="line">os.putenv 设置环境变量     </span><br><span class="line">os.umask  设置umask     </span><br><span class="line">os.system(cmd) 利用系统调用，运行cmd命令</span><br><span class="line">os.curdir 表示当前目录</span><br><span class="line">os.pardir 表示上一级目录</span><br><span class="line">os.name   表示当前使用的操作系统</span><br><span class="line">os.sep    输出操作系统特定的路径分隔符（win下为&apos;\\&apos;,Linux下为&apos;/&apos;）</span><br><span class="line">os.linesep输出当前平台使用的行终止符(Win下为‘\r\n’,Linux下为&apos;\n&apos;)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>os 模块方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.runoob.com/python/os-access.html" target="_blank" rel="noopener">os.access(path, mode)</a></td>
+<td>检验权限模式。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-chdir.html" target="_blank" rel="noopener">os.chdir(path)</a></td>
+<td>改变当前工作目录。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-chflags.html" target="_blank" rel="noopener">os.chflags(path, flags)</a></td>
+<td>设置路径的标记为数字标记。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-chmod.html" target="_blank" rel="noopener">os.chmod(path, mode)</a></td>
+<td>更改权限。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-chown.html" target="_blank" rel="noopener">os.chown(path, uid, gid)</a></td>
+<td>更改文件所有者。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-chroot.html" target="_blank" rel="noopener">os.chroot(path)</a></td>
+<td>改变当前进程的根目录。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-close.html" target="_blank" rel="noopener">os.close(fd)</a></td>
+<td>关闭文件描述符 fd。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-closerange.html" target="_blank" rel="noopener">os.closerange(fd_low, fd_high)</a></td>
+<td>关闭所有文件描述符，从 fd_low (包含) 到 fd_high (不包含), 错误会忽略。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-dup.html" target="_blank" rel="noopener">os.dup(fd)</a></td>
+<td>复制文件描述符 fd。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-dup2.html" target="_blank" rel="noopener">os.dup2(fd, fd2)</a></td>
+<td>将一个文件描述符 fd 复制到另一个 fd2。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-fchdir.html" target="_blank" rel="noopener">os.fchdir(fd)</a></td>
+<td>通过文件描述符改变当前工作目录。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-fchmod.html" target="_blank" rel="noopener">os.fchmod(fd, mode)</a></td>
+<td>改变一个文件的访问权限，该文件由参数fd指定，参数mode是Unix下的文件访问权限。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-fchown.html" target="_blank" rel="noopener">os.fchown(fd, uid, gid)</a></td>
+<td>修改一个文件的所有权，这个函数修改一个文件的用户ID和用户组ID，该文件由文件描述符fd指定。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-fdatasync.html" target="_blank" rel="noopener">os.fdatasync(fd)</a></td>
+<td>强制将文件写入磁盘，该文件由文件描述符fd指定，但是不强制更新文件的状态信息。</td>
+</tr>
+<tr>
+<td>[os.fdopen(fd[, mode[, bufsize]])](<a href="https://www.runoob.com/python/os-fdopen.html" target="_blank" rel="noopener">https://www.runoob.com/python/os-fdopen.html</a>)</td>
+<td>通过文件描述符 fd 创建一个文件对象，并返回这个文件对象。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-fpathconf.html" target="_blank" rel="noopener">os.fpathconf(fd, name)</a></td>
+<td>返回一个打开的文件的系统配置信息。name为检索的系统配置的值，它也许是一个定义系统值的字符串，这些名字在很多标准中指定（POSIX.1, Unix 95, Unix 98, 和其它）。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-fstat.html" target="_blank" rel="noopener">os.fstat(fd)</a></td>
+<td>返回文件描述符fd的状态，像stat()。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-fstatvfs.html" target="_blank" rel="noopener">os.fstatvfs(fd)</a></td>
+<td>返回包含文件描述符fd的文件的文件系统的信息，像 statvfs()</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-fsync.html" target="_blank" rel="noopener">os.fsync(fd)</a></td>
+<td>强制将文件描述符为fd的文件写入硬盘。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-ftruncate.html" target="_blank" rel="noopener">os.ftruncate(fd, length)</a></td>
+<td>裁剪文件描述符fd对应的文件, 所以它最大不能超过文件大小。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-getcwd.html" target="_blank" rel="noopener">os.getcwd()</a></td>
+<td>返回当前工作目录。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-getcwdu.html" target="_blank" rel="noopener">os.getcwdu()</a></td>
+<td>返回一个当前工作目录的Unicode对象。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-isatty.html" target="_blank" rel="noopener">os.isatty(fd)</a></td>
+<td>如果文件描述符fd是打开的，同时与tty(-like)设备相连，则返回true, 否则False。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-lchflags.html" target="_blank" rel="noopener">os.lchflags(path, flags)</a></td>
+<td>设置路径的标记为数字标记，类似 chflags()，但是没有软链接。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-lchmod.html" target="_blank" rel="noopener">os.lchmod(path, mode)</a></td>
+<td>修改连接文件权限。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-lchown.html" target="_blank" rel="noopener">os.lchown(path, uid, gid)</a></td>
+<td>更改文件所有者，类似 chown，但是不追踪链接。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-link.html" target="_blank" rel="noopener">os.link(src, dst)</a></td>
+<td>创建硬链接，名为参数 dst，指向参数 src。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-listdir.html" target="_blank" rel="noopener">os.listdir(path)</a></td>
+<td>返回path指定的文件夹包含的文件或文件夹的名字的列表。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-lseek.html" target="_blank" rel="noopener">os.lseek(fd, pos, how)</a></td>
+<td>设置文件描述符 fd当前位置为pos, how方式修改: SEEK_SET 或者 0 设置从文件开始的计算的pos; SEEK_CUR或者 1 则从当前位置计算; os.SEEK_END或者2则从文件尾部开始. 在unix，Windows中有效。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-lstat.html" target="_blank" rel="noopener">os.lstat(path)</a></td>
+<td>像stat(),但是没有软链接。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-major.html" target="_blank" rel="noopener">os.major(device)</a></td>
+<td>从原始的设备号中提取设备major号码 (使用stat中的st_dev或者st_rdev field)。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-makedev.html" target="_blank" rel="noopener">os.makedev(major, minor)</a></td>
+<td>以major和minor设备号组成一个原始设备号。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-makedirs.html" target="_blank" rel="noopener">os.makedirs(path, mode])</a></td>
+<td>递归文件夹创建函数。像mkdir(), 但创建的所有intermediate-level文件夹需要包含子文件夹。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-minor.html" target="_blank" rel="noopener">os.minor(device)</a></td>
+<td>从原始的设备号中提取设备minor号码 (使用stat中的st_dev或者st_rdev field )。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-mkdir.html" target="_blank" rel="noopener">os.mkdir(path, mode])</a></td>
+<td>以数字mode的mode创建一个名为path的文件夹.默认的 mode 是 0777 (八进制)。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-mkfifo.html" target="_blank" rel="noopener">os.mkfifo(path, mode])</a></td>
+<td>创建命名管道，mode为数字，默认为 0666 (八进制) 。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-mknod.html" target="_blank" rel="noopener">os.mknod(filename, mode=0600, device])</a></td>
+<td>创建一个名为filename文件系统节点（文件，设备特别文件或者命名pipe）。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-open.html" target="_blank" rel="noopener">os.open(file, flags, mode])</a></td>
+<td>打开一个文件，并且设置需要的打开选项，mode参数是可选的。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-openpty.html" target="_blank" rel="noopener">os.openpty()</a></td>
+<td>打开一个新的伪终端对。返回 pty 和 tty的文件描述符。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-pathconf.html" target="_blank" rel="noopener">os.pathconf(path, name)</a></td>
+<td>返回相关文件的系统配置信息。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-pipe.html" target="_blank" rel="noopener">os.pipe()</a></td>
+<td>创建一个管道. 返回一对文件描述符(r, w) 分别为读和写。</td>
+</tr>
+<tr>
+<td>[os.popen(command[, mode[, bufsize]])](<a href="https://www.runoob.com/python/os-popen.html" target="_blank" rel="noopener">https://www.runoob.com/python/os-popen.html</a>)</td>
+<td>从一个 command 打开一个管道。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-read.html" target="_blank" rel="noopener">os.read(fd, n)</a></td>
+<td>从文件描述符 fd 中读取最多 n 个字节，返回包含读取字节的字符串，文件描述符 fd对应文件已达到结尾, 返回一个空字符串。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-readlink.html" target="_blank" rel="noopener">os.readlink(path)</a></td>
+<td>返回软链接所指向的文件。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-remove.html" target="_blank" rel="noopener">os.remove(path)</a></td>
+<td>删除路径为path的文件。如果path 是一个文件夹，将抛出OSError; 查看下面的rmdir()删除一个 directory。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-removedirs.html" target="_blank" rel="noopener">os.removedirs(path)</a></td>
+<td>递归删除目录。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-rename.html" target="_blank" rel="noopener">os.rename(src, dst)</a></td>
+<td>重命名文件或目录，从 src 到 dst。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-renames.html" target="_blank" rel="noopener">os.renames(old, new)</a></td>
+<td>递归地对目录进行更名，也可以对文件进行更名。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-rmdir.html" target="_blank" rel="noopener">os.rmdir(path)</a></td>
+<td>删除path指定的空目录，如果目录非空，则抛出一个OSError异常。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-stat.html" target="_blank" rel="noopener">os.stat(path)</a></td>
+<td>获取path指定的路径的信息，功能等同于C API中的stat()系统调用。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-stat_float_times.html" target="_blank" rel="noopener">os.stat_float_times(newvalue])</a></td>
+<td>决定stat_result是否以float对象显示时间戳。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-statvfs.html" target="_blank" rel="noopener">os.statvfs(path)</a></td>
+<td>获取指定路径的文件系统统计信息。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-symlink.html" target="_blank" rel="noopener">os.symlink(src, dst)</a></td>
+<td>创建一个软链接。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-tcgetpgrp.html" target="_blank" rel="noopener">os.tcgetpgrp(fd)</a></td>
+<td>返回与终端fd（一个由os.open()返回的打开的文件描述符）关联的进程组。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-tcsetpgrp.html" target="_blank" rel="noopener">os.tcsetpgrp(fd, pg)</a></td>
+<td>设置与终端fd（一个由os.open()返回的打开的文件描述符）关联的进程组为pg。</td>
+</tr>
+<tr>
+<td>[os.tempnam([dir[, prefix]])](<a href="https://www.runoob.com/python/os-tempnam.html" target="_blank" rel="noopener">https://www.runoob.com/python/os-tempnam.html</a>)</td>
+<td>返回唯一的路径名用于创建临时文件。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-tmpfile.html" target="_blank" rel="noopener">os.tmpfile()</a></td>
+<td>返回一个打开的模式为(w+b)的文件对象 .这文件对象没有文件夹入口，没有文件描述符，将会自动删除。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-tmpnam.html" target="_blank" rel="noopener">os.tmpnam()</a></td>
+<td>为创建一个临时文件返回一个唯一的路径。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-ttyname.html" target="_blank" rel="noopener">os.ttyname(fd)</a></td>
+<td>返回一个字符串，它表示与文件描述符fd 关联的终端设备。如果fd 没有与终端设备关联，则引发一个异常。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-unlink.html" target="_blank" rel="noopener">os.unlink(path)</a></td>
+<td>删除文件路径。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-utime.html" target="_blank" rel="noopener">os.utime(path, times)</a></td>
+<td>返回指定的path文件的访问和修改的时间。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-walk.html" target="_blank" rel="noopener">os.walk(top, topdown=True, onerror=None, followlinks=False)</a></td>
+<td>输出在文件夹中的文件名通过在树中游走，向上或者向下。</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/os-write.html" target="_blank" rel="noopener">os.write(fd, str)</a></td>
+<td>写入字符串到文件描述符 fd中. 返回实际写入的字符串长度</td>
+</tr>
+<tr>
+<td><a href="https://www.runoob.com/python/python-os-path.html" target="_blank" rel="noopener">os.path </a></td>
+<td>获取文件的属性信息。</td>
+</tr>
+</tbody></table>
+<h1 id="后言"><a href="#后言" class="headerlink" title="后言"></a>后言</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Shebang，脚本第一行 #!/.../... (非必写 )。只对Linux/Unix用户适用，用来指定本脚本用什么解释器来执行，并且调用时可以使用./ 脚本的方法。若无则使用python 脚本的方法。</span><br><span class="line">#!/usr/bin/python 是告诉操作系统执行这个脚本的时候，调用 /usr/bin 下的 python 解释器。</span><br><span class="line">#!/usr/bin/env python 这种用法是为了防止操作系统用户没有将 python 装在默认的 /usr/bin 路径里。当系统看到这一行的时候，首先会到 env 设置里查找 python 的安装路径，再调用对应路径下的解释器程序完成操作。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Python中默认的编码格式是 ASCII 格式，在没修改编码格式时无法正确打印汉字，所以在读取中文时会报错。 </span><br><span class="line">解决方法为只要在文件开头加入 `# -*- coding: UTF-8 -*-` 或者 `# coding=utf-8` 。</span><br><span class="line">注意：Python3.X 源码文件默认使用utf-8编码，所以可以正常解析中文，无需指定 UTF-8 编码。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Python 可以使用引号( **&apos;** )、双引号( **&quot;** )、三引号( **&apos;&apos;&apos;** 或 **&quot;&quot;&quot;** ) 来表示字符串，引号的开始与结束必须的相同类型的。</span><br><span class="line">Python可以在同一行中使用多条语句，语句之间使用分号(;)分割。 </span><br><span class="line">Python会将圆括号，中括号和花括号中的行隐式的连接起来，即其可以多行连接。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：Python 可以使用 -h 参数查看各参数帮助信息。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">python 编码规范</span><br><span class="line">不要在行尾加分号，也不要用分号将两条命令放在同一行。</span><br><span class="line">每行不超过80个字符(除注释、导入模块)，且不要使用反斜杠连接行。</span><br><span class="line">用4个空格来缩进代码，不要用tab和空格混用。</span><br><span class="line">括号内不要有空格；不要在逗号, 分号, 冒号,  左括号前面加空格, 但应该在它们后面加(除了在行尾)。</span><br><span class="line">在二元操作符两边都加上一个空格, 比如赋值(=), 比较(==, &lt;, &gt;, !=, &lt;&gt;, &lt;=, &gt;=, in, not in, is, is not), 布尔(and, or, not)。</span><br><span class="line">推荐使用“ with 语句 ”来管理文件；不支持 “ with 语句 ”的对象，则使用 contextlib.closing() 。</span><br><span class="line"> 每个导入应该独占一行。导入总应该放在文件顶部 ，导入应该按照从最通用到最不通用的顺序分组。即标准库导入，第三方库导入，应用程序指定导入。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    main()</span><br><span class="line">当 .py 文件被直接运行时，if __name__ == &apos;__main__&apos; 之下的代码块将被运行； 当 .py 文件以模块形式被导入时，if __name__ == &apos;__main__&apos;之下的代码块不被运行。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">为保证无论是否出错都能正确地关闭文件，可以使用 try ... finally 或 with 语句来实现。 </span><br><span class="line">try:</span><br><span class="line">    f = open(&apos;/path/to/file&apos;, &apos;r&apos;)</span><br><span class="line">    print f.read()</span><br><span class="line">finally:</span><br><span class="line">    if f:</span><br><span class="line">        f.close()</span><br><span class="line">        </span><br><span class="line">with open(&apos;/path/to/file&apos;, &apos;r&apos;) as f:</span><br><span class="line">    print f.read()</span><br></pre></td></tr></table></figure></section>
+    
+        
+        <h2 class="footline">
+            <a href="/tags/knowledge/#knowledge">knowledge</a>
+        </h2>
+    
+
+    <footer id="post-meta" class="clearfix">
+        <a href="/about/">
+        <img class="avatar" src="/images/guchuan.JPG">
+        <div>
+            <span class="dark">Gu Chuan&#39;s blog</span>
+            <span>没学过从来不是理由</span>
+        </div>
+        </a>
+        <section id="sharing">
+            <a title="Share to Twitter" class="twitter" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2020/01/21/Python%E5%9F%BA%E7%A1%80/ - Python @" target="_blank" rel="noopener"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Facebook" class="facebook" href="#" onclick="
+                window.open(
+                  'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                  'facebook-share-dialog',
+                  'width=626,height=436');
+                return false;"><span class="icon-facebook-sign">Share</span>
+            </a>
+        </section>
+    </footer>
+
+
+  <section id="comment">
+    <button class="btn" id="loadcmts" onclick="cmts.load();">Load Comments</button>
+    <div id="gitment"></div>
+    <script src='/js/gitment.browser.js'></script>
+    <link rel="stylesheet" href=''>
+    <script>
+      var cmts={
+        load:function cmts(){
+          var gitment = new Gitment({
+          
+            id: "Python",
+          
+            owner: "",
+            repo: "",
+            oauth: {
+              client_id: "",
+              client_secret: "",
+            },
+          })
+          gitment.render('gitment');
+          var loadcmt = document.getElementById("loadcmts");
+          var imyourfather = loadcmt.parentNode;
+          imyourfather.removeChild(loadcmts)
+        }
+      }
+    </script>
+  </section>
+
+
+	<footer id="footer">
+	<div id="social">
+		<p class="small">©  Gu Chuan&#39;s blog| Powered by Hexo & 
+			<a href="https://github.com/F0r3at/Lights" target="_blank" rel="noopener"> Lights</a>
+		</p>
+	</div>
+</footer>
+
+</section>
+
+	<script src="//cdnjs.loli.net/ajax/libs/instantclick/3.0.1/instantclick.min.js" data-no-instant></script>
+	<script data-no-instant>
+		
+		InstantClick.init('mousedown');
+	</script>
+
+
+
