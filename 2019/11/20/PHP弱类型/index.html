@@ -34,7 +34,7 @@
         
             <h1>PHP弱类型</h1>
         
-        <h2 class="headline">Nov 17 2019
+        <h2 class="headline">Nov 20 2019
         
         </h2>
     </header>
@@ -49,8 +49,8 @@
 </ol>
 <p><code>双等号（==）</code></p>
 <p>双等号在进行比较的时候，会先将不同类型转换为相同类型，再进行值比较。</p>
-<p><img src="/2019/11/17/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare1.png" alt> </p>
-<p><img src="/2019/11/17/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare2.png" alt></p>
+<p><img src="/2019/11/20/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare1.png" alt> </p>
+<p><img src="/2019/11/20/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare2.png" alt></p>
 <p>来自<a href="https://www.php.net/manual/zh/types.comparisons.php" target="_blank" rel="noopener">PHP手册</a>。图如果看懂了，基本上差不多了。</p>
 <p>下面具体说明：</p>
 <p><code>类型转换</code></p>
@@ -91,7 +91,7 @@
 <p> 如果一个字符串是0x开头的时候，PHP会将此字符串解析成为十进制然后再进行比较。</p>
 <p> 如果一个字符串是0e开头的时候， PHP将会解释为科学计数法的浮点数，转换为0。</p>
 <p> 任何其他组合，都不相等。  </p>
-<p><img src="/2019/11/17/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare4.png" alt></p>
+<p><img src="/2019/11/20/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare4.png" alt></p>
 <p><a href="https://www.php.net/manual/zh/language.operators.comparison.php" target="_blank" rel="noopener">详情请见：PHP手册</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">例子：</span><br><span class="line">null==flase         //true</span><br><span class="line">&apos;&apos;==null            //true</span><br><span class="line">0 ==&apos;0&apos;             //true</span><br><span class="line">0 == &apos;abcdefg&apos;      //true</span><br><span class="line">1 == &apos;1abcdef&apos;      //true</span><br><span class="line">&quot;0x1e240&quot;==&quot;123456&quot; //true</span><br><span class="line">&quot;0x1e240&quot;==123456   //true</span><br><span class="line">&quot;0e1abc&quot;==&quot;0&quot;       //true</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
@@ -106,7 +106,7 @@
 <p>如果两个值都是true，或者都是false，那么相等；</p>
 <p>如果两个值都引用同一个对象或函数，那么相等，否则不相等；</p>
 <p>如果两个值都是null，或者都是undefined，那么相等。</p>
-<p><img src="/2019/11/17/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare3.png" alt></p>
+<p><img src="/2019/11/20/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/compare3.png" alt></p>
 <h1 id="PHP弱类型函数"><a href="#PHP弱类型函数" class="headerlink" title="PHP弱类型函数"></a>PHP弱类型函数</h1><p>strcmp()、json_decode()、switch()、in_array()、array_search()</p>
 <p><a href="https://blog.csdn.net/m0_37482190/article/details/87404037" target="_blank" rel="noopener">参考文章</a>、<a href="https://www.cnblogs.com/pjdsy/p/4663590.html" target="_blank" rel="noopener">参考文章</a></p>
 </section>
@@ -126,7 +126,7 @@
         </div>
         </a>
         <section id="sharing">
-            <a title="Share to Twitter" class="twitter" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/11/17/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/ - PHP弱类型 @" target="_blank" rel="noopener"><span class="icon-twitter">tweet</span></a>
+            <a title="Share to Twitter" class="twitter" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2019/11/20/PHP%E5%BC%B1%E7%B1%BB%E5%9E%8B/ - PHP弱类型 @" target="_blank" rel="noopener"><span class="icon-twitter">tweet</span></a>
             <a title="Share to Facebook" class="facebook" href="#" onclick="
                 window.open(
                   'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
