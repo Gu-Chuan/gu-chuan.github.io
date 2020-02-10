@@ -4,9 +4,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
-  <meta name="description" content="零碎XML(  extensible markup language  ) 可扩展标记语言，其用来 结构化、存储和传输数据。一种很像 HTML 的标记语言，但 XML 标签没有被预定义，需要自行定义标签。 
+  <meta name="description" content="零碎XMLXML(  extensible markup language  ) 可扩展标记语言，其用来结构化、存储和传输数据。一种很像 HTML 的标记语言，但 XML 标签没有被预定义，需要自行定义标签。 
  XML 文档，一种树结构，它从”根部”开始，然后扩展到”枝叶”。 
-12345678910">
+123456789">
 
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
@@ -40,7 +40,7 @@
         </h2>
     </header>
 </article>
-<section id="post-body"><h1 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h1><p>XML(  extensible markup language  ) 可扩展标记语言，其用来 结构化、存储和传输数据。一种很像 HTML 的标记语言，但 XML 标签没有被预定义，需要自行定义标签。 </p>
+<section id="post-body"><h1 id="零碎"><a href="#零碎" class="headerlink" title="零碎"></a>零碎</h1><h1 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h1><p>XML(  extensible markup language  ) 可扩展标记语言，其用来结构化、存储和传输数据。一种很像 HTML 的标记语言，但 XML 标签没有被预定义，需要自行定义标签。 </p>
 <p> XML 文档，一种树结构，它从”根部”开始，然后扩展到”枝叶”。 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;//XML 声明。定义XML的版本和所使用的编码</span><br><span class="line">&lt;root&gt;//根元素</span><br><span class="line">&lt;child Attribute=&quot;&quot;&gt;//子元素</span><br><span class="line">&lt;subchild&gt;.....&lt;/subchild&gt;</span><br><span class="line">&lt;/child&gt;</span><br><span class="line">&lt;child&gt;//子元素</span><br><span class="line">&lt;subchild&gt;.....&lt;/subchild&gt;</span><br><span class="line">&lt;/child&gt;</span><br><span class="line">&lt;/root&gt;</span><br><span class="line">&lt;!--注释  --&gt;</span><br><span class="line"></span><br><span class="line">XML元素必须遵循以下命名规则：</span><br><span class="line">    名称可以包含字母、数字以及其他的字符。</span><br><span class="line">    名称不能以数字或者标点符号开始。</span><br><span class="line">    名称不能以字母xml、XML、Xml等等开始。</span><br><span class="line">    名称不能包含空格。</span><br><span class="line">    注：XML文档经常有一个对应的数据库，其中的字段会对应XML文档中的元素。可以使用数据库的命名规则来命名XML文档中的元素</span><br><span class="line">XML 标签对大小写敏感。XML文档可以包含非 ASCII 字符。</span><br><span class="line">XML文档必须有一个根元素。</span><br><span class="line">XML 的属性值必须加引号(&apos;&apos;或&quot;&quot;)，且属性提供不属于数据组成部分的信息。(不常用)</span><br><span class="line">在XML中，一些字符拥有特殊的意义，不能直接放在元素中，应该使用实体引用来代替。</span><br><span class="line">在XML中，文档中的空格不会被删减，不会像HTML把多个连续的空格字符裁减(合并)为一个。</span><br><span class="line">在XML中，元素名称是由开发者定义的，当两个不同的文档使用相同的元素名时，会发生命名冲突。而通过使用名称前缀可以避免命名冲    突。命名空间是在元素的开始标签的 xmlns 属性中定义的。当命名空间被定义在元素的开始标签中时，所有带有相同前缀的子元素    都会与同一个命名空间相关联。命名空间 URI/URL 不会被解析器用于查找信息，其目的是赋予命名空间一个惟一的名称。   </span><br><span class="line">   例如&lt;A:name xmlns:A=&quot;http://&quot;&gt;&lt;/A:name&gt;</span><br><span class="line">在XML文档中的所有文本均会被解析器解析。只有 CDATA 区段(未解析字符数据)中的文本会被解析器忽略。</span><br><span class="line">   CDATA 部分由 &quot;&lt;![CDATA[&quot; 开始，由 &quot;]]&gt;&quot; 结束。</span><br></pre></td></tr></table></figure>
 
@@ -78,6 +78,9 @@
 <td>quotation mark</td>
 </tr>
 </tbody></table>
+<blockquote>
+<p>注： 一个实体由三部分构成: 一个和号 (&amp;), 一个实体名称, 以及一个分号 (;)。 </p>
+</blockquote>
 <p><code>XML CSS</code></p>
 <p>通过使用 CSS，可以添加显示信息到 XML 文档中。 </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml-stylesheet type=&quot;text/css&quot; href=&quot;name.css&quot;?&gt;</span><br></pre></td></tr></table></figure>
@@ -88,7 +91,110 @@
 <p>XMLHttpRequest 对象用于在后台与服务器交换数据。 其特点：在不重新加载页面的情况下更新网页在页面已加载后从服务器请求数据、在页面已加载后从服务器接收数据、在后台向服务器发送数据。</p>
 <p><code>XML DOM</code></p>
 <p>定义访问和操作 XML 文档的标准方法。XML DOM 把 XML 文档作为树结构来查看。所有元素可以通过 DOM 树来访问，可以修改或删除它们的内容，并创建新的元素。元素(文本、属性)都被认为是节点。 </p>
-<h1 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h1></section>
+<p>…</p>
+<h1 id="DTD"><a href="#DTD" class="headerlink" title="DTD"></a>DTD</h1><p>DTD (  Document Type Definition  )文档类型定义，其用来定义 XML 文档的合法构建模块。通过 DTD，每一个 XML 文件均可携带一个有关其自身格式的描述。应用程序也可使用某个标准的 DTD 来验证从外部接收到的数据。 </p>
+<p>DTD 可被成行地声明于 XML 文档中，也可作为一个外部引用。</p>
+<p><code>内部 DOCTYPE 声明</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">DTD 被包含在您的 XML 源文件中。</span><br><span class="line">&lt;!DOCTYPE root-element [element-declarations]&gt; </span><br><span class="line"></span><br><span class="line">例子</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note [</span><br><span class="line">&lt;!ELEMENT note (to,from,heading,body)&gt;</span><br><span class="line">&lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT body (#PCDATA)&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">&lt;to&gt;Tove&lt;/to&gt;</span><br><span class="line">&lt;from&gt;Jani&lt;/from&gt;</span><br><span class="line">&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">&lt;body&gt;Don&apos;t forget me this weekend&lt;/body&gt;</span><br><span class="line">&lt;/note&gt; </span><br><span class="line">注：同一个文件。</span><br></pre></td></tr></table></figure>
+
+<p><code>外部 DOCTYPE 声明</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">DTD 位于 XML 源文件的外部</span><br><span class="line">&lt;!DOCTYPE root-element SYSTEM &quot;filename&quot;&gt; </span><br><span class="line"></span><br><span class="line">例子</span><br><span class="line">//XML文件</span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE note SYSTEM &quot;note.dtd&quot;&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">  &lt;to&gt;Tove&lt;/to&gt;</span><br><span class="line">  &lt;from&gt;Jani&lt;/from&gt;</span><br><span class="line">  &lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">  &lt;body&gt;Don&apos;t forget me this weekend!&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br><span class="line">//DTD文件</span><br><span class="line">&lt;!ELEMENT note (to,from,heading,body)&gt;</span><br><span class="line">&lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT body (#PCDATA)&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>PCDATA</code></p>
+<p> PCDATA (parsed character data) ：被解析的字符数据。文本中的标签会被当作标记来处理，而实体会被展开。 </p>
+<p><code>CDATA</code></p>
+<p> CDATA (character data)：字符数据。文本中的标签不会被当作标记来对待，其中的实体也不会被展开。 </p>
+<p><code>声明元素</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"> &lt;!ELEMENT element-name category&gt;</span><br><span class="line"> 或</span><br><span class="line"> &lt;!ELEMENT element-name (element-content)&gt;  </span><br><span class="line"> </span><br><span class="line"> 空元素声明</span><br><span class="line"> &lt;!ELEMENT element-name EMPTY&gt;</span><br><span class="line"> PCDATA元素声明</span><br><span class="line"> &lt;!ELEMENT element-name (#PCDATA)&gt;</span><br><span class="line"> 根元素声明</span><br><span class="line"> &lt;!ELEMENT element-name ANY&gt;</span><br><span class="line"> 子元素声明</span><br><span class="line"> &lt;!ELEMENT element-name (child1)&gt;</span><br><span class="line"> 或</span><br><span class="line"> &lt;!ELEMENT element-name (child1,child2,...)&gt;</span><br><span class="line"></span><br><span class="line">只出现一次的元素声明</span><br><span class="line">&lt;!ELEMENT element-name (child-name)&gt;</span><br><span class="line">如：&lt;!ELEMENT note (message)&gt;  message元素必须出现一次，并且必须只在note元素中出现一次。</span><br><span class="line">最少出现一次的元素声明</span><br><span class="line">&lt;!ELEMENT element-name (child-name+)&gt; </span><br><span class="line">如：&lt;!ELEMENT note (message+)&gt;  message元素必须在note元素内出现至少一次。</span><br><span class="line">零次或多次的元素声明</span><br><span class="line">&lt;!ELEMENT element-name (child-name*)&gt;</span><br><span class="line">如：&lt;!ELEMENT note (message*)&gt;   message元素可在note元素内出现零次或多次。</span><br><span class="line">零次或一次的元素声明</span><br><span class="line">&lt;!ELEMENT element-name (child-name?)&gt;</span><br><span class="line">如：&lt;!ELEMENT note (message?)&gt;   message元素可在note元素内出现零次或一次。</span><br><span class="line"></span><br><span class="line"> 非.../即...类型元素声明</span><br><span class="line">如：&lt;!ELEMENT note (to,from,header,(message|body))&gt; </span><br><span class="line">&quot;note&quot; 元素必须包含 &quot;to&quot; 元素、&quot;from&quot; 元素、&quot;header&quot; 元素，以及非 &quot;message&quot; 元素既 &quot;body&quot; 元素。</span><br><span class="line">混合类型元素声明</span><br><span class="line">如：&lt;!ELEMENT note (#PCDATA|to|from|header|message)*&gt; </span><br><span class="line">&quot;note&quot; 元素可包含出现零次或多次的 PCDATA、&quot;to&quot;、&quot;from&quot;、&quot;header&quot; 或者 &quot;message&quot;。</span><br></pre></td></tr></table></figure>
+
+<p><code>声明属性</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ATTLIST element-name attribute-name attribute-type attribute-value&gt;</span><br><span class="line">或</span><br><span class="line">&lt;!ATTLIST element-name attribute-name (en1|en2|..) default-value&gt; </span><br><span class="line"></span><br><span class="line">如：&lt;!ATTLIST payment type CDATA &quot;check&quot;&gt;</span><br><span class="line">   &lt;payment type=&quot;check&quot; /&gt; </span><br><span class="line">   &lt;!ATTLIST payment type (check|cash) &quot;cash&quot;&gt;</span><br><span class="line">   &lt;payment type=&quot;check&quot; /&gt;</span><br><span class="line">   或</span><br><span class="line">   &lt;payment type=&quot;cash&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CDATA</td>
+<td>值为字符数据</td>
+</tr>
+<tr>
+<td>(<em>en1</em>|<em>en2</em>|..)</td>
+<td>此值是枚举列表中的一个值</td>
+</tr>
+<tr>
+<td>ID</td>
+<td>值为唯一的 id</td>
+</tr>
+<tr>
+<td>IDREF</td>
+<td>值为另外一个元素的 id</td>
+</tr>
+<tr>
+<td>IDREFS</td>
+<td>值为其他 id 的列表</td>
+</tr>
+<tr>
+<td>NMTOKEN</td>
+<td>值为合法的 XML 名称</td>
+</tr>
+<tr>
+<td>NMTOKENS</td>
+<td>值为合法的 XML 名称的列表</td>
+</tr>
+<tr>
+<td>ENTITY</td>
+<td>值是一个实体</td>
+</tr>
+<tr>
+<td>ENTITIES</td>
+<td>值是一个实体列表</td>
+</tr>
+<tr>
+<td>NOTATION</td>
+<td>此值是符号的名称</td>
+</tr>
+<tr>
+<td>xml:</td>
+<td>值是一个预定义的 XML 值</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>默认属性值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数值</td>
+<td>属性的默认值</td>
+</tr>
+<tr>
+<td>#REQUIRED</td>
+<td>属性值是必需的</td>
+</tr>
+<tr>
+<td>#IMPLIED</td>
+<td>属性不是必需的</td>
+</tr>
+<tr>
+<td>#FIXED value</td>
+<td>属性值是固定的</td>
+</tr>
+</tbody></table>
+<p><code>内部实体声明</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY entity-name &quot;entity-value&quot;&gt;  </span><br><span class="line">如：&lt;!ENTITY writer &quot;Guchuan&quot;&gt;</span><br><span class="line">XML：&lt;author&gt;&amp;writer;&lt;/author&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>外部实体声明</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY entity-name SYSTEM &quot;URI/URL&quot;&gt; </span><br><span class="line">如：&lt;!ENTITY writer SYSTEM &quot;http://www.baidu.com/entities.dtd&quot;&gt;</span><br><span class="line">XML：&lt;author&gt;&amp;writer;&lt;/author&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+</section>
     
         
         <h2 class="footline">
