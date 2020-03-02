@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
-  <meta name="description" content="SSRF服务端请求伪造( Server-Side Request  Forgery，SSRF  )：一种由攻击者构造攻击链接，形成由服务器端发起请求的漏洞。一般情况下，SSRF 攻击的目标是从外网无法访问的内部系统。漏洞形成的原因大多是因为服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址">
+  <meta name="description" content="SSRF服务端请求伪造( Server-Side Request  Forgery )：一种由攻击者构造攻击链接，形成由服务器端发起请求的漏洞。一般情况下，SSRF 攻击的目标是从外网无法访问的内部系统。漏洞形成的原因大多是因为服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址作过滤和限制">
 
 
 <link rel="alternate" href="/atom.xml" title="Gu Chuan&#39;s blog" type="application/atom+xml">
@@ -38,7 +38,7 @@
         </h2>
     </header>
 </article>
-<section id="post-body"><h1 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h1><p>服务端请求伪造( Server-Side Request  Forgery，SSRF  )：一种由攻击者构造攻击链接，形成由服务器端发起请求的漏洞。一般情况下，SSRF 攻击的目标是从外网无法访问的内部系统。漏洞形成的原因大多是因为服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址作过滤和限制。</p>
+<section id="post-body"><h1 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h1><p>服务端请求伪造( Server-Side Request  Forgery )：一种由攻击者构造攻击链接，形成由服务器端发起请求的漏洞。一般情况下，SSRF 攻击的目标是从外网无法访问的内部系统。漏洞形成的原因大多是因为服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址作过滤和限制。</p>
 <p><code>SSRF 场景</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.获取超链接的标题等内容进行显示</span><br><span class="line">2.通过URL地址加载、下载图片、收藏文章</span><br><span class="line">3.在线翻译：给网址翻译对应网页的内容</span><br><span class="line">4.网站会针对你输入的url进行一些信息采集工作</span><br><span class="line">5.数据库内置功能</span><br><span class="line">6.邮件系统：比如接收邮件服务器地址</span><br><span class="line">7.从远程服务器请求资源</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
